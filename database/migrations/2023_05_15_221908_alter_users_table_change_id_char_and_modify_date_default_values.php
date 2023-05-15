@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->char('id', 26)->change();
+            $table->ulid('id')->change();
 
             $table->string('name')
                 ->after('email_verified_at')
@@ -55,6 +55,8 @@ return new class extends Migration
                 ->default(null)
                 ->nullable()
                 ->change();
+
+            $table->dropColumn('deleted_at');
         });
     }
 };
