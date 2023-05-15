@@ -11,19 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('job_seekers', function (Blueprint $table) {
+        Schema::create('contracts', function (Blueprint $table) {
             $table->ulid('id');
             $table->primary('id');
 
-            $table->string('slug')->unique();
+            $table->string('name', 20)->unique();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
-
-            $table->foreignUlid('user_id')
-                ->constrained()
-                ->unique();
         });
     }
 
@@ -32,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('job_seekers');
+        Schema::dropIfExists('contracts');
     }
 };
