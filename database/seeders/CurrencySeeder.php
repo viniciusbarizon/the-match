@@ -15,7 +15,7 @@ class CurrencySeeder extends Seeder
     {
         DB::table('currencies')->insert([
             'id' => '01H0K88685BR21KWWR72ARQDJK',
-            'name' => 'Brazilian Real',
+            'name' => 'Brazilian real',
             'salary_requirement_per' => 'month',
             'symbol' => 'R$'
         ]);
