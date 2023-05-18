@@ -43,11 +43,6 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function employer(): HasOne
-    {
-        return $this->hasOne(Employer::class);
-    }
-
     public function jobSeeker(): HasOne
     {
         return $this->hasOne(JobSeeker::class);

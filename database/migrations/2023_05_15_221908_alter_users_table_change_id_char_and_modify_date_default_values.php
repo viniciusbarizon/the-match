@@ -27,8 +27,6 @@ return new class extends Migration
                 ->useCurrent()
                 ->nullable(false)
                 ->change();
-
-            $table->softDeletes();
         });
     }
 

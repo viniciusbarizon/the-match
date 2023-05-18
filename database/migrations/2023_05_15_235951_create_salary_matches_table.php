@@ -15,17 +15,16 @@ return new class extends Migration
             $table->ulid('id');
             $table->primary('id');
 
-            $table->boolean('is_matched')->unsigned();
-            $table->mediumInteger('job')->unsigned();
-            $table->mediumInteger('job_seeker')->unsigned();
+            $table->string('employer_email')->index();
+            $table->boolean('is_matched')->unsigned()->index();
+            $table->mediumInteger('job')->unsigned()->index();
+            $table->mediumInteger('job_seeker')->unsigned()->index();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
-            $table->softDeletes();
 
             $table->foreignUlid('contract_id')->constrained();
             $table->foreignUlid('currency_id')->constrained();
-            $table->foreignUlid('employer_id')->constrained();
             $table->foreignUlid('job_seeker_id')->constrained();
         });
     }

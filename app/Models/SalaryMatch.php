@@ -10,6 +10,17 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SalaryMatch extends Model
 {
     use HasFactory;
+    use HasUlids;
+
+    protected $fillable = [
+        'employer_email',
+        'is_matched',
+        'job',
+        'job_seeker',
+        'contract_id',
+        'currency_id',
+        'job_seeker_id',
+    ];
 
     public function contract(): BelongsTo
     {
@@ -19,11 +30,6 @@ class SalaryMatch extends Model
     public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class);
-    }
-
-    public function employer(): BelongsTo
-    {
-        return $this->belongsTo(Employer::class);
     }
 
     public function jobSeeker(): BelongsTo
