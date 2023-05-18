@@ -53,8 +53,6 @@ return new class extends Migration
                 ->default(null)
                 ->nullable()
                 ->change();
-
-            $table->dropColumn('deleted_at');
         });
     }
 };
