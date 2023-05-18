@@ -14,6 +14,11 @@ class Currency extends Model
 
     protected $fillable = [];
 
+    public function salaryMatches(): HasMany
+    {
+        return $this->hasMany(SalaryMatch::class);
+    }
+
     public function salaryRequirements(): HasMany
     {
         return $this->hasMany(SalaryRequirement::class);

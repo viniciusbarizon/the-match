@@ -18,6 +18,11 @@ class JobSeeker extends Model
         'user_id',
     ];
 
+    public function salaryMatches(): HasMany
+    {
+        return $this->hasMany(SalaryMatch::class);
+    }
+
     public function salaryRequirements(): HasMany
     {
         return $this->hasMany(SalaryRequirement::class);
