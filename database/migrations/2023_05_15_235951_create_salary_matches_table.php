@@ -16,7 +16,7 @@ return new class extends Migration
             $table->primary('id');
 
             $table->string('employer_email')->index();
-            $table->boolean('is_matched')->unsigned()->index();
+            $table->boolean('is_matched')->unsigned();
             $table->mediumInteger('job')->unsigned()->index();
             $table->mediumInteger('job_seeker')->unsigned()->index();
 
