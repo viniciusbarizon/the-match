@@ -11,20 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('match_salaries', function (Blueprint $table) {
+        Schema::create('salary_matches', function (Blueprint $table) {
             $table->ulid('id');
             $table->primary('id');
 
-            $table->mediumInteger('company')->unsigned();
+            $table->boolean('is_matched')->unsigned();
+            $table->mediumInteger('job')->unsigned();
             $table->mediumInteger('job_seeker')->unsigned();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
 
-            $table->foreignUlid('match_id')
-                ->unique()
-                ->constrained();
+            $table->foreignUlid('contract_id')->constrained();
+            $table->foreignUlid('currency_id')->constrained();
+            $table->foreignUlid('employer_id')->constrained();
+            $table->foreignUlid('job_seeker_id')->constrained();
         });
     }
 
@@ -33,6 +35,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('match_salaries');
+        Schema::dropIfExists('matches');
     }
 };
