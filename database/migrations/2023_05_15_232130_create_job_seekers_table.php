@@ -15,15 +15,14 @@ return new class extends Migration
             $table->ulid('id');
             $table->primary('id');
 
+            $table->string('email')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('name');
             $table->string('slug')->unique();
 
             $table->timestamp('created_at')->useCurrent();
             $table->timestamp('updated_at')->useCurrent();
             $table->softDeletes();
-
-            $table->foreignUlid('user_id')
-                ->constrained()
-                ->unique();
         });
     }
 
