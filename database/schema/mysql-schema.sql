@@ -32,20 +32,6 @@ CREATE TABLE `currencies` (
   UNIQUE KEY `currencies_name_unique` (`name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `employers`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `employers` (
-  `id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `user_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `employers_user_id_foreign` (`user_id`),
-  CONSTRAINT `employers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `failed_jobs`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -66,55 +52,16 @@ DROP TABLE IF EXISTS `job_seekers`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `job_seekers` (
   `id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email_verified_at` timestamp NULL DEFAULT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `slug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `user_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `job_seekers_slug_unique` (`slug`),
-  KEY `job_seekers_user_id_foreign` (`user_id`),
-  CONSTRAINT `job_seekers_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `match_salaries`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `match_salaries` (
-  `id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `company` mediumint unsigned NOT NULL,
-  `job_seeker` mediumint unsigned NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `match_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `match_salaries_match_id_unique` (`match_id`),
-  CONSTRAINT `match_salaries_match_id_foreign` FOREIGN KEY (`match_id`) REFERENCES `matches` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-DROP TABLE IF EXISTS `matches`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `matches` (
-  `id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `is_matched` tinyint unsigned NOT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `contract_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `currency_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `employer_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `job_seeker_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `matches_contract_id_foreign` (`contract_id`),
-  KEY `matches_currency_id_foreign` (`currency_id`),
-  KEY `matches_employer_id_foreign` (`employer_id`),
-  KEY `matches_job_seeker_id_foreign` (`job_seeker_id`),
-  CONSTRAINT `matches_contract_id_foreign` FOREIGN KEY (`contract_id`) REFERENCES `contracts` (`id`),
-  CONSTRAINT `matches_currency_id_foreign` FOREIGN KEY (`currency_id`) REFERENCES `currencies` (`id`),
-  CONSTRAINT `matches_employer_id_foreign` FOREIGN KEY (`employer_id`) REFERENCES `employers` (`id`),
-  CONSTRAINT `matches_job_seeker_id_foreign` FOREIGN KEY (`job_seeker_id`) REFERENCES `job_seekers` (`id`)
+  UNIQUE KEY `job_seekers_email_unique` (`email`),
+  UNIQUE KEY `job_seekers_slug_unique` (`slug`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `migrations`;
@@ -156,6 +103,32 @@ CREATE TABLE `personal_access_tokens` (
   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
+DROP TABLE IF EXISTS `salary_matches`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `salary_matches` (
+  `id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `employer_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `is_matched` tinyint unsigned NOT NULL,
+  `job` mediumint unsigned NOT NULL,
+  `job_seeker` mediumint unsigned NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `contract_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `currency_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `job_seeker_id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `salary_matches_contract_id_foreign` (`contract_id`),
+  KEY `salary_matches_currency_id_foreign` (`currency_id`),
+  KEY `salary_matches_job_seeker_id_foreign` (`job_seeker_id`),
+  KEY `salary_matches_employer_email_index` (`employer_email`),
+  KEY `salary_matches_job_index` (`job`),
+  KEY `salary_matches_job_seeker_index` (`job_seeker`),
+  CONSTRAINT `salary_matches_contract_id_foreign` FOREIGN KEY (`contract_id`) REFERENCES `contracts` (`id`),
+  CONSTRAINT `salary_matches_currency_id_foreign` FOREIGN KEY (`currency_id`) REFERENCES `currencies` (`id`),
+  CONSTRAINT `salary_matches_job_seeker_id_foreign` FOREIGN KEY (`job_seeker_id`) REFERENCES `job_seekers` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 DROP TABLE IF EXISTS `salary_requirements`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
@@ -172,6 +145,7 @@ CREATE TABLE `salary_requirements` (
   UNIQUE KEY `salary_requirements_contract_id_currency_id_job_seeker_id_unique` (`contract_id`,`currency_id`,`job_seeker_id`),
   KEY `salary_requirements_currency_id_foreign` (`currency_id`),
   KEY `salary_requirements_job_seeker_id_foreign` (`job_seeker_id`),
+  KEY `salary_requirements_amount_index` (`amount`),
   CONSTRAINT `salary_requirements_contract_id_foreign` FOREIGN KEY (`contract_id`) REFERENCES `contracts` (`id`),
   CONSTRAINT `salary_requirements_currency_id_foreign` FOREIGN KEY (`currency_id`) REFERENCES `currencies` (`id`),
   CONSTRAINT `salary_requirements_job_seeker_id_foreign` FOREIGN KEY (`job_seeker_id`) REFERENCES `job_seekers` (`id`)
@@ -181,15 +155,14 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
-  `id` char(26) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` bigint NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -205,11 +178,8 @@ INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1);
 INSERT INTO `migrations` VALUES (2,'2014_10_12_100000_create_password_reset_tokens_table',1);
 INSERT INTO `migrations` VALUES (3,'2019_08_19_000000_create_failed_jobs_table',1);
 INSERT INTO `migrations` VALUES (6,'2019_12_14_000001_create_personal_access_tokens_table',2);
-INSERT INTO `migrations` VALUES (8,'2023_05_15_221908_alter_users_table_change_id_char_and_modify_date_default_values',3);
-INSERT INTO `migrations` VALUES (12,'2023_05_15_225332_create_employers_table',4);
-INSERT INTO `migrations` VALUES (15,'2023_05_15_232130_create_job_seekers_table',5);
-INSERT INTO `migrations` VALUES (16,'2023_05_15_233345_create_contracts_table',5);
-INSERT INTO `migrations` VALUES (17,'2023_05_15_234125_create_currencies_table',6);
-INSERT INTO `migrations` VALUES (18,'2023_05_15_234905_create_salary_requirements_table',7);
-INSERT INTO `migrations` VALUES (20,'2023_05_15_235951_create_matches_table',8);
-INSERT INTO `migrations` VALUES (21,'2023_05_16_000554_create_match_salaries_table',8);
+INSERT INTO `migrations` VALUES (28,'2023_05_15_232130_create_job_seekers_table',3);
+INSERT INTO `migrations` VALUES (29,'2023_05_15_233345_create_contracts_table',3);
+INSERT INTO `migrations` VALUES (30,'2023_05_15_234125_create_currencies_table',3);
+INSERT INTO `migrations` VALUES (31,'2023_05_15_234905_create_salary_requirements_table',3);
+INSERT INTO `migrations` VALUES (32,'2023_05_15_235951_create_salary_matches_table',3);
