@@ -20,14 +20,14 @@
     </head>
 
     <body class="antialiased font-sans text-gray-900">
-        <div class="bg-green-400 flex flex-col items-center min-h-screen sm:justify-center sm:pt-0 pt-6">
+        <div class="bg-green-400 flex flex-col items-center min-h-screen sm:justify-center sm:pt-0 pt-6 px-2">
             <div>
                 <a href="/">
                     <x-guest.logo/>
                 </a>
             </div>
 
-            <div class="bg-white mt-6 overflow-hidden px-6 py-4 shadow-md sm:max-w-md sm:rounded-lg w-full">
+            <div class="bg-white mt-6 overflow-hidden px-4 py-4 shadow-md sm:max-w-md sm:rounded-lg w-full">
                 {{ $slot }}
             </div>
         </div>
