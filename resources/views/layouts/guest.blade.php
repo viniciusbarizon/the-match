@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>
-            The Match - {{ _('Dê o match da sua pretensão salarial antes de iniciar o processo seletivo') }}
+            {{ $title }}
         </title>
 
         <x-favicon/>
