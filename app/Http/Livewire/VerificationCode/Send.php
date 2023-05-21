@@ -2,14 +2,15 @@
 
 namespace App\Http\Livewire\VerificationCode;
 
+use Illuminate\View\View;
 use Livewire\Component;
 use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    public $email;
+    public string $email;
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.verification-code.send');
     }
