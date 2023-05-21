@@ -7,8 +7,8 @@
     </div>
 
     <div>
-        <x-primary-button>
+        <x-guest.white-button type='submit'>
             {{ __('Enviar código de verificação') }}
-        </x-primary-button>
+        </x-guest.white-button>
     </div>
 </form>
