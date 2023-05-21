@@ -29,9 +29,4 @@ class JobSeeker extends Model
     {
         return $this->hasMany(SalaryRequirement::class);
     }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 }
