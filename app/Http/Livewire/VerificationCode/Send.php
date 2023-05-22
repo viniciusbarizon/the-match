@@ -23,6 +23,8 @@ class Send extends Component
 
     public function submit()
     {
+        $this->validate();
+
         VerificationCode::send($this->email);
     }
 }
