@@ -7,6 +7,12 @@
     </div>
 
     <div>
+        @if (session()->has('verification-code-send-message'))
+            <div class="bg-green-100 leading-normal mb-2 px-2 py-2 rounded-lg text-green-700" role="alert">
+                {{ session('verification-code-send-message') }}
+            </div>
+        @endif
+
         <x-guest.white-button type='submit'>
             {{ __('Enviar código de verificação') }}
         </x-guest.white-button>

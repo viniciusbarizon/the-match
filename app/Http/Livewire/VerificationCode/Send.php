@@ -26,5 +26,7 @@ class Send extends Component
         $this->validate();
 
         VerificationCode::send($this->email);
+
+        session()->flash('verification-code-send-message', 'Um código de verificação foi enviado para o seu e-mail.');
     }
 }
