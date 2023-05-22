@@ -18,7 +18,7 @@ class Send extends Component
 
     protected function rules(): array
     {
-        return (new SendVerificationCodeRequest())->rules();
+        return (new SendVerificationCodeRequest)->rules();
     }
 
     public function submit()
