@@ -3,7 +3,6 @@
 use function Pest\Livewire\livewire;
 
 use App\Http\Livewire\VerificationCode\Send;
-use NextApps\VerificationCode\Models\VerificationCode;
 
 it('can be sent', function () {
     $dateBeforeCall = date('Y-m-d H:i:s');
