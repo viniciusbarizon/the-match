@@ -5,8 +5,6 @@ use function Pest\Livewire\livewire;
 use App\Http\Livewire\VerificationCode\Send;
 
 it('can be sent', function () {
-    $dateBeforeCall = date('Y-m-d H:i:s');
-
     livewire(Send::class)
         ->set('email', config('mail.from.address'))
         ->call('submit')
