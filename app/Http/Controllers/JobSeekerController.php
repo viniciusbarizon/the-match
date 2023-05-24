@@ -7,8 +7,8 @@ use Illuminate\View\View;
 
 class JobSeekerController extends Controller
 {
-    public function create(): View
+    public function index(): View
     {
-        return view('job-seeker.create');
+        return view('job-seeker.index');
     }
 }

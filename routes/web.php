@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [JobSeekerController::class, 'create'])
-    ->name('job-seekers.create');
+Route::get('/', [JobSeekerController::class, 'index'])
+    ->name('job-seekers.index');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
