@@ -33,7 +33,10 @@ class IndexTest extends DuskTestCase
                 ->assertAttribute($email, 'wire:model.lazy', 'email')
                 ->assertVisible($sendVerificationCode)
                 ->assertAttribute($sendVerificationCode, 'type', 'submit')
-                ->assertSeeIn($sendVerificationCode, __('Enviar código de verificação'));
+                ->assertSeeIn($sendVerificationCode, __('Enviar código de verificação'))
+                ->type('email', 'viniciusbarizon@gmail.com')
+                ->click($sendVerificationCode)
+                ->waitForText(__('Um código de verificação foi enviado para o seu e-mail.'), 1);
         });
     }
 }
