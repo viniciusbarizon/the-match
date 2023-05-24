@@ -1,3 +1,3 @@
 <div>
-    <img src='{{ Vite::asset($path) }}' alt='Logo'>
+    <img alt='{{ $alt }}' dusk='{{ $dusk }}' src='{{ Vite::asset($path) }}' >
 </div>

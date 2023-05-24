@@ -9,6 +9,7 @@ use Illuminate\View\Component;
 class Logo extends Component
 {
     public string $alt;
+    public string $dusk;
     public string $path;
 
     /**
@@ -17,6 +18,7 @@ class Logo extends Component
     public function __construct()
     {
         $this->alt = config('app.name');
+        $this->dusk = 'logo';
         $this->path = 'resources/images/logo.png';
     }
 
