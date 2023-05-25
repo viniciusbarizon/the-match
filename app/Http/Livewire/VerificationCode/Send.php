@@ -13,9 +13,11 @@ class Send extends Component
 
     public string $input = 'email';
 
-    public string $sessionSent = 'verification_code_sent';
+    public string $sessionAlert = 'verification_code_send';
 
     public string $submit = 'verification_code_send';
+
+    private string $message;
 
     public function render(): View
     {
@@ -31,11 +33,27 @@ class Send extends Component
     {
         $this->validate();
 
-        VerificationCode::send($this->email);
+        $this->send();
 
-        session()->flash(
-            $this->sessionSent,
-            __('Enviamos um código de verificação para o seu e-mail.')
-        );
+        $this->setSessionEmail();
+
+        $this->message = 'Enviamos um código de verificação para o seu e-mail.';
+
+        $this->flashMessage();
+    }
+
+    private function send(): void
+    {
+        VerificationCode::send($this->email);
+    }
+
+    private function setSessionEmail(): void
+    {
+        session('email', $this->email);
+    }
+
+    private function flashMessage(): void
+    {
+        session()->flash($this->sessionAlert, __($this->message));
     }
 }
