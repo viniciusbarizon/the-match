@@ -11,9 +11,11 @@ class Send extends Component
 {
     public string $email;
 
-    public string $emailName = 'email';
+    public string $input = 'email';
 
-    public string $submitName = 'verification_code_send';
+    public string $sessionSent = 'verification_code_sent';
+
+    public string $submit = 'verification_code_send';
 
     public function render(): View
     {
@@ -32,7 +34,7 @@ class Send extends Component
         VerificationCode::send($this->email);
 
         session()->flash(
-            'verification-code-send-message',
+            $this->sessionSent,
             __('Enviamos um código de verificação para o seu e-mail.')
         );
     }

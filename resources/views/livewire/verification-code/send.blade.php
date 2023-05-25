@@ -1,19 +1,19 @@
 <form wire:submit.prevent="submit">
     <div class="mb-2">
-        <x-input-label for="email" :value="__('Email')" />
+        <x-input-label for="{{ $input }}" :value="__('Email')" />
 
-        <x-text-input autocomplete="username" class="block mt-1 w-full" dusk="{{ $emailName }}"
-            name="{{ $emailName }}" type="email" :value="old('email')" wire:model.lazy="email" required/>
+        <x-text-input autocomplete="username" class="block mt-1 w-full" dusk="{{ $input }}"
+            name="{{ $input }}" type="email" :value="old($input)" wire:model.lazy="{{ $input }}" required/>
 
         <x-input-error :messages="$errors->get('email')" class="mt-2" />
     </div>
 
     <div class="mb-4">
-        @if (session()->has('verification-code-send-message'))
-            <x-alert-success :message="session('verification-code-send-message')" />
+        @if (session()->has($sessionSent))
+            <x-alert-success :message="session($sessionSent)" />
         @endif
 
-        <x-white-button dusk="{{ $submitName }}" name="{{ $submitName }}" type="submit">
+        <x-white-button dusk="{{ $submit }}" name="{{ $submit }}" type="submit">
             {{ __('Enviar código de verificação') }}
         </x-white-button>
     </div>

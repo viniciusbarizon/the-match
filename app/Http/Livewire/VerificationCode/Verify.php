@@ -30,6 +30,8 @@ class Verify extends Component
     {
         $this->validate();
 
+        VerificationCode::verify($this->$verificationCode, $email);
+
         session()->flash(
             $this->sessionVerified,
             __('O código foi verificado!')
