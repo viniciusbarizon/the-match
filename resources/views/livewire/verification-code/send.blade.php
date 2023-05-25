@@ -1,4 +1,4 @@
-<form wire:submit.prevent="submit">
+<div>
     <div class="mb-2">
         <x-input-label for="{{ $input }}" :value="__('Email')" />
 
@@ -13,8 +13,8 @@
             <x-alert-success :message="session($sessionAlert)" />
         @endif
 
-        <x-white-button dusk="{{ $submit }}" name="{{ $submit }}" type="submit">
+        <x-white-button dusk="{{ $submit }}" name="{{ $submit }}">
             {{ __('Enviar código de verificação') }}
         </x-white-button>
     </div>
-</form>
+</div>
