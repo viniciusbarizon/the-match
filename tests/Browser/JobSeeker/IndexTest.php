@@ -2,21 +2,22 @@
 
 namespace Tests\Browser;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
 class IndexTest extends DuskTestCase
 {
     const EMAIL = '@email';
-    CONST LOGO = '@logo';
-    CONST SEND_VERIFICATION_CODE = '@verification_code_send';
+
+    const LOGO = '@logo';
+
+    const SEND_VERIFICATION_CODE = '@verification_code_send';
 
     public function testIndex(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')
-                ->assertTitle(config('app.name') . ' - ' .
+                ->assertTitle(config('app.name').' - '.
                     __('Dê o match da sua pretensão salarial antes de iniciar o processo seletivo')
                 )
                 ->assertVisible(self::LOGO)

@@ -1,8 +1,7 @@
 <?php
 
-use function Pest\Livewire\livewire;
-
 use App\Http\Livewire\VerificationCode\Send;
+use function Pest\Livewire\livewire;
 
 it('can be sent', function () {
     livewire(Send::class, ['email' => config('mail.from.address')])

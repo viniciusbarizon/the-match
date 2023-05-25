@@ -11,7 +11,7 @@ class GuestLayout extends Component
 
     public function __construct()
     {
-        $this->title = config('app.name') . ' - ' .
+        $this->title = config('app.name').' - '.
             _('Dê o match da sua pretensão salarial antes de iniciar o processo seletivo');
     }
 

@@ -9,7 +9,9 @@ use Illuminate\View\Component;
 class Logo extends Component
 {
     public string $alt;
+
     public string $dusk;
+
     public string $path;
 
     /**
