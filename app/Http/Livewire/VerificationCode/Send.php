@@ -10,8 +10,8 @@ use NextApps\VerificationCode\VerificationCode;
 class Send extends Component
 {
     public string $email;
-    public string $inputEmailName = 'email';
-    public string $inputSubmitName = 'send_verification_code';
+    public string $emailName = 'email';
+    public string $submitName = 'verification_code_send';
 
     public function render(): View
     {

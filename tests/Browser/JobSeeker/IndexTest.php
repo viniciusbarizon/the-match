@@ -14,7 +14,7 @@ class IndexTest extends DuskTestCase
             $appName = config('app.name');
             $email = '@email';
             $logo = '@logo';
-            $sendVerificationCode = '@send_verification_code';
+            $sendVerificationCode = '@verification_code_send';
 
             $browser->visit('/')
                 ->assertTitle($appName . ' - ' .

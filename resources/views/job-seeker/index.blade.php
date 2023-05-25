@@ -5,4 +5,5 @@
     </div>
 
     @livewire('verification-code.send')
+    @livewire('verification-code.verify')
 </x-guest-layout>
