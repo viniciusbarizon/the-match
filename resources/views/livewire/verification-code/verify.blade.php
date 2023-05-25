@@ -9,8 +9,8 @@
     </div>
 
     <div class="mb-4">
-        @if (session()->has('{{ $sessionMessage }}'))
-            <x-alert-success :message="session('{{ $sessionMessage }}')" />
+        @if (session()->has($sessionVerified))
+            <x-alert-success :message="session($sessionVerified)" />
         @endif
 
         <x-white-button dusk="{{ $submit }}" name="{{ $submit }}" type="submit">

@@ -33,7 +33,7 @@ class Send extends Component
 
         session()->flash(
             'verification-code-send-message',
-            'Um código de verificação foi enviado para o seu e-mail.'
+            __('Enviamos um código de verificação para o seu e-mail.')
         );
     }
 }

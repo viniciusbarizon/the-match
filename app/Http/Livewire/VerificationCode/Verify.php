@@ -8,13 +8,13 @@ use Livewire\Component;
 
 class Verify extends Component
 {
-    public string $verificationCode;
-
     public string $input = 'verification_code';
 
-    public string $sessionName = 'verification_code_verify_message';
+    public string $sessionVerified = 'verification_code_verified';
 
     public string $submit = 'verification_code_verify';
+
+    public string $verificationCode;
 
     public function render(): View
     {
@@ -29,5 +29,10 @@ class Verify extends Component
     public function submit(): void
     {
         $this->validate();
+
+        session()->flash(
+            $this->sessionVerified,
+            __('O código foi verificado!')
+        );
     }
 }
