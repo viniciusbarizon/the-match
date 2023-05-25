@@ -3,7 +3,7 @@
         <x-input-label for="{{ $input }}" :value="__('Código')" />
 
         <x-text-input class="block mt-1 w-full" dusk="{{ $input }}" maxlength="6" minlength="6" name="{{ $input }}"
-            type="text" :value="old('{{ $input }}')" wire:model.defer="verificationCode" required />
+            type="text" :value="old($input)" wire:model.defer="verificationCode" required />
 
         <x-input-error :messages="$errors->get('{{ $input }}')" class="mt-2" />
     </div>
