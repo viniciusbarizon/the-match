@@ -23,7 +23,7 @@
         <div class="bg-green-400 flex flex-col items-center min-h-screen sm:justify-center sm:pt-0 pt-6 px-2">
             <div>
                 <a href="/">
-                    <x-guest.logo/>
+                    <x-logo/>
                 </a>
             </div>
 

@@ -13,8 +13,8 @@
             </div>
         @endif
 
-        <x-guest.white-button dusk="{{ $inputSubmitName }}" name="{{ $inputSubmitName }}" type="submit">
+        <x-white-button dusk="{{ $inputSubmitName }}" name="{{ $inputSubmitName }}" type="submit">
             {{ __('Enviar código de verificação') }}
-        </x-guest.white-button>
+        </x-white-button>
     </div>
 </form>

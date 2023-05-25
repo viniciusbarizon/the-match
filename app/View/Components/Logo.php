@@ -1,6 +1,6 @@
 <?php
 
-namespace App\View\Components\Guest;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -27,6 +27,6 @@ class Logo extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.guest.logo');
+        return view('components.logo');
     }
 }
