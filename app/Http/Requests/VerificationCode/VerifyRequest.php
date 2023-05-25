@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\VerificationCode;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SendVerificationCodeRequest extends FormRequest
+class VerifyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -22,7 +22,7 @@ class SendVerificationCodeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'email|required|string',
+            'verificationCode' => 'required|size:6|string',
         ];
     }
 }

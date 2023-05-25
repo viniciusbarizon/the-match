@@ -1,12 +1,12 @@
 <form wire:submit.prevent="submit">
     <div class="mb-2">
-        <x-input-label for="verification_code" :value="__('Código')" />
+        <x-input-label for="{{ $verificationCodeName }}" :value="__('Código')" />
 
-        <x-text-input class="block mt-1 w-full" dusk="{{ $verificationCodeName }}"
-            name="{{ $verificationCodeName }}" type="text" :value="old('verification_code')"
-            wire:model.lazy="verificationCode" required/>
+        <x-text-input class="block mt-1 w-full" dusk="{{ $verificationCodeName }}" maxlength="6" minlength="6"
+            name="{{ $verificationCodeName }}" type="text" :value="old('{{ $verificationCodeName }}')"
+            wire:model.defer="verificationCode" required/>
 
-        <x-input-error :messages="$errors->get('verification_code')" class="mt-2" />
+        <x-input-error :messages="$errors->get('{{ $verificationCodeName }}')" class="mt-2" />
     </div>
 
     <div class="mb-4">

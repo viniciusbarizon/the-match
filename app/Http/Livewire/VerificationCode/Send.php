@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\VerificationCode;
 
-use App\Http\Requests\SendVerificationCodeRequest;
+use App\Http\Requests\VerificationCode\SendRequest;
 use Illuminate\View\View;
 use Livewire\Component;
 use NextApps\VerificationCode\VerificationCode;
@@ -22,15 +22,18 @@ class Send extends Component
 
     protected function rules(): array
     {
-        return (new SendVerificationCodeRequest)->rules();
+        return (new SendRequest)->rules();
     }
 
-    public function submit()
+    public function submit(): void
     {
         $this->validate();
 
         VerificationCode::send($this->email);
 
-        session()->flash('verification-code-send-message', 'Um código de verificação foi enviado para o seu e-mail.');
+        session()->flash(
+            'verification-code-send-message',
+            'Um código de verificação foi enviado para o seu e-mail.'
+        );
     }
 }
