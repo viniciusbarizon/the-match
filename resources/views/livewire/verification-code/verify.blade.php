@@ -11,9 +11,7 @@
 
     <div class="mb-4">
         @if (session()->has('verification-code-verify-message'))
-            <div class="bg-green-100 leading-normal mb-2 px-2 py-2 rounded-lg text-green-700" role="alert">
-                {{ session('verification-code-verify-message') }}
-            </div>
+            <x-alert-success :message="session('verification-code-verify-message')" />
         @endif
 
         <x-white-button dusk="{{ $submitName }}" name="{{ $submitName }}" type="submit">
