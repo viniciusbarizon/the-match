@@ -10,11 +10,11 @@ class Verify extends Component
 {
     public string $verificationCode;
 
-    public string $verificationCodeName = 'verification_code';
+    public string $input = 'verification_code';
 
-    public string $sessionName = 'verification-code-verify-message';
+    public string $sessionName = 'verification_code_verify_message';
 
-    public string $submitName = 'verification_code_verify';
+    public string $submit = 'verification_code_verify';
 
     public function render(): View
     {
