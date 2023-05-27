@@ -13,7 +13,7 @@
             <x-alert type="success" :message="session($session_alert)" />
         @endif
 
-        <x-white-button dusk="{{ $dusk_button }}" wire:click="send">
+        <x-white-button dusk="send_code" wire:click="send">
             {{ __('Enviar código de verificação') }}
         </x-white-button>
     </div>

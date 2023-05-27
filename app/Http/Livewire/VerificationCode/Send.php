@@ -9,8 +9,6 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    public string $dusk_button = 'verification_code_send';
-
     public string $email;
 
     public string $input = 'email';

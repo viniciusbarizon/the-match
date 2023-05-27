@@ -17,7 +17,7 @@
             @endif
         @endif
 
-        <x-white-button dusk="{{ $dusk_button }}" wire:click="verify">
+        <x-white-button dusk="verify_code" wire:click="verify">
             {{ __('Verificar código') }}
         </x-white-button>
     </div>
