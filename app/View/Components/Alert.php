@@ -6,14 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class AlertSuccess extends Component
+class Alert extends Component
 {
     /**
      * Create a new component instance.
      */
     public function __construct(public string $message)
     {
-        //
+
     }
 
     /**
@@ -21,6 +21,6 @@ class AlertSuccess extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.alert-success');
+        return view('components.alert');
     }
 }

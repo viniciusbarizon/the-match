@@ -9,11 +9,15 @@
     </div>
 
     <div class="mb-4">
-        @if (session()->has($sessionVerified))
-            <x-alert-success :message="session($sessionVerified)" />
+        @if (session()->has($sessionSuccessfullyVerified))
+            @if (session($sessionSuccessfullyVerified) === true)
+                <x-alert class="alert-success" :message="__('O Código foi verificado!')" />
+            @else
+                <x-alert class="alert-danger" :message="__('Código inválido, por favor tente novamente.')" />
+            @endif
         @endif
 
-        <x-white-button dusk="{{ $submit }}" name="{{ $submit }}" type="submit">
+        <x-white-button dusk="{{ $button }}" name="{{ $button }}">
             {{ __('Verificar código') }}
         </x-white-button>
     </div>
