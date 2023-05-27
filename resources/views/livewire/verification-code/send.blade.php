@@ -10,7 +10,7 @@
 
     <div class="mb-4">
         @if (session()->has($sessionAlert))
-            <x-alert-success :message="session($sessionAlert)" />
+            <x-alert type="success" :message="session($sessionAlert)" />
         @endif
 
         <x-white-button dusk="{{ $button }}" name="{{ $button }}" wire:click="send">
