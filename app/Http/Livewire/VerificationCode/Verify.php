@@ -9,17 +9,17 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Verify extends Component
 {
-    public string $duskButton = 'verification_code_verify';
+    public string $dusk_button = 'verification_code_verify';
 
     public string $email;
 
     public string $input = 'verification_code';
 
-    private bool $successfullyVerified;
+    public string $session_successfully_verified = 'code_successfully_verified';
 
-    public string $sessionSuccessfullyVerified = 'code_successfully_verified';
+    private bool $successfully_verified;
 
-    public string $verificationCode;
+    public string $verification_code;
 
     public function render(): View
     {
@@ -49,8 +49,8 @@ class Verify extends Component
 
     private function verifyCode(): void
     {
-        $this->successfullyVerified = VerificationCode::verify(
-            $this->verificationCode,
+        $this->successfully_verified = VerificationCode::verify(
+            $this->verification_code,
             $this->email
         );
     }
@@ -58,8 +58,8 @@ class Verify extends Component
     private function flashSuccessfullyVerified(): void
     {
         session()->flash(
-            $this->sessionSuccessfullyVerified,
-            $this->successfullyVerified
+            $this->session_successfully_verified,
+            $this->successfully_verified
         );
     }
 }

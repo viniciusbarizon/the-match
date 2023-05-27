@@ -9,13 +9,13 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    public string $duskButton = 'verification_code_send';
+    public string $dusk_button = 'verification_code_send';
 
     public string $email;
 
     public string $input = 'email';
 
-    public string $sessionAlert = 'verification_code_send';
+    public string $session_alert = 'verification_code_send';
 
     private string $message;
 
@@ -53,6 +53,6 @@ class Send extends Component
 
     private function flashMessage(): void
     {
-        session()->flash($this->sessionAlert, __($this->message));
+        session()->flash($this->session_alert, __($this->message));
     }
 }

@@ -3,17 +3,17 @@
         <x-input-label for="{{ $input }}" :value="__('Email')" />
 
         <x-text-input autocomplete="username" class="block mt-1 w-full" dusk="{{ $input }}"
-            name="{{ $input }}" type="email" :value="old($input)" wire:model.defer="{{ $input }}" required/>
+            name="{{ $input }}" type="email" :value="old($input)" wire:model.defer="{{ $input }}" />
 
         <x-input-error :messages="$errors->get($input)" class="mt-2" />
     </div>
 
     <div class="mb-4">
-        @if (session()->has($sessionAlert))
-            <x-alert type="success" :message="session($sessionAlert)" />
+        @if (session()->has($session_alert))
+            <x-alert type="success" :message="session($session_alert)" />
         @endif
 
-        <x-white-button dusk="{{ $duskButton }}" wire:click="send">
+        <x-white-button dusk="{{ $dusk_button }}" wire:click="send">
             {{ __('Enviar código de verificação') }}
         </x-white-button>
     </div>
