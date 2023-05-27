@@ -5,10 +5,11 @@ namespace App\Http\Livewire\VerificationCode;
 use App\Http\Requests\VerificationCode\VerifyRequest;
 use Illuminate\View\View;
 use Livewire\Component;
+use NextApps\VerificationCode\VerificationCode;
 
 class Verify extends Component
 {
-    public string $button = 'verification_code_verify';
+    public string $duskButton = 'verification_code_verify';
 
     public string $input = 'verification_code';
 
@@ -34,10 +35,7 @@ class Verify extends Component
 
         $this->verifyCode();
 
-        session()->flash(
-            $this->sessionVerified,
-            __('O código foi verificado!')
-        );
+        $this->flashSuccessfullyVerified();
     }
 
     private function verifyCode(): void

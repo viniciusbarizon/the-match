@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer utilities {
+    .alert-danger {
+        @apply bg-red-100 border-red-200 text-red-900
+    }
+
     .alert-success {
         @apply bg-green-100 border-green-200 text-green-900
     }

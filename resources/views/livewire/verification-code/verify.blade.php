@@ -5,7 +5,7 @@
         <x-text-input class="block mt-1 w-full" dusk="{{ $input }}" maxlength="6" minlength="6" name="{{ $input }}"
             type="text" :value="old($input)" wire:model.defer="verificationCode" required />
 
-        <x-input-error :messages="$errors->get('{{ $input }}')" class="mt-2" />
+        <x-input-error class="mt-2" :messages="$errors->get($input)" />
     </div>
 
     <div class="mb-4">
@@ -17,7 +17,7 @@
             @endif
         @endif
 
-        <x-white-button dusk="{{ $button }}" name="{{ $button }}">
+        <x-white-button dusk="{{ $duskButton }}">
             {{ __('Verificar código') }}
         </x-white-button>
     </div>
