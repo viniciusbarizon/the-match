@@ -13,7 +13,7 @@ class Send extends Component
 
     public string $input = 'email';
 
-    public string $session_alert = 'verification_code_send';
+    public string $session_email_has_been_sent = 'verification_code_email_has_been_sent';
 
     private string $message;
 
@@ -51,6 +51,6 @@ class Send extends Component
 
     private function flashMessage(): void
     {
-        session()->flash($this->session_alert, __($this->message));
+        session()->flash($this->session_email_has_been_sent, true);
     }
 }

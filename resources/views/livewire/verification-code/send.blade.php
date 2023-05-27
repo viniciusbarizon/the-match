@@ -9,8 +9,8 @@
     </div>
 
     <div class="mb-4">
-        @if (session()->has($session_alert))
-            <x-alert type="success" :message="session($session_alert)" />
+        @if (session()->has($session_email_has_been_sent))
+            <x-alert type="success" :message="__('Enviamos um código de verificação para o seu e-mail.')" />
         @endif
 
         <x-white-button dusk="send_code" wire:click="send">
