@@ -15,8 +15,6 @@ class Send extends Component
 
     public string $session_email_has_been_sent = 'verification_code_email_has_been_sent';
 
-    private string $message;
-
     public function render(): View
     {
         return view('livewire.verification-code.send');
@@ -35,18 +33,12 @@ class Send extends Component
 
         $this->emit('emailSent', $this->email);
 
-        $this->setMessage();
         $this->flashMessage();
     }
 
     private function sendEmail(): void
     {
         VerificationCode::send($this->email);
-    }
-
-    private function setMessage(): void
-    {
-        $this->message = 'Enviamos um código de verificação para o seu e-mail.';
     }
 
     private function flashMessage(): void
