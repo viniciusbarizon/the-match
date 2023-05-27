@@ -35,6 +35,8 @@ class Send extends Component
 
         $this->sendEmail();
 
+        $this->emit('emailSent', $this->email);
+
         $this->setMessage();
         $this->flashMessage();
     }

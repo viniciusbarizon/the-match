@@ -11,13 +11,13 @@
     <div class="mb-4">
         @if (session()->has($sessionSuccessfullyVerified))
             @if (session($sessionSuccessfullyVerified) === true)
-                <x-alert class="alert-success" :message="__('O Código foi verificado!')" />
+                <x-alert type="success" :message="__('O Código foi verificado!')" />
             @else
-                <x-alert class="alert-danger" :message="__('Código inválido, por favor tente novamente.')" />
+                <x-alert type="danger" :message="__('Código inválido, por favor tente novamente.')" />
             @endif
         @endif
 
-        <x-white-button dusk="{{ $duskButton }}">
+        <x-white-button dusk="{{ $duskButton }}" wire:click="verify">
             {{ __('Verificar código') }}
         </x-white-button>
     </div>
