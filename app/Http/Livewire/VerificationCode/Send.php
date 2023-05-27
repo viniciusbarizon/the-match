@@ -9,13 +9,13 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
+    public string $button = 'verification_code_send';
+
     public string $email;
 
     public string $input = 'email';
 
     public string $sessionAlert = 'verification_code_send';
-
-    public string $submit = 'verification_code_send';
 
     private string $message;
 
@@ -29,27 +29,24 @@ class Send extends Component
         return (new SendRequest)->rules();
     }
 
-    public function submit(): void
+    public function send(): void
     {
         $this->validate();
 
-        $this->send();
+        $this->sendEmail();
 
-        $this->setSessionEmail();
-
-        $this->message = 'Enviamos um código de verificação para o seu e-mail.';
-
+        $this->setMessage();
         $this->flashMessage();
     }
 
-    private function send(): void
+    private function sendEmail(): void
     {
         VerificationCode::send($this->email);
     }
 
-    private function setSessionEmail(): void
+    private function setMessage(): void
     {
-        session('email', $this->email);
+        $this->message = 'Enviamos um código de verificação para o seu e-mail.';
     }
 
     private function flashMessage(): void
