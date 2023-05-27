@@ -4,6 +4,6 @@
 
 @layer utilities {
     .alert-success {
-        @apply bg-green-100 text-green-700
+        @apply bg-green-100 border-green-200 text-green-900
     }
 }
