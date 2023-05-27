@@ -4,6 +4,6 @@
         seletivo se o salário ofertado é compatível com a sua pretensão salarial.
     </div>
 
-    @livewire('verification-code.send')
-    @livewire('verification-code.verify')
+    @livewire('job-seeker.verification-code.send')
+    @livewire('job-seeker.verification-code.verify')
 </x-guest-layout>

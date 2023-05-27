@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Livewire\VerificationCode;
+namespace App\Http\Livewire\JobSeeker\VerificationCode;
 
 use App\Http\Requests\VerificationCode\VerifyRequest;
 use Illuminate\View\View;
 use Livewire\Component;
-use NextApps\VerificationCode\VerificationCode;
+use NextApps\VerificationCode\JobSeeker\VerificationCode;
 
 class Verify extends Component
 {
@@ -21,7 +21,7 @@ class Verify extends Component
 
     public function render(): View
     {
-        return view('livewire.verification-code.verify');
+        return view('livewire.job-seeker.verification-code.verify');
     }
 
     protected $listeners = ['emailSent' => 'setEmail'];
