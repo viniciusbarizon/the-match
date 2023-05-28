@@ -5,7 +5,7 @@ namespace App\Http\Livewire\JobSeeker\VerificationCode;
 use App\Http\Requests\VerificationCode\VerifyRequest;
 use Illuminate\View\View;
 use Livewire\Component;
-use NextApps\VerificationCode\JobSeeker\VerificationCode;
+use NextApps\VerificationCode\VerificationCode;
 
 class Verify extends Component
 {
@@ -47,6 +47,11 @@ class Verify extends Component
 
     private function verifyCode(): void
     {
+        if (isset($this->email) === false) {
+            $this->successfully_verified = false;
+            return;
+        }
+
         $this->successfully_verified = VerificationCode::verify(
             $this->verification_code,
             $this->email
