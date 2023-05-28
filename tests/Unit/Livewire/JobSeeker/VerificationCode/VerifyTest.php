@@ -18,7 +18,13 @@ it('can be validated with code without the right size', function () {
         ->assertHasErrors(['verification_code' => 'size']);
 });
 
-it('can be validated with invalid code', function () {
+it('can be validated with invalid code without send', function () {
+    livewire(Verify::class, ['verification_code' => str()->random(6)])
+        ->call('verify')
+        ->assertSet('successfully_verified', false);
+});
+
+it('can be validated with invalid code after send', function () {
     $email = fake()->email();
 
     livewire(Send::class, ['email' => $email])
@@ -26,10 +32,9 @@ it('can be validated with invalid code', function () {
 
     $verificationCode = VerificationCode::where('verifiable', $email)->latest()->first();
 
-    livewire(Verify::class, [
-        'email' => $email,
-        'verification_code' => str()->random(6)
-    ])->call('verify');
+    livewire(Verify::class, ['email' => $email, 'verification_code' => str()->random(6)])
+        ->call('verify')
+        ->assertSet('successfully_verified', false);
 
     $verificationCode->refresh();
 
