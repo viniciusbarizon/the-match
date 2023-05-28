@@ -18,13 +18,12 @@ it('can be validated with invalid email', function () {
 });
 
 it('can be sent', function () {
-    $email = fake()->email();
     $now = strtotime('now');
 
-    livewire(Send::class, ['email' => $email])
+    livewire(Send::class, ['email' => fake()->email()])
         ->call('send');
 
-    $verificationCode = VerificationCode::where('verifiable', $email)->latest()->first();
+    $verificationCode = VerificationCode::latest()->first();
 
     expect($verificationCode->code)
         ->toBeString()
