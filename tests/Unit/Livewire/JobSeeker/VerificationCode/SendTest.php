@@ -5,7 +5,19 @@ use NextApps\VerificationCode\Models\VerificationCode;
 
 use function Pest\Livewire\livewire;
 
-it('can be sent and verified', function () {
+it('can be validated with required email', function () {
+    livewire(Send::class)
+        ->call('send')
+        ->assertHasErrors(['email' => 'required']);
+});
+
+it('can be validated with invalid email', function () {
+    livewire(Send::class, ['email' => str()->random(25)])
+        ->call('send')
+        ->assertHasErrors(['email' => 'email']);
+});
+
+it('can be sent', function () {
     $email = fake()->email();
     $now = strtotime('now');
 
@@ -23,16 +35,4 @@ it('can be sent and verified', function () {
 
     expect(strtotime($verificationCode->created_at))
         ->toBeGreaterThanOrEqual($now);
-});
-
-it('can be validated with empty email', function () {
-    livewire(Send::class)
-        ->call('send')
-        ->assertHasErrors(['email' => 'required']);
-});
-
-it('can be validated with invalid email', function () {
-    livewire(Send::class, ['email' => str()->random(25)])
-        ->call('send')
-        ->assertHasErrors(['email' => 'email']);
 });
