@@ -22,7 +22,7 @@ class SendRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'email|required|string',
+            'email' => 'bail|required|max:255|email',
         ];
     }
 }
