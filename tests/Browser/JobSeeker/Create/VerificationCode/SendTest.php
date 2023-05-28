@@ -1,11 +1,11 @@
 <?php
 
-namespace Tests\Browser;
+namespace Tests\Browser\JobSeeker\Create\VerificationCode;
 
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
-class VerificationCodeTest extends DuskTestCase
+class SendTest extends DuskTestCase
 {
     const EMAIL = '@email';
 
