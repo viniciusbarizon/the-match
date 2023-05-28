@@ -32,7 +32,7 @@ class SendTest extends DuskTestCase
                 ->type(self::EMAIL, str()->random(25))
                 ->click(self::SEND_CODE)
                 ->waitForText(__('O campo e-mail não contém um endereço de email válido.'), 1)
-                ->type(self::EMAIL, 'viniciusbarizon@gmail.com')
+                ->type(self::EMAIL, fake()->email())
                 ->click(self::SEND_CODE)
                 ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1);
         });

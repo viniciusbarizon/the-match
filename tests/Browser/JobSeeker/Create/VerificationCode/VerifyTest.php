@@ -40,7 +40,7 @@ class VerifyTest extends DuskTestCase
                 ->type(self::CODE, Str::random(6))
                 ->click(self::VERIFY_CODE)
                 ->waitForText(__('Código inválido, por favor tente novamente.'), 1)
-                ->type('@email', 'viniciusbarizon@gmail.com')
+                ->type('@email', fake()->email())
                 ->click('@send_code')
                 ->type(self::CODE, Str::random(6))
                 ->click(self::VERIFY_CODE)

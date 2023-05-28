@@ -5,7 +5,7 @@ use App\Http\Livewire\JobSeeker\VerificationCode\Send;
 use function Pest\Livewire\livewire;
 
 it('can be sent', function () {
-    livewire(Send::class, ['email' => 'viniciusbarizon@gmail.com'])
+    livewire(Send::class, ['email' => fake()->email()])
         ->call('send')
         ->assertSee(_('Enviamos um código de verificação para o seu e-mail.'));
 });
