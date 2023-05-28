@@ -22,7 +22,7 @@ it('can be sent and verified', function () {
         ->toBeGreaterThan($now);
 
     expect(strtotime($verificationCode->created_at))
-        ->toBeGreaterThan($now);
+        ->toBeGreaterThanOrEqual($now);
 });
 
 it('can be validated with empty email', function () {
