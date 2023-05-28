@@ -2,7 +2,6 @@
 
 namespace Tests\Browser\JobSeeker\Create\VerificationCode;
 
-use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -34,15 +33,15 @@ class VerifyTest extends DuskTestCase
                 ->assertSeeIn(self::VERIFY_CODE, __('Verificar código'))
                 ->click(self::VERIFY_CODE)
                 ->waitForText(__('O campo Código é obrigatório.'), 1)
-                ->type(self::CODE, Str::random(5))
+                ->type(self::CODE, str()->random(5))
                 ->click(self::VERIFY_CODE)
                 ->waitForText(__('O campo Código deve conter 6 caracteres.'), 1)
-                ->type(self::CODE, Str::random(6))
+                ->type(self::CODE, str()->random(6))
                 ->click(self::VERIFY_CODE)
                 ->waitForText(__('Código inválido, por favor tente novamente.'), 1)
                 ->type('@email', fake()->email())
                 ->click('@send_code')
-                ->type(self::CODE, Str::random(6))
+                ->type(self::CODE, str()->random(6))
                 ->click(self::VERIFY_CODE)
                 ->waitForText(__('Código inválido, por favor tente novamente.'), 1);
         });
