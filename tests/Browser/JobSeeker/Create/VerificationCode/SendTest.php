@@ -2,7 +2,6 @@
 
 namespace Tests\Browser\JobSeeker\Create\VerificationCode;
 
-use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -30,7 +29,7 @@ class SendTest extends DuskTestCase
                 ->assertSeeIn(self::SEND_CODE, __('Enviar código de verificação'))
                 ->click(self::SEND_CODE)
                 ->waitForText(__('O campo e-mail é obrigatório.'), 1)
-                ->type(self::EMAIL, Str::random(25))
+                ->type(self::EMAIL, str()->random(25))
                 ->click(self::SEND_CODE)
                 ->waitForText(__('O campo e-mail não contém um endereço de email válido.'), 1)
                 ->type(self::EMAIL, 'viniciusbarizon@gmail.com')
