@@ -49,6 +49,7 @@ class Verify extends Component
     {
         if (isset($this->email) === false) {
             $this->successfully_verified = false;
+
             return;
         }
 

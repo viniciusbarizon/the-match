@@ -14,7 +14,8 @@ class Alert extends Component
     public function __construct(
         public string $message,
         public string $type,
-    ) { }
+    ) {
+    }
 
     /**
      * Get the view / contents that represent the component.

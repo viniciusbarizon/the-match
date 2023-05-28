@@ -2,7 +2,6 @@
 
 namespace Tests\Browser\JobSeeker\Create\VerificationCode;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;

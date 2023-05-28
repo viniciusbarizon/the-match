@@ -10,7 +10,7 @@ class SendTest extends DuskTestCase
 {
     const DUSK_EMAIL = '@email';
 
-    CONST EMAIL = 'email';
+    const EMAIL = 'email';
 
     const SEND_CODE = '@send_code';
 

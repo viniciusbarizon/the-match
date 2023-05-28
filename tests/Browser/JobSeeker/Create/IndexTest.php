@@ -20,6 +20,6 @@ class IndexTest extends DuskTestCase
                 ->assertAttribute(self::LOGO, 'alt', config('app.name'))
                 ->assertAttributeContains(self::LOGO, 'src', '/resources/images/logo.png')
                 ->assertSee(__('Preencha os dados abaixo, receba um link para compartilhar com as empresas, e saiba antes de iniciar o processo seletivo se o salário ofertado é compatível com a sua pretensão salarial.'));
-            });
+        });
     }
 }
