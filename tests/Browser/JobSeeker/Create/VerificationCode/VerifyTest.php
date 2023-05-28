@@ -39,6 +39,11 @@ class VerifyTest extends DuskTestCase
                 ->waitForText(__('O campo Código deve conter 6 caracteres.'), 1)
                 ->type(self::CODE, Str::random(6))
                 ->click(self::VERIFY_CODE)
+                ->waitForText(__('Código inválido, por favor tente novamente.'), 1)
+                ->type('@email', 'viniciusbarizon@gmail.com')
+                ->click('@send_code')
+                ->type(self::CODE, Str::random(6))
+                ->click(self::VERIFY_CODE)
                 ->waitForText(__('Código inválido, por favor tente novamente.'), 1);
         });
     }
