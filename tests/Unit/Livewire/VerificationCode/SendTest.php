@@ -1,13 +1,28 @@
 <?php
 
 use App\Http\Livewire\JobSeeker\VerificationCode\Send;
+use NextApps\VerificationCode\Models\VerificationCode;
 
 use function Pest\Livewire\livewire;
 
-it('can be sent', function () {
-    livewire(Send::class, ['email' => fake()->email()])
-        ->call('send')
-        ->assertSee(_('Enviamos um código de verificação para o seu e-mail.'));
+it('can be sent and verified', function () {
+    $email = fake()->email();
+    $now = strtotime('now');
+
+    livewire(Send::class, ['email' => $email])
+        ->call('send');
+
+    $verificationCode = VerificationCode::where('verifiable', $email)->latest()->first();
+
+    expect($verificationCode->code)
+        ->toBeString()
+        ->toHaveLength(60);
+
+    expect(strtotime($verificationCode->expires_at))
+        ->toBeGreaterThan($now);
+
+    expect(strtotime($verificationCode->created_at))
+        ->toBeGreaterThan($now);
 });
 
 it('can be validated with empty email', function () {
