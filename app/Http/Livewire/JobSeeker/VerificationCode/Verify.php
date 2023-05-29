@@ -37,6 +37,7 @@ class Verify extends Component
 
         $this->verifyCode();
 
+        $this->setSessionEmailVerified();
         $this->flashSuccessfullyVerified();
     }
 
@@ -57,6 +58,15 @@ class Verify extends Component
             $this->verification_code,
             $this->email
         );
+    }
+
+    private function setSessionEmailVerified(): void
+    {
+        if ($this->successfully_verified === false) {
+            return;
+        }
+
+        session()->put('email_verified', $this->email);
     }
 
     private function flashSuccessfullyVerified(): void
