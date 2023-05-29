@@ -6,4 +6,6 @@
 
     @livewire('job-seeker.verification-code.send')
     @livewire('job-seeker.verification-code.verify')
+
+    @livewire('job-seeker.create-or-edit.url')
 </x-guest-layout>
