@@ -2,7 +2,6 @@
 
 use App\Http\Livewire\JobSeeker\VerificationCode\Send;
 use NextApps\VerificationCode\Models\VerificationCode;
-
 use function Pest\Livewire\livewire;
 
 it('can be validated with required email', function () {

@@ -3,7 +3,6 @@
 use App\Http\Livewire\JobSeeker\VerificationCode\Send;
 use App\Http\Livewire\JobSeeker\VerificationCode\Verify;
 use NextApps\VerificationCode\Models\VerificationCode;
-
 use function Pest\Livewire\livewire;
 
 it('can be validated with required code', function () {
