@@ -3,7 +3,7 @@
         <x-input-label for="{{ $input }}" :value="__('Código')" />
 
         <x-text-input autocomplete="off" class="block mt-1 w-full" dusk="{{ $input }}" maxlength="6" minlength="6"
-            name="{{ $input }}" type="text" :value="old($input)" wire:model.defer="{{ $input }}" required />
+            name="{{ $input }}" type="text" :value="old($input)" wire:model.defer="{{ $input }}" />
 
         <x-input-error class="mt-2" :messages="$errors->get($input)" />
     </div>
