@@ -10,10 +10,10 @@
         <x-input-label for="{{ $inputSlug }}" :value="__('URL')" />
 
         <div class="h-5 text-sm">
-            https://thematch.dev/with/
+            https://thematch.dev/with/{{ $slug }}
         </div>
 
         <x-text-input class="w-full" dusk="{{ $inputSlug }}" maxlength="255" name="{{ $inputSlug }}" type="text"
-            :value="old($inputSlug)" wire:model.defer="{{ $inputSlug }}" required/>
+            :value="old($inputSlug)" wire:model.delay="{{ $inputSlug }}" required/>
     </div>
 </div>
