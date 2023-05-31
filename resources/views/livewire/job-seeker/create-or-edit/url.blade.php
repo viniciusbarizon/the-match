@@ -3,7 +3,7 @@
         <x-input-label for="{{ $inputName }}" :value="__('Nome')" />
 
         <x-text-input autocomplete="{{ $inputName }}" class="mt-1 w-full" dusk="{{ $inputName }}" maxlength="255"
-            name="{{ $inputName }}" type="text" :value="old($inputName)" wire:model.defer="{{ $inputName }}" required />
+            name="{{ $inputName }}" type="text" :value="old($inputName)" wire:model.delay="{{ $inputName }}" required />
     </div>
 
     <div>
