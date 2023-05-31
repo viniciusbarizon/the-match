@@ -1,13 +1,13 @@
 <div class="space-y-4">
     <div>
-        <x-input-label for="name" :value="__('Nome')" />
+        <x-input-label for="{{ $inputName }}" :value="__('Nome')" />
 
-        <x-text-input autocomplete="name" class="mt-1 w-full" dusk="name" maxlength="255" name="name" type="text"
-            :value="old('name')" wire:model.defer="name" required/>
+        <x-text-input autocomplete="{{ $inputName }}" class="mt-1 w-full" dusk="{{ $inputName }}" maxlength="255"
+            name="{{ $inputName }}" type="text" :value="old($inputName)" wire:model.defer="{{ $inputName }}" required />
     </div>
 
     <div>
-        <x-input-label for="name" :value="__('URL')" />
+        <x-input-label for="slug" :value="__('URL')" />
 
         <div class="h-5 text-sm">
             https://thematch.dev/with/
