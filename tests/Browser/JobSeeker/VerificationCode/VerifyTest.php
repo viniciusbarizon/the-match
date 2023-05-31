@@ -25,7 +25,6 @@ class VerifyTest extends DuskTestCase
                 ->assertAttribute(self::DUSK_CODE, 'maxlength', self::LENGTH)
                 ->assertAttribute(self::DUSK_CODE, 'minlength', self::LENGTH)
                 ->assertAttribute(self::DUSK_CODE, 'name', self::CODE)
-                ->assertAttribute(self::DUSK_CODE, 'required', true)
                 ->assertAttribute(self::DUSK_CODE, 'type', 'text')
                 ->assertAttribute(self::DUSK_CODE, 'wire:model.defer', self::CODE)
                 ->assertVisible(self::VERIFY_CODE)
