@@ -2,7 +2,6 @@
 
 namespace Tests\Browser\JobSeeker\CreateOrEdit;
 
-use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -55,7 +54,7 @@ class UrlTest extends DuskTestCase
                 ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug]))
                 ->append(self::DUSK_SLUG, 'x')
                 ->pause(1000)
-                ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug . 'x']));
+                ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug.'x']));
         });
     }
 }

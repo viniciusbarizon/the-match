@@ -49,6 +49,7 @@ class Url extends Component
     {
         if ($this->isSlugAvailable()) {
             $this->slug = $this->slugFromName;
+
             return;
         }
 
@@ -62,7 +63,7 @@ class Url extends Component
 
     private function setSlugWithTime(): void
     {
-        $this->slug = $this->slugFromName . '-' . time();
+        $this->slug = $this->slugFromName.'-'.time();
     }
 
     private function setUrl(): void
