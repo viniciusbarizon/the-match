@@ -65,6 +65,6 @@ class Url extends Component
 
     private function setUrl(): void
     {
-        $this->url = config('app.url') . 'with/' . $this->slug;
+        $this->url = route('job-seekers.match', ['slug' => $this->slug]);
     }
 }

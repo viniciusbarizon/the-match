@@ -18,6 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', CreateOrEdit::class)
     ->name('job-seekers.create-or-edit');
 
+Route::get('with/{slug}', CreateOrEdit::class)
+    ->name('job-seekers.match');
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
