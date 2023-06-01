@@ -2,8 +2,9 @@
     <div>
         <x-input-label for="{{ $inputName }}" :value="__('Nome')" />
 
-        <x-text-input autocomplete="{{ $inputName }}" class="mt-1 w-full" dusk="{{ $inputName }}" maxlength="255"
-            name="{{ $inputName }}" type="text" :value="old($inputName)" wire:model.delay="{{ $inputName }}" required />
+        <x-text-input autocomplete="name" class="mt-1 w-full" dusk="{{ $inputName }}" maxlength="255"
+            name="{{ $inputName }}" type="text" :value="old($inputName)" wire:model.delay="{{ $inputName }}"
+            required />
     </div>
 
     <div>
@@ -16,7 +17,6 @@
     <div>
         <x-input-label for="{{ $inputUrl }}" :value="__('URL')" />
 
-        <x-text-input class="w-full" dusk="{{ $inputUrl }}" maxlength="255" name="{{ $inputUrl }}" type="text"
-            wire:model.defer="{{ $inputUrl }}" readonly/>
+        <x-text-input class="w-full" dusk="{{ $inputUrl }}" type="text" wire:model.defer="{{ $inputUrl }}" readonly />
     </div>
 </div>
