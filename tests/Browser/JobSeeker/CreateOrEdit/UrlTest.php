@@ -52,7 +52,10 @@ class UrlTest extends DuskTestCase
                 ->type(self::DUSK_NAME, $fakeName)
                 ->pause(1000)
                 ->assertValue(self::DUSK_SLUG, $slug)
-                ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug]));
+                ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug]))
+                ->append(self::DUSK_SLUG, 'x')
+                ->pause(1000)
+                ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug . 'x']));
         });
     }
 }
