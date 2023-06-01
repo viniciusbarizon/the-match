@@ -11,11 +11,15 @@ class Url extends Component
 
     public string $inputSlug = 'slug';
 
+    public string $inputUrl = 'url';
+
     public string $name;
 
     public string $slug;
 
     public string $slugFromName;
+
+    public string $url;
 
     public function render()
     {
@@ -26,6 +30,12 @@ class Url extends Component
     {
         $this->setSlugFromName();
         $this->setSlug();
+        $this->setUrl();
+    }
+
+    public function updatedSlug(): void
+    {
+        $this->setUrl();
     }
 
     private function setSlugFromName(): void
@@ -51,5 +61,10 @@ class Url extends Component
     private function setSlugWithTime(): void
     {
         $this->slug = $this->slugFromName . '-' . time();
+    }
+
+    private function setUrl(): void
+    {
+        $this->url = config('app.url') . 'with/' . $this->slug;
     }
 }

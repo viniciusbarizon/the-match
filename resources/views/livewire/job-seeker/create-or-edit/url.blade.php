@@ -7,13 +7,16 @@
     </div>
 
     <div>
-        <x-input-label for="{{ $inputSlug }}" :value="__('URL')" />
-
-        <div class="h-5 text-sm">
-            https://thematch.dev/with/{{ $slug }}
-        </div>
+        <x-input-label for="{{ $inputSlug }}" :value="__('Slug')" />
 
         <x-text-input class="w-full" dusk="{{ $inputSlug }}" maxlength="255" name="{{ $inputSlug }}" type="text"
             :value="old($inputSlug)" wire:model.delay="{{ $inputSlug }}" required/>
+    </div>
+
+    <div>
+        <x-input-label for="{{ $inputUrl }}" :value="__('URL')" />
+
+        <x-text-input class="w-full" dusk="{{ $inputUrl }}" maxlength="255" name="{{ $inputUrl }}" type="text"
+            wire:model.defer="{{ $inputUrl }}" readonly/>
     </div>
 </div>
