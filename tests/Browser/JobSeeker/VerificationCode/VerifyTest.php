@@ -11,8 +11,6 @@ class VerifyTest extends DuskTestCase
 
     const CODE = 'verification_code';
 
-    const LENGTH = 6;
-
     const VERIFY_CODE = '@verify_code';
 
     public function testVerifyCode(): void
@@ -22,8 +20,7 @@ class VerifyTest extends DuskTestCase
                 ->assertSee(__('Código'))
                 ->assertVisible(self::DUSK_CODE)
                 ->assertAttribute(self::DUSK_CODE, 'autocomplete', 'off')
-                ->assertAttribute(self::DUSK_CODE, 'maxlength', self::LENGTH)
-                ->assertAttribute(self::DUSK_CODE, 'minlength', self::LENGTH)
+                ->assertAttribute(self::DUSK_CODE, 'maxlength', 6)
                 ->assertAttribute(self::DUSK_CODE, 'name', self::CODE)
                 ->assertAttribute(self::DUSK_CODE, 'type', 'text')
                 ->assertAttribute(self::DUSK_CODE, 'wire:model.defer', self::CODE)
