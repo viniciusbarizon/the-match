@@ -13,6 +13,8 @@ class Url extends Component
 
     public string $inputUrl = 'url';
 
+    public int $maxlength = 255;
+
     public string $name;
 
     public string $slug;

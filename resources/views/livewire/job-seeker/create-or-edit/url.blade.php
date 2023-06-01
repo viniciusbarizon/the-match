@@ -3,14 +3,14 @@
         <x-input-label for="{{ $inputName }}" :value="__('Nome')" />
 
         <x-text-input autocomplete="name" class="mt-1 w-full" dusk="{{ $inputName }}" id="{{ $inputName }}"
-            maxlength="255" name="{{ $inputName }}" type="text" :value="old($inputName)"
+            maxlength="{{ $maxlength }}" name="{{ $inputName }}" type="text" :value="old($inputName)"
             wire:model.delay="{{ $inputName }}" required />
     </div>
 
     <div>
         <x-input-label for="{{ $inputSlug }}" :value="__('Slug')" />
 
-        <x-text-input class="mt-1 w-full" dusk="{{ $inputSlug }}" id="{{ $inputSlug }}" maxlength="255"
+        <x-text-input class="mt-1 w-full" dusk="{{ $inputSlug }}" id="{{ $inputSlug }}" maxlength="{{ $maxlength }}"
             name="{{ $inputSlug }}" type="text" :value="old($inputSlug)" wire:model.delay="{{ $inputSlug }}"
             required />
     </div>
