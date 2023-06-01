@@ -10,13 +10,13 @@
     <div>
         <x-input-label for="{{ $inputSlug }}" :value="__('Slug')" />
 
-        <x-text-input class="w-full" dusk="{{ $inputSlug }}" maxlength="255" name="{{ $inputSlug }}" type="text"
+        <x-text-input class="mt-1 w-full" dusk="{{ $inputSlug }}" maxlength="255" name="{{ $inputSlug }}" type="text"
             :value="old($inputSlug)" wire:model.delay="{{ $inputSlug }}" required/>
     </div>
 
     <div>
         <x-input-label for="{{ $inputUrl }}" :value="__('URL')" />
 
-        <x-text-input class="w-full" dusk="{{ $inputUrl }}" type="text" wire:model.defer="{{ $inputUrl }}" readonly />
+        <x-text-input class="mt-1 w-full" dusk="{{ $inputUrl }}" type="text" wire:model.defer="{{ $inputUrl }}" readonly />
     </div>
 </div>
