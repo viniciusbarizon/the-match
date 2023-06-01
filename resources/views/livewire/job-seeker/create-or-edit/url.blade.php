@@ -5,6 +5,8 @@
         <x-text-input autocomplete="name" class="mt-1 w-full" dusk="{{ $inputName }}" id="{{ $inputName }}"
             maxlength="{{ $maxlength }}" name="{{ $inputName }}" type="text" :value="old($inputName)"
             wire:model.delay="{{ $inputName }}" required />
+
+        <x-input-error :messages="$errors->get($inputName)" class="mt-2" />
     </div>
 
     <div>
@@ -13,6 +15,8 @@
         <x-text-input class="mt-1 w-full" dusk="{{ $inputSlug }}" id="{{ $inputSlug }}" maxlength="{{ $maxlength }}"
             name="{{ $inputSlug }}" type="text" :value="old($inputSlug)" wire:model.delay="{{ $inputSlug }}"
             required />
+
+        <x-input-error :messages="$errors->get($inputSlug)" class="mt-2" />
     </div>
 
     <div>
