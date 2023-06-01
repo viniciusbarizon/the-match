@@ -13,6 +13,8 @@ class Verify extends Component
 
     public string $input = 'verification_code';
 
+    public int $max_length = 6;
+
     public string $session_successfully_verified = 'verification_code_successfully_verified';
 
     private bool $successfully_verified;
