@@ -22,7 +22,7 @@ class UrlTest extends DuskTestCase
 
     const URL = 'url';
 
-    public function testExample(): void
+    public function testUrl(): void
     {
         $this->browse(function (Browser $browser) {
             $browser->visit('/')

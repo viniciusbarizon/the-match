@@ -19,7 +19,7 @@ class SendTest extends DuskTestCase
             $browser->visit('/')
                 ->assertSee(__('Email'))
                 ->assertVisible(self::DUSK_EMAIL)
-                ->assertAttribute(self::DUSK_EMAIL, 'autocomplete', self::EMAIL)
+                ->assertAttribute(self::DUSK_EMAIL, 'autocomplete', 'email')
                 ->assertAttribute(self::DUSK_EMAIL, 'name', self::EMAIL)
                 ->assertAttribute(self::DUSK_EMAIL, 'required', true)
                 ->assertAttribute(self::DUSK_EMAIL, 'type', self::EMAIL)
