@@ -68,6 +68,11 @@ class Url extends Component
 
     private function setUrl(): void
     {
+        if ($this->name == '') {
+            $this->url = '';
+            return;
+        }
+
         $this->url = route('job-seekers.match', ['slug' => $this->slug]);
     }
 }
