@@ -68,7 +68,7 @@ class Url extends Component
 
     private function setUrl(): void
     {
-        if ($this->name == '') {
+        if ($this->name == '' || $this->slug == '') {
             $this->url = '';
             return;
         }
