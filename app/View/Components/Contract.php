@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 
 class Contract extends Component
 {
-    public array $contracts;
+    public readonly array $contracts;
 
     /**
      * Create a new component instance.
