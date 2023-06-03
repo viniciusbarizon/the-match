@@ -1,4 +1,4 @@
-<div class="space-y-4">
+<div class="mb-4 space-y-4">
     <div>
         <x-input-label for="{{ $inputName }}" :value="__('Nome')" />
 

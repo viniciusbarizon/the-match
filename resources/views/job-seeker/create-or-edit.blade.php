@@ -8,4 +8,6 @@
     @livewire('job-seeker.verification-code.verify')
 
     @livewire('job-seeker.create-or-edit.url')
+
+    <x-contract/>
 </x-guest-layout>
