@@ -20,9 +20,23 @@ it('can set url automatically after type name', function() {
 });
 
 it('can set url automatically after type slug', function() {
-    $slug = str()->of(fake()->name())->slug();
+    $slug = fake()->slug();
 
     livewire(Url::class)
         ->set('slug', $slug)
         ->assertSet('url', route('job-seekers.match', ['slug' => $slug]));
+});
+
+it('can set url empty after clear name', function() {
+    livewire(Url::class)
+        ->set('name', fake()->name())
+        ->set('name', '')
+        ->assertSet('url', '');
+});
+
+it('can set url empty after clear slug', function() {
+    livewire(Url::class)
+        ->set('slug', fake()->slug())
+        ->set('slug', '')
+        ->assertSet('url', '');
 });
