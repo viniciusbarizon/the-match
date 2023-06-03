@@ -9,3 +9,7 @@
 .alert-success {
     @apply bg-green-100 border-green-200 text-green-900;
 }
+
+.text-input-select {
+    @apply border-gray-300 focus:border-green-400 focus:ring-green-400 rounded-md shadow-sm;
+}
