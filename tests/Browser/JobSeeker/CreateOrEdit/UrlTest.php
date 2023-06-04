@@ -63,6 +63,20 @@ class UrlTest extends DuskTestCase
         });
     }
 
+    public function slugExists(): void
+    {
+        $jobSeeker = JobSeeker::factory()->create();
+        $this->name = $jobSeeker->name;
+        $this->setSlug();
+
+        $this->browse(function (Browser $browser) {
+            $browser->visit('/')
+                ->type(self::DUSK_NAME, $this->name)
+                ->pause(1000)
+                ->assertValue(self::DUSK_SLUG, $this->slug).'-'.time();
+        });
+    }
+
     public function testSlugExists(): void
     {
         $jobSeeker = JobSeeker::factory()->create();
