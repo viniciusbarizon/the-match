@@ -7,9 +7,9 @@ use Tests\DuskTestCase;
 
 class IndexTest extends DuskTestCase
 {
-    const CONTRACT = 'contract';
+    const CONTRACT = 'contract_id';
 
-    const DUSK_CONTRACT = '@contract';
+    const DUSK_CONTRACT = '@contract_id';
 
     const LOGO = '@logo';
 

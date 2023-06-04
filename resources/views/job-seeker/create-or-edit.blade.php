@@ -10,4 +10,5 @@
     @livewire('job-seeker.create-or-edit.url')
 
     <x-contract/>
+    <x-currency/>
 </x-guest-layout>

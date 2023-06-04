@@ -19,7 +19,7 @@ class Contract extends Component
     public function __construct()
     {
         $this->contracts = ContractModel::pluck('name', 'id')->all();
-        $this->input = 'contract';
+        $this->input = 'contract_id';
     }
 
     /**
