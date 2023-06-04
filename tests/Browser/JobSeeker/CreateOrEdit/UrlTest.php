@@ -21,11 +21,14 @@ class UrlTest extends DuskTestCase
 
     const URL = 'url';
 
+    private string $name;
+
     public function testUrl(): void
     {
+        $this->setFakeName();
+
         $this->browse(function (Browser $browser) {
-            $fakeName = fake()->name();
-            $slug = str()->of($fakeName)->slug();
+            $slug = str()->of($this->name)->slug();
 
             $browser->visit('/')
                 ->assertSee(__('Nome'))
@@ -48,7 +51,7 @@ class UrlTest extends DuskTestCase
                 ->assertAttribute(self::DUSK_URL, 'readonly', true)
                 ->assertAttribute(self::DUSK_URL, 'type', 'text')
                 ->assertAttribute(self::DUSK_URL, 'wire:model.defer', self::URL)
-                ->type(self::DUSK_NAME, $fakeName)
+                ->type(self::DUSK_NAME, $this->name)
                 ->pause(1000)
                 ->assertValue(self::DUSK_SLUG, $slug)
                 ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug]))
@@ -56,5 +59,10 @@ class UrlTest extends DuskTestCase
                 ->pause(1000)
                 ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $slug.'x']));
         });
+    }
+
+    private function setFakeName(): void
+    {
+        $this->name = fake()->name();
     }
 }
