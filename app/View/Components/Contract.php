@@ -11,12 +11,15 @@ class Contract extends Component
 {
     public readonly array $contracts;
 
+    public string $input;
+
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
         $this->contracts = ContractModel::pluck('name', 'id')->all();
+        $this->input = 'contract';
     }
 
     /**
