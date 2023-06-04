@@ -50,3 +50,11 @@ it('sets slug with time if already exists', function() {
         ->set('name', $jobSeeker->name)
         ->assertSet('slug', $jobSeeker->slug.'-'.time());
 });
+
+it('sets urls with time if slug already exists', function() {
+    $jobSeeker = JobSeeker::factory()->create();
+
+    livewire(Url::class)
+        ->set('name', $jobSeeker->name)
+        ->assertSet('url', route('job-seekers.match', ['slug' => $jobSeeker->slug.'-'.time()]));
+});
