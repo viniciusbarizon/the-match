@@ -1,25 +1,27 @@
 <?php
 
 use App\Http\Livewire\JobSeeker\CreateOrEdit\Url;
+use App\Models\JobSeeker;
+use Database\Factories\Administration\FlightFactory;
 use function Pest\Livewire\livewire;
 
-it('can set slug automatically after type name', function() {
-    $fakeName = fake()->name();
+it('sets slug automatically after type name', function() {
+    $name = fake()->name();
 
     livewire(Url::class)
-        ->set('name', $fakeName)
-        ->assertSet('slug', str()->of($fakeName)->slug());
+        ->set('name', $name)
+        ->assertSet('slug', str()->of($name)->slug());
 });
 
-it('can set url automatically after type name', function() {
-    $fakeName = fake()->name();
+it('sets url automatically after type name', function() {
+    $name = fake()->name();
 
     livewire(Url::class)
-        ->set('name', $fakeName)
-        ->assertSet('url', route('job-seekers.match', ['slug' => str()->of($fakeName)->slug()]));
+        ->set('name', $name)
+        ->assertSet('url', route('job-seekers.match', ['slug' => str()->of($name)->slug()]));
 });
 
-it('can set url automatically after type slug', function() {
+it('sets url automatically after type slug', function() {
     $slug = fake()->slug();
 
     livewire(Url::class)
@@ -27,16 +29,24 @@ it('can set url automatically after type slug', function() {
         ->assertSet('url', route('job-seekers.match', ['slug' => $slug]));
 });
 
-it('can set url empty after clear name', function() {
+it('sets url empty after clear name', function() {
     livewire(Url::class)
         ->set('name', fake()->name())
         ->set('name', '')
         ->assertSet('url', '');
 });
 
-it('can set url empty after clear slug', function() {
+it('sets url empty after clear slug', function() {
     livewire(Url::class)
         ->set('slug', fake()->slug())
         ->set('slug', '')
         ->assertSet('url', '');
+});
+
+it('sets slug with time if already exists', function() {
+    $jobSeeker = JobSeeker::factory()->create();
+
+    livewire(Url::class)
+        ->set('name', $jobSeeker->name)
+        ->assertSet('slug', $jobSeeker->slug.'-'.time());
 });
