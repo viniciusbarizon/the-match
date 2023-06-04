@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\JobSeeker\CreateOrEdit;
 
+use App\Models\JobSeeker;
 use Laravel\Dusk\Browser;
 use Tests\DuskTestCase;
 
@@ -25,7 +26,7 @@ class UrlTest extends DuskTestCase
 
     private string $slug;
 
-    public function testUrl(): void
+    public function testSlugDoesNotExist(): void
     {
         $this->setFakeName();
         $this->setSlug();
@@ -59,6 +60,14 @@ class UrlTest extends DuskTestCase
                 ->append(self::DUSK_SLUG, 'x')
                 ->pause(1000)
                 ->assertValue(self::DUSK_URL, route('job-seekers.match', ['slug' => $this->slug.'x']));
+        });
+    }
+
+    public function testSlugExists(): void
+    {
+        $jobSeeker = JobSeeker::factory()->create();
+
+        $this->browse(function (Browser $browser) {
         });
     }
 
