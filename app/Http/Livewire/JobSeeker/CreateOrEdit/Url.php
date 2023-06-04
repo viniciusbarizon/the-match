@@ -70,6 +70,7 @@ class Url extends Component
     {
         if (empty($this->slug)) {
             $this->url = '';
+
             return;
         }
 
