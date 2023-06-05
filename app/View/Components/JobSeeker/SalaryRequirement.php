@@ -11,6 +11,8 @@ class SalaryRequirement extends Component
 {
     const CURRENCY_REAL_ID = '01H0K88685BR21KWWR72ARQDJK';
 
+    public readonly string $inputAmount;
+
     public bool $isPerYear;
 
     /**
@@ -18,6 +20,7 @@ class SalaryRequirement extends Component
      */
     public function __construct()
     {
+        $this->inputAmount = 'amount';
         $this->isPerYear = Currency::find(self::CURRENCY_REAL_ID)->is_salary_per_year;
     }
 

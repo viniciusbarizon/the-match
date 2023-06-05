@@ -1,3 +1,17 @@
 <div>
-    <!-- Knowing is not enough; we must apply. Being willing is not enough; we must do. - Leonardo da Vinci -->
+    <div>
+        <x-input-label dusk="{{ $input }}_label" for="{{ $input }}" :value="__('Contrato')" />
+
+        <select class="mt-1 text-input-select w-full" dusk="{{ $input }}" id="{{ $input }}" name="{{ $input }}" required>
+            @foreach ($contracts as $id => $name)
+                <option value="{{ $id }}">
+                    {{ $name }}
+                </option>
+            @endforeach
+        </select>
+    </div>
+
+    <div>
+        <x-input-label dusk="{{ $inputAmount }}_label" for="{{ $inputAmount }}" :value="__('Pretensão salarial')" />
+    </div>
 </div>
