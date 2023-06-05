@@ -9,14 +9,16 @@ use Illuminate\View\Component;
 
 class SalaryRequirement extends Component
 {
-    public boolean $isPerYear;
+    const CURRENCY_REAL_ID = '01H0K88685BR21KWWR72ARQDJK';
+
+    public bool $isPerYear;
 
     /**
      * Create a new component instance.
      */
     public function __construct()
     {
-        $this->isPerYear = Currency::find('01H0K88685BR21KWWR72ARQDJK')->is_salary_per_year;
+        $this->isPerYear = Currency::find(self::CURRENCY_REAL_ID)->is_salary_per_year;
     }
 
     /**

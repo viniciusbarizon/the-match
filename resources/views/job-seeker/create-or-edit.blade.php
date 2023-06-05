@@ -11,4 +11,5 @@
 
     <x-contract/>
     <x-currency/>
+    <x-job-seeker.salary-requirement/>
 </x-guest-layout>
