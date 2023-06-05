@@ -8,7 +8,7 @@
         <x-input-error :messages="$errors->get($input)" class="mt-2" />
     </div>
 
-    <div class="mb-4">
+    <div>
         @if (session()->has($session_email_has_been_sent))
             <x-alert type="success" :message="__('Enviamos um código de verificação para o seu e-mail.')" />
         @endif

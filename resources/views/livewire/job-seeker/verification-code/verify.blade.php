@@ -9,7 +9,7 @@
         <x-input-error class="mt-2" :messages="$errors->get($input)" />
     </div>
 
-    <div class="mb-4">
+    <div>
         @if (session()->has($session_successfully_verified))
             @if (session($session_successfully_verified) === true)
                 <x-alert type="success" :message="__('O Código foi verificado!')" />

@@ -1,4 +1,4 @@
-<div class="mb-4">
+<div>
     <x-input-label dusk="{{ $input }}_label" for="{{ $input }}" :value="__('Contrato')" />
 
     <select class="mt-1 text-input-select w-full" dusk="{{ $input }}" id="{{ $input }}" name="{{ $input }}" required>
