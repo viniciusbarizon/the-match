@@ -15,8 +15,8 @@ return new class extends Migration
             $table->ulid('id');
             $table->primary('id');
 
+            $table->boolean('is_salary_per_year')->default(true)->unsigned();
             $table->string('name', 20)->unique();
-            $table->enum('salary_requirement_per', ['month', 'year']);
             $table->char('symbol', 2);
 
             $table->timestamp('created_at')->useCurrent();
