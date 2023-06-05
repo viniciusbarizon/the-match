@@ -16,6 +16,10 @@ class Currency extends Model
 
     protected $fillable = [];
 
+    protected $casts = [
+        'is_salary_per_year' => 'boolean',
+    ];
+
     public function salaryMatches(): HasMany
     {
         return $this->hasMany(SalaryMatch::class);
