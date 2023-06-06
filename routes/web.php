@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\JobSeeker\CreateOrEdit;
+use App\Http\Controllers\JobSeeker\Create;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', CreateOrEdit::class)
+Route::get('/', Create::class)
     ->name('job-seekers.create');
 
 Route::get('with/{slug}', CreateOrEdit::class)
