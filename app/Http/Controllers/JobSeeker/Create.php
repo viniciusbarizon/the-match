@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class CreateOrEdit extends Controller
+class Create extends Controller
 {
     /**
      * Handle the incoming request.

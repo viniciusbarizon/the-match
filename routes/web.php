@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Create::class)
     ->name('job-seekers.create');
 
-Route::get('with/{slug}', CreateOrEdit::class)
+Route::get('with/{slug}', Create::class)
     ->name('job-seekers.match');
 
 Route::get('/dashboard', function () {
