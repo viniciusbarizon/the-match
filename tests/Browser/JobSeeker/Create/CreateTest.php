@@ -7,18 +7,6 @@ use Tests\DuskTestCase;
 
 class CreateTest extends DuskTestCase
 {
-    const CONTRACT = 'contract_id';
-
-    const CURRENCY = 'currency_id';
-
-    const DUSK_CONTRACT = '@contract_id';
-
-    const DUSK_CONTRACT_LABEL = '@contract_id_label';
-
-    const DUSK_CURRENCY = '@currency_id';
-
-    const DUSK_CURRENCY_LABEL = '@currency_id_label';
-
     const LOGO = '@logo';
 
     public function testCreate(): void
