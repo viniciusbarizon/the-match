@@ -2,6 +2,7 @@
 
 namespace App\View\Components\JobSeeker;
 
+use App\Models\Contract;
 use App\Models\Currency;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -11,7 +12,15 @@ class SalaryRequirement extends Component
 {
     const CURRENCY_REAL_ID = '01H0K88685BR21KWWR72ARQDJK';
 
+    public readonly array $contracts;
+
+    public readonly array $currencies;
+
     public readonly string $inputAmount;
+
+    public readonly string $inputContract;
+
+    public readonly string $inputCurrency;
 
     public bool $isPerYear;
 
@@ -20,7 +29,11 @@ class SalaryRequirement extends Component
      */
     public function __construct()
     {
+        $this->contracts = Contract::pluck('name', 'id')->all();
+        $this->currencies = Currency::pluck('name', 'id')->all();
         $this->inputAmount = 'amount';
+        $this->inputContract = 'contract';
+        $this->inputCurrency = 'currency';
         $this->isPerYear = Currency::find(self::CURRENCY_REAL_ID)->is_salary_per_year;
     }
 
