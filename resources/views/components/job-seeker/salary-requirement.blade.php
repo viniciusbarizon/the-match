@@ -2,29 +2,13 @@
     <div>
         <x-input-label dusk="{{ $inputContract }}_label" for="{{ $inputContract }}" :value="__('Contrato')" />
 
-        <select class="mt-1 text-input-select w-full" dusk="{{ $inputContract }}" id="{{ $inputContract }}"
-            name="{{ $inputContract }}" required
-        >
-            @foreach ($contracts as $id => $name)
-                <option value="{{ $id }}">
-                    {{ $name }}
-                </option>
-            @endforeach
-        </select>
+        <x-select class="mt-1 w-full" :name="$inputContract"  :options="$contracts" required />
     </div>
 
     <div>
         <x-input-label dusk="{{ $inputCurrency }}_label" for="{{ $inputCurrency }}" :value="__('Moeda')" />
 
-        <select class="mt-1 text-input-select w-full" dusk="{{ $inputCurrency }}" id="{{ $inputCurrency }}"
-            name="{{ $inputCurrency }}" required
-        >
-            @foreach ($currencies as $id => $name)
-                <option value="{{ $id }}">
-                    {{ $name }}
-                </option>
-            @endforeach
-        </select>
+        <x-select class="mt-1 w-full" :name="$inputCurrency"  :options="$currencies" required />
     </div>
 
     <div>
