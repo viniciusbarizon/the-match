@@ -10,8 +10,6 @@
 
         @livewire('job-seeker.create-or-edit.url')
 
-        <x-contract/>
-        <x-currency/>
         <x-job-seeker.salary-requirement/>
     </div>
 </x-guest-layout>
