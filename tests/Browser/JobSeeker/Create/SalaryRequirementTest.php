@@ -8,17 +8,19 @@ use Tests\DuskTestCase;
 
 class SalaryRequirementTest extends DuskTestCase
 {
+    const AMOUNT = 'currency_id';
+
     const CONTRACT = 'contract_id';
 
     const CURRENCY = 'currency_id';
 
-    const DUSK_CONTRACT = '@contract_id';
+    const DUSK_CONTRACT = '@'.self::CONTRACT;
 
-    const DUSK_CONTRACT_LABEL = '@contract_id_label';
+    const DUSK_CONTRACT_LABEL = self::DUSK_CONTRACT.'_label';
 
-    const DUSK_CURRENCY = '@currency_id';
+    const DUSK_CURRENCY = '@'.self::CURRENCY;
 
-    const DUSK_CURRENCY_LABEL = '@currency_id_label';
+    const DUSK_CURRENCY_LABEL = self::DUSK_CURRENCY.'_label';
 
     public function testSalaryRequirement(): void
     {
