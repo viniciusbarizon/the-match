@@ -29,5 +29,7 @@
 
     <div>
         <x-input-label dusk="{{ $inputAmount }}_label" for="{{ $inputAmount }}" :value="__('Pretensão salarial')" />
+
+        <input class="mt-1 text-input-select w-full" min="1" type="number" required>
     </div>
 </div>
