@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\JobSeeker\CreateOrEdit;
+namespace Tests\Browser\JobSeeker\Create;
 
 use App\Models\JobSeeker;
 use Laravel\Dusk\Browser;

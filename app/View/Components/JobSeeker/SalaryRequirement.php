@@ -32,8 +32,8 @@ class SalaryRequirement extends Component
         $this->contracts = Contract::pluck('name', 'id')->all();
         $this->currencies = Currency::pluck('name', 'id')->all();
         $this->inputAmount = 'amount';
-        $this->inputContract = 'contract';
-        $this->inputCurrency = 'currency';
+        $this->inputContract = 'contract_id';
+        $this->inputCurrency = 'currency_id';
         $this->isPerYear = Currency::find(self::CURRENCY_REAL_ID)->is_salary_per_year;
     }
 
