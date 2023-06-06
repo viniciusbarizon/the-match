@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\JobSeeker\VerificationCode;
+namespace App\Http\Livewire\VerificationCode;
 
 use App\Http\Requests\JobSeeker\VerificationCode\SendRequest;
 use Illuminate\View\View;
@@ -17,7 +17,7 @@ class Send extends Component
 
     public function render(): View
     {
-        return view('livewire.job-seeker.verification-code.send');
+        return view('livewire.verification-code.send');
     }
 
     protected function rules(): array

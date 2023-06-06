@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\JobSeeker\VerificationCode;
+namespace App\Http\Livewire\VerificationCode;
 
 use App\Http\Requests\JobSeeker\VerificationCode\VerifyRequest;
 use Illuminate\View\View;
@@ -23,7 +23,7 @@ class Verify extends Component
 
     public function render(): View
     {
-        return view('livewire.job-seeker.verification-code.verify');
+        return view('livewire.verification-code.verify');
     }
 
     protected $listeners = ['emailSent' => 'setEmail'];
