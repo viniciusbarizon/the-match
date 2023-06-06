@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\JobSeeker\CreateOrEdit;
+namespace App\Http\Livewire\JobSeeker;
 
 use App\Models\JobSeeker;
 use Livewire\Component;
@@ -25,7 +25,7 @@ class Url extends Component
 
     public function render()
     {
-        return view('livewire.job-seeker.create.url');
+        return view('livewire.job-seeker.url');
     }
 
     public function updatedName(): void
