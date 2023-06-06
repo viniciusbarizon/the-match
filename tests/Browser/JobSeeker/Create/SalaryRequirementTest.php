@@ -8,11 +8,15 @@ use Tests\DuskTestCase;
 
 class SalaryRequirementTest extends DuskTestCase
 {
-    const AMOUNT = 'currency_id';
+    const AMOUNT = 'amount';
 
     const CONTRACT = 'contract_id';
 
     const CURRENCY = 'currency_id';
+
+    const DUSK_AMOUNT = '@'.self::AMOUNT;
+
+    const DUSK_AMOUNT_LABEL = self::DUSK_AMOUNT.'_label';
 
     const DUSK_CONTRACT = '@'.self::CONTRACT;
 
@@ -41,7 +45,16 @@ class SalaryRequirementTest extends DuskTestCase
                 ->assertAttribute(self::DUSK_CURRENCY, 'id', self::CURRENCY)
                 ->assertAttribute(self::DUSK_CURRENCY, 'name', self::CURRENCY)
                 ->assertAttribute(self::DUSK_CURRENCY, 'required', true)
-                ->assertSelected(self::DUSK_CURRENCY, '01H0K88685BR21KWWR72ARQDJK');
+                ->assertSelected(self::DUSK_CURRENCY, '01H0K88685BR21KWWR72ARQDJK')
+                ->assertAttribute(self::DUSK_AMOUNT_LABEL, 'for', self::AMOUNT)
+                ->assertSeeIn(self::DUSK_AMOUNT_LABEL, __('Pretensão salarial'))
+                ->assertVisible(self::DUSK_AMOUNT)
+                ->assertAttribute(self::DUSK_AMOUNT, 'id', self::AMOUNT)
+                ->assertAttribute(self::DUSK_AMOUNT, 'min', 1)
+                ->assertAttribute(self::DUSK_AMOUNT, 'max', 16777215)
+                ->assertAttribute(self::DUSK_AMOUNT, 'name', self::AMOUNT)
+                ->assertAttribute(self::DUSK_AMOUNT, 'required', true)
+                ->assertAttribute(self::DUSK_AMOUNT, 'type', 'number');
         });
     }
 }
