@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', CreateOrEdit::class)
-    ->name('job-seekers.create-or-edit');
+    ->name('job-seekers.create');
 
 Route::get('with/{slug}', CreateOrEdit::class)
     ->name('job-seekers.match');

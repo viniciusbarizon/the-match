@@ -13,6 +13,6 @@ class CreateOrEdit extends Controller
      */
     public function __invoke(Request $request): View
     {
-        return view('job-seeker.create-or-edit');
+        return view('job-seeker.create');
     }
 }

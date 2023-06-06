@@ -8,7 +8,7 @@
         @livewire('job-seeker.verification-code.send')
         @livewire('job-seeker.verification-code.verify')
 
-        @livewire('job-seeker.create-or-edit.url')
+        @livewire('job-seeker.create.url')
 
         <x-job-seeker.salary-requirement/>
     </div>
