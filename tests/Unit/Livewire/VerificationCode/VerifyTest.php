@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Livewire\JobSeeker\VerificationCode\Send;
-use App\Http\Livewire\JobSeeker\VerificationCode\Verify;
+use App\Http\Livewire\VerificationCode\Send;
+use App\Http\Livewire\VerificationCode\Verify;
 use NextApps\VerificationCode\Models\VerificationCode;
 use function Pest\Livewire\livewire;
 
