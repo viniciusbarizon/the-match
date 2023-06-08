@@ -37,7 +37,11 @@ class Create extends Page
      */
     public function elements(): array
     {
-        return [];
+        return [
+            '@name' => 'input[name=name]',
+            '@slug' => 'input[name=slug]',
+            '@url' => 'input[name=url]',
+        ];
     }
 
     public function assertTitleCreate(Browser $browser): void
