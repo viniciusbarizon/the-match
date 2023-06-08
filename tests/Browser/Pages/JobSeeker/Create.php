@@ -42,11 +42,11 @@ class Create extends Page
 
     public function assertLogo(Browser $browser): void
     {
-        $logo = '@logo';
+        $dusk = '@logo';
 
-        $browser->assertVisible($logo)
-            ->assertAttribute($logo, 'alt', config('app.name'))
-            ->assertAttributeContains($logo, 'src', '/resources/images/logo.png');
+        $browser->assertVisible($dusk)
+            ->assertAttribute($dusk, 'alt', config('app.name'))
+            ->assertAttributeContains($dusk, 'src', '/resources/images/logo.png');
     }
 
     public function assertDescription(Browser $browser): void
