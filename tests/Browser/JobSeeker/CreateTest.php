@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Browser\JobSeeker\Create;
+namespace Tests\Browser\JobSeeker;
 
 use Laravel\Dusk\Browser;
 use Tests\Browser\Pages\JobSeeker\Create;
@@ -12,9 +12,12 @@ class CreateTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
             $browser->visit(new Create)
-                ->assertCreateTitle()
+                ->assertTitleCreate()
                 ->assertLogo()
-                ->assertDescription();
+                ->assertDescription()
+                ->assertName()
+                ->assertSlug()
+                ->assertUrl();
         });
     }
 }
