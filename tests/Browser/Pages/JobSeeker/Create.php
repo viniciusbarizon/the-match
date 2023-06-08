@@ -9,9 +9,10 @@ use Laravel\Dusk\Page;
 class Create extends Page
 {
     const DUSKS = [
+        'logo' => '@logo',
         'name' => '@name',
         'slug' => '@slug',
-        'url' => '@url'
+        'url' => '@url',
     ];
 
     /**
@@ -56,11 +57,9 @@ class Create extends Page
 
     public function assertLogo(Browser $browser): void
     {
-        $dusk = '@logo';
-
-        $browser->assertVisible($dusk)
-            ->assertAttribute($dusk, 'alt', config('app.name'))
-            ->assertAttributeContains($dusk, 'src', '/resources/images/logo.png');
+        $browser->assertVisible(self::DUSKS['logo'])
+            ->assertAttribute(self::DUSKS['logo'], 'alt', config('app.name'))
+            ->assertAttributeContains(self::DUSKS['logo'], 'src', '/resources/images/logo.png');
     }
 
     public function assertName(Browser $browser): void
@@ -91,10 +90,10 @@ class Create extends Page
         $name = fake()->name();
         $slug = str()->of($name)->slug();
 
-        $browse->type('@name', $name)
+        $browse->type(self::DUSKS['name'], $name)
             ->pause(1000)
-            ->assertValue('@slug', $slug)
-            ->assertValue('@url', route('job-seekers.match', ['slug' => $slug]));
+            ->assertValue(self::DUSKS['slug'], $slug)
+            ->assertValue(self::DUSKS['url'], route('job-seekers.match', ['slug' => $slug]));
     }
 
     public function assertUrl(Browser $browse): void
