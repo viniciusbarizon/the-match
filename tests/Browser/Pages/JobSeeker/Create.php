@@ -83,6 +83,17 @@ class Create extends Page
             ->assertAttribute($dusk, 'wire:model.delay', 'slug');
     }
 
+    public function assertSlugAndUrlAfterTypeName(Browser $browse): void
+    {
+        $name = fake()->name();
+        $slug = str()->of($name)->slug();
+
+        $browse->type('@name', $name)
+            ->pause(1000)
+            ->assertValue('@slug', $slug)
+            ->assertValue('@url', route('job-seekers.match', ['slug' => $slug]));
+    }
+
     public function assertUrl(Browser $browse): void
     {
         $dusk = '@url';
@@ -92,5 +103,14 @@ class Create extends Page
             ->assertAttribute($dusk, 'readonly', true)
             ->assertAttribute($dusk, 'type', 'text')
             ->assertAttribute($dusk, 'wire:model.defer', 'url');
+    }
+
+    public function assertUrlAfterTypeSlug(Browser $browse): void
+    {
+        $slug = fake()->slug();
+
+        $browse->type('@slug', $slug)
+            ->pause(1000)
+            ->assertValue('@url', route('job-seekers.match', ['slug' => $slug]));
     }
 }
