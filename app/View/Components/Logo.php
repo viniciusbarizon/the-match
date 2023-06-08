@@ -10,7 +10,7 @@ class Logo extends Component
 {
     public string $alt;
 
-    public string $dusk;
+    public string $id;
 
     public string $path;
 
@@ -20,7 +20,7 @@ class Logo extends Component
     public function __construct()
     {
         $this->alt = config('app.name');
-        $this->dusk = 'logo';
+        $this->id = 'logo';
         $this->path = 'resources/images/logo.png';
     }
 

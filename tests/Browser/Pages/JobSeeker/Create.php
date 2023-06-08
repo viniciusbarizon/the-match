@@ -22,9 +22,6 @@ class Create extends Page
         return '/';
     }
 
-    /**
-     * Assert that the browser is on the page.
-     */
     public function assert(Browser $browser): void
     {
         $browser->assertPathIs($this->url())
@@ -47,9 +44,10 @@ class Create extends Page
     public function elements(): array
     {
         return [
-            '@name' => 'input[name=name]',
-            '@slug' => 'input[name=slug]',
-            '@url' => 'input[name=url]',
+            '@logo' => '#logo',
+            '@name' => '#name',
+            '@slug' => '#slug',
+            '@url' => '#url',
         ];
     }
 
