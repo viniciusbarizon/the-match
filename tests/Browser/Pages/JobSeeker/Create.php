@@ -8,6 +8,12 @@ use Laravel\Dusk\Page;
 
 class Create extends Page
 {
+    const DUSKS = [
+        'name' => '@name',
+        'slug' => '@slug',
+        'url' => '@url'
+    ];
+
     /**
      * Get the URL for the page.
      */
@@ -59,29 +65,25 @@ class Create extends Page
 
     public function assertName(Browser $browser): void
     {
-        $dusk = '@name';
-
         $browser->assertSee(__('Nome'))
-            ->assertVisible($dusk)
-            ->assertAttribute($dusk, 'autocomplete', 'name')
-            ->assertAttribute($dusk, 'maxlength', 255)
-            ->assertAttribute($dusk, 'name', 'name')
-            ->assertAttribute($dusk, 'required', true)
-            ->assertAttribute($dusk, 'type', 'text')
-            ->assertAttribute($dusk, 'wire:model.delay', 'name');
+            ->assertVisible(self::DUSKS['name'])
+            ->assertAttribute(self::DUSKS['name'], 'autocomplete', 'name')
+            ->assertAttribute(self::DUSKS['name'], 'maxlength', 255)
+            ->assertAttribute(self::DUSKS['name'], 'name', 'name')
+            ->assertAttribute(self::DUSKS['name'], 'required', true)
+            ->assertAttribute(self::DUSKS['name'], 'type', 'text')
+            ->assertAttribute(self::DUSKS['name'], 'wire:model.delay', 'name');
     }
 
     public function assertSlug(Browser $browse): void
     {
-        $dusk = '@slug';
-
         $browse->assertSee(__('Slug'))
-            ->assertVisible($dusk)
-            ->assertAttribute($dusk, 'maxlength', 255)
-            ->assertAttribute($dusk, 'name', 'slug')
-            ->assertAttribute($dusk, 'required', true)
-            ->assertAttribute($dusk, 'type', 'text')
-            ->assertAttribute($dusk, 'wire:model.delay', 'slug');
+            ->assertVisible(self::DUSKS['slug'])
+            ->assertAttribute(self::DUSKS['slug'], 'maxlength', 255)
+            ->assertAttribute(self::DUSKS['slug'], 'name', 'slug')
+            ->assertAttribute(self::DUSKS['slug'], 'required', true)
+            ->assertAttribute(self::DUSKS['slug'], 'type', 'text')
+            ->assertAttribute(self::DUSKS['slug'], 'wire:model.delay', 'slug');
     }
 
     public function assertSlugAndUrlAfterTypeName(Browser $browse): void
@@ -97,30 +99,28 @@ class Create extends Page
 
     public function assertUrl(Browser $browse): void
     {
-        $dusk = '@url';
-
         $browse->assertSee(__('URL'))
-            ->assertVisible($dusk)
-            ->assertAttribute($dusk, 'readonly', true)
-            ->assertAttribute($dusk, 'type', 'text')
-            ->assertAttribute($dusk, 'wire:model.defer', 'url');
+            ->assertVisible(self::DUSKS['url'])
+            ->assertAttribute(self::DUSKS['url'], 'readonly', true)
+            ->assertAttribute(self::DUSKS['url'], 'type', 'text')
+            ->assertAttribute(self::DUSKS['url'], 'wire:model.defer', 'url');
     }
 
     public function assertUrlAfterTypeSlug(Browser $browse): void
     {
         $slug = fake()->slug();
 
-        $browse->type('@slug', $slug)
+        $browse->type(self::DUSKS['slug'], $slug)
             ->pause(1000)
-            ->assertValue('@url', route('job-seekers.match', ['slug' => $slug]));
+            ->assertValue(self::DUSKS['url'], route('job-seekers.match', ['slug' => $slug]));
     }
 
     public function assertSlugWithTimeIfExists(Browser $browser): void
     {
         $jobSeeker = JobSeeker::factory()->create();
 
-        $browser->type('@name', $jobSeeker->name)
+        $browser->type(self::DUSKS['name'], $jobSeeker->name)
             ->pause(500)
-            ->assertValue('@slug', str()->of($jobSeeker->name)->slug().'-'.time());
+            ->assertValue(self::DUSKS['slug'], str()->of($jobSeeker->name)->slug().'-'.time());
     }
 }
