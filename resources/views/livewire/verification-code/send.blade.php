@@ -2,8 +2,8 @@
     <div class="mb-2">
         <x-input-label for="{{ $input }}" :value="__('Email')" />
 
-        <x-text-input autocomplete="email" class="mt-1 w-full" dusk="{{ $input }}" id="{{ $input }}"
-            name="{{ $input }}" type="email" :value="old($input)" wire:model.defer="{{ $input }}" required/>
+        <x-text-input autocomplete="email" class="mt-1 w-full" id="{{ $input }}" name="{{ $input }}" type="email"
+            :value="old($input)" wire:model.defer="{{ $input }}" required/>
 
         <x-input-error :messages="$errors->get($input)" class="mt-2" />
     </div>
@@ -13,7 +13,7 @@
             <x-alert type="success" :message="__('Enviamos um código de verificação para o seu e-mail.')" />
         @endif
 
-        <x-white-button dusk="send_code" wire:click="send">
+        <x-white-button id="send_code" wire:click="send">
             {{ __('Enviar código de verificação') }}
         </x-white-button>
     </div>

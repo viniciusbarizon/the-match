@@ -28,6 +28,11 @@ class Create extends Page
             ->assertTitleCreate()
             ->assertLogo()
             ->assertDescription()
+            ->assertEmail()
+            ->assertButtonSendCode()
+            ->assertEmailRequired()
+            ->assertEmailInvalid()
+            ->assertSendCode()
             ->assertName()
             ->assertSlug()
             ->assertUrl()
@@ -44,8 +49,10 @@ class Create extends Page
     public function elements(): array
     {
         return [
+            '@email' => '#email',
             '@logo' => '#logo',
             '@name' => '#name',
+            '@send_code' => '#send_code',
             '@slug' => '#slug',
             '@url' => '#url',
         ];
@@ -58,6 +65,13 @@ class Create extends Page
         );
     }
 
+    public function assertLogo(Browser $browser): void
+    {
+        $browser->assertVisible('@logo')
+            ->assertAttribute('@logo', 'alt', config('app.name'))
+            ->assertAttributeContains('@logo', 'src', '/resources/images/logo.png');
+    }
+
     public function assertDescription(Browser $browser): void
     {
         $browser->assertSee(
@@ -65,11 +79,42 @@ class Create extends Page
         );
     }
 
-    public function assertLogo(Browser $browser): void
+    public function assertEmail(Browser $browser): void
     {
-        $browser->assertVisible('@logo')
-            ->assertAttribute('@logo', 'alt', config('app.name'))
-            ->assertAttributeContains('@logo', 'src', '/resources/images/logo.png');
+        $browser->assertSee(__('Email'))
+            ->assertVisible('@email')
+            ->assertAttribute('@email', 'autocomplete', 'email')
+            ->assertAttribute('@email', 'name', 'email')
+            ->assertAttribute('@email', 'required', true)
+            ->assertAttribute('@email', 'type', 'email')
+            ->assertAttribute('@email', 'wire:model.defer', 'email');
+    }
+
+    public function assertButtonSendCode(Browser $browser): void
+    {
+        $browser->assertVisible('@send_code')
+            ->assertAttribute('@send_code', 'type', 'button')
+            ->assertSeeIn('@send_code', __('Enviar código de verificação'));
+    }
+
+    public function assertEmailRequired(Browser $browser): void
+    {
+        $browser->click('@send_code')
+            ->waitForText(__('O campo e-mail é obrigatório.'), 1);
+    }
+
+    public function assertEmailInvalid(Browser $browser): void
+    {
+        $browser->type('@email', str()->random(25))
+            ->click('@send_code')
+            ->waitForText(__('O campo e-mail não contém um endereço de email válido.'), 1);
+    }
+
+    public function assertSendCode(Browser $browser): void
+    {
+        $browser->type('@email', fake()->email())
+            ->click('@send_code')
+            ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1);
     }
 
     public function assertName(Browser $browser): void
@@ -95,6 +140,15 @@ class Create extends Page
             ->assertAttribute('@slug', 'wire:model.delay', 'slug');
     }
 
+    public function assertUrl(Browser $browse): void
+    {
+        $browse->assertSee(__('URL'))
+            ->assertVisible('@url')
+            ->assertAttribute('@url', 'readonly', true)
+            ->assertAttribute('@url', 'type', 'text')
+            ->assertAttribute('@url', 'wire:model.defer', 'url');
+    }
+
     public function assertSlugAndUrlAfterTypeName(Browser $browse): void
     {
         $this->name = fake()->name();
@@ -104,15 +158,6 @@ class Create extends Page
             ->pause(1000)
             ->assertValue('@slug', $this->slug)
             ->assertValue('@url', route('job-seekers.match', ['slug' => $this->slug]));
-    }
-
-    public function assertUrl(Browser $browse): void
-    {
-        $browse->assertSee(__('URL'))
-            ->assertVisible('@url')
-            ->assertAttribute('@url', 'readonly', true)
-            ->assertAttribute('@url', 'type', 'text')
-            ->assertAttribute('@url', 'wire:model.defer', 'url');
     }
 
     public function assertUrlAfterTypeSlug(Browser $browse): void
