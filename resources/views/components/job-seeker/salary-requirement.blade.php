@@ -13,7 +13,7 @@
 
     <div>
         <x-input-label dusk="{{ $inputAmount }}_label" for="{{ $inputAmount }}"
-            :value="__('Pretensão salarial').' (<strong><u>'.__('bruto').' '.($isPerYear ? __('anual') : __('mensal')).
+            :value="__('Pretensão salarial').' (<strong><u>'.__('bruto').' '.__(($isPerYear ? 'anual' : 'mensal')).
                 '</u></strong>)'" />
 
         <input class="mt-1 text-input-select w-full" dusk="{{ $inputAmount }}" id="{{ $inputAmount }}" max="16777215"
