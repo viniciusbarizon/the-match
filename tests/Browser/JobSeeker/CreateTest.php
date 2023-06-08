@@ -11,16 +11,7 @@ class CreateTest extends DuskTestCase
     public function testCreate(): void
     {
         $this->browse(function (Browser $browser) {
-            $browser->visit(new Create)
-                ->assertTitleCreate()
-                ->assertLogo()
-                ->assertDescription()
-                ->assertName()
-                ->assertSlug()
-                ->assertUrl()
-                ->assertSlugAndUrlAfterTypeName()
-                ->assertUrlAfterTypeSlug()
-                ->assertSlugWithTimeIfExists();
+            $browser->visit(new Create);
         });
     }
 }

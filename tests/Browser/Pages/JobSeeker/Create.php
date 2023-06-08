@@ -27,7 +27,16 @@ class Create extends Page
      */
     public function assert(Browser $browser): void
     {
-        $browser->assertPathIs($this->url());
+        $browser->assertPathIs($this->url())
+            ->assertTitleCreate()
+            ->assertLogo()
+            ->assertDescription()
+            ->assertName()
+            ->assertSlug()
+            ->assertUrl()
+            ->assertSlugAndUrlAfterTypeName()
+            ->assertUrlAfterTypeSlug()
+            ->assertSlugWithTimeIfExists();
     }
 
     /**
