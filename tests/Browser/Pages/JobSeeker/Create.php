@@ -2,6 +2,7 @@
 
 namespace Tests\Browser\Pages\JobSeeker;
 
+use App\Models\JobSeeker;
 use Laravel\Dusk\Browser;
 use Laravel\Dusk\Page;
 
@@ -112,5 +113,14 @@ class Create extends Page
         $browse->type('@slug', $slug)
             ->pause(1000)
             ->assertValue('@url', route('job-seekers.match', ['slug' => $slug]));
+    }
+
+    public function assertSlugWithTimeIfExists(Browser $browser): void
+    {
+        $jobSeeker = JobSeeker::factory()->create();
+
+        $browser->type('@name', $jobSeeker->name)
+            ->pause(500)
+            ->assertValue('@slug', str()->of($jobSeeker->name)->slug().'-'.time());
     }
 }

@@ -19,7 +19,8 @@ class CreateTest extends DuskTestCase
                 ->assertSlug()
                 ->assertUrl()
                 ->assertSlugAndUrlAfterTypeName()
-                ->assertUrlAfterTypeSlug();
+                ->assertUrlAfterTypeSlug()
+                ->assertSlugWithTimeIfExists();
         });
     }
 }
