@@ -48,7 +48,10 @@ class Create extends Page
             ->assertUrl()
             ->assertSlugAndUrlAfterTypeName()
             ->assertUrlAfterTypeSlug()
-            ->assertSlugWithTimeIfExists();
+            ->assertSlugWithTimeIfExists()
+            ->assertContract()
+            ->assertCurrency()
+            ->assertAmount();
     }
 
     /**
@@ -59,6 +62,12 @@ class Create extends Page
     public function elements(): array
     {
         return [
+            '@amount' => '#amount',
+            '@amount_label' => '#amount_label',
+            '@contract_id' => '#contract_id',
+            '@contract_id_label' => '#contract_id_label',
+            '@currency_id' => '#currency_id',
+            '@currency_id_label' => '#currency_id_label',
             '@email' => '#email',
             '@logo' => '#logo',
             '@name' => '#name',
@@ -238,5 +247,42 @@ class Create extends Page
                 '@slug',
                 str()->of($this->jobSeeker->name)->slug()
             );
+    }
+
+    public function assertContract(): void
+    {
+        $this->browser->assertVisible('@contract_id_label')
+            ->assertAttribute('@contract_id_label', 'for', 'contract_id')
+            ->assertSeeIn('@contract_id_label', __('Contrato'))
+            ->assertVisible('@contract_id')
+            ->assertAttribute('@contract_id', 'id', 'contract_id')
+            ->assertAttribute('@contract_id', 'name', 'contract_id')
+            ->assertAttribute('@contract_id', 'required', true)
+            ->assertSelected('@contract_id', '01H0K7HJTN82AYK1FRADW0P283');
+    }
+
+    public function assertCurrency(): void
+    {
+        $this->browser->assertVisible('@currency_id_label')
+            ->assertAttribute('@currency_id_label', 'for', 'currency_id')
+            ->assertSeeIn('@currency_id_label', __('Moeda'))
+            ->assertVisible('@currency_id')
+            ->assertAttribute('@currency_id', 'id', 'currency_id')
+            ->assertAttribute('@currency_id', 'name', 'currency_id')
+            ->assertAttribute('@currency_id', 'required', true)
+            ->assertSelected('@currency_id', '01H0K88685BR21KWWR72ARQDJK');
+    }
+
+    public function assertAmount(): void
+    {
+        $this->browser->assertAttribute('@amount_label', 'for', 'amount')
+            ->assertSeeIn('@amount_label', __('Pretensão salarial'))
+            ->assertVisible('@amount')
+            ->assertAttribute('@amount', 'id', 'amount')
+            ->assertAttribute('@amount', 'min', 1)
+            ->assertAttribute('@amount', 'max', 16777215)
+            ->assertAttribute('@amount', 'name', 'amount')
+            ->assertAttribute('@amount', 'required', true)
+            ->assertAttribute('@amount', 'type', 'number');
     }
 }
