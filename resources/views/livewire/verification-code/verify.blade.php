@@ -2,9 +2,8 @@
     <div class="mb-2">
         <x-input-label for="{{ $input }}" :value="__('Código')" />
 
-        <x-text-input autocomplete="off" class="mt-1 w-full" dusk="{{ $input }}" id="{{ $input }}"
-            maxlength="{{ $max_length }}" name="{{ $input }}" type="text" :value="old($input)"
-            wire:model.defer="{{ $input }}" />
+        <x-text-input autocomplete="off" class="mt-1 w-full" id="{{ $input }}" maxlength="{{ $max_length }}"
+            name="{{ $input }}" type="text" :value="old($input)" wire:model.defer="{{ $input }}" />
 
         <x-input-error class="mt-2" :messages="$errors->get($input)" />
     </div>
@@ -18,7 +17,7 @@
             @endif
         @endif
 
-        <x-white-button dusk="verify_code" wire:click="verify">
+        <x-white-button id="verify_code" wire:click="verify">
             {{ __('Verificar código') }}
         </x-white-button>
     </div>
