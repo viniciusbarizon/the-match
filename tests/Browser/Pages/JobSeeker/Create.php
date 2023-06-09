@@ -41,6 +41,8 @@ class Create extends Page
             ->assertButtonVerifyCode()
             ->assertVerificationCodeRequired()
             ->assertVerificationCodeMinimumLength()
+            ->assertVerificationCodeInvalid()
+            ->assertVerificationCodeInvalidAfterSendCode()
             ->assertName()
             ->assertSlug()
             ->assertUrl()
@@ -156,6 +158,22 @@ class Create extends Page
         $this->browser->type('@verification_code', str()->random(5))
             ->click('@verify_code')
             ->waitForText(__('O campo Código deve conter 6 caracteres.'), 1);
+    }
+
+    public function assertVerificationCodeInvalid(): void
+    {
+        $this->browser->type('@verification_code', str()->random(6))
+            ->click('@verify_code')
+            ->waitForText(__('Código inválido, por favor tente novamente.'), 1);
+    }
+
+    public function assertVerificationCodeInvalidAfterSendCode(): void
+    {
+        $this->browser->type('@email', fake()->email())
+            ->click('@send_code')
+            ->type('@verification_code', str()->random(6))
+            ->click('@verify_code')
+            ->waitForText(__('Código inválido, por favor tente novamente.'), 1);
     }
 
     public function assertName(): void
