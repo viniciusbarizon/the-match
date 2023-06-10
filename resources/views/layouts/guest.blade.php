@@ -27,9 +27,7 @@
                 {{ $slot }}
             </div>
 
-            <div class="my-4 underline">
-                <a href="mailto:thematch@thematch.dev">thematch@thematch.dev</a>
-            </div>
+            <x-contact />
         </div>
 
         @livewireScripts
