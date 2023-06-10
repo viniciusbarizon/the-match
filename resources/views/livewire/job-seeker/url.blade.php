@@ -19,7 +19,7 @@
     </div>
 
     <div>
-        <x-input-label for="{{ $inputUrl }}" id="{{ $inputSlug }}_label" :value="__('URL')" />
+        <x-input-label for="{{ $inputUrl }}" id="{{ $inputUrl }}_label" :value="__('URL')" />
 
         <x-text-input class="mt-1 w-full" id="{{ $inputUrl }}" name="{{ $inputUrl }}" type="text"
             wire:model.defer="{{ $inputUrl }}" readonly />

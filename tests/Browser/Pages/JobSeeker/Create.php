@@ -284,9 +284,9 @@ class Create extends Page
     public function assertContract(): void
     {
         $this->inputId = 'contract_id';
-        $this->labelDusk = '@contract_id_label';
         $this->label = 'Contrato';
 
+        $this->setLabelDusk();
         $this->assertLabel();
 
         $this->browser->assertVisible('@contract_id')
@@ -298,9 +298,9 @@ class Create extends Page
     public function assertCurrency(): void
     {
         $this->inputId = 'currency_id';
-        $this->labelDusk = '@currency_id_label';
         $this->label = 'Moeda';
 
+        $this->setLabelDusk();
         $this->assertLabel();
 
         $this->browser->assertVisible('@currency_id')
@@ -312,9 +312,9 @@ class Create extends Page
     public function assertAmount(): void
     {
         $this->inputId = 'amount';
-        $this->labelDusk = '@amount_label';
         $this->label = 'Pretensão salarial';
 
+        $this->setLabelDusk();
         $this->assertLabel();
 
         $this->browser->assertAttribute('@amount', 'min', 1)
