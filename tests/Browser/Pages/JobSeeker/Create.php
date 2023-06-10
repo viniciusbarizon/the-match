@@ -42,6 +42,7 @@ class Create extends Page
             ->assertButtonSendCode()
             ->assertEmailRequired()
             ->assertEmailInvalid()
+            ->assertEmailAlreadyInUse()
             ->assertSendCode()
             ->assertVerificationCode()
             ->assertButtonVerifyCode()
@@ -141,6 +142,13 @@ class Create extends Page
         $this->browser->type('@email', str()->random(25))
             ->click('@send_code')
             ->waitForText(__('O campo e-mail não contém um endereço de email válido.'), 1);
+    }
+
+    public function assertEmailAlreadyInUse(): void
+    {
+        $this->browser->type('@email', JobSeeker::factory()->create()->email)
+            ->click('@send_code')
+            ->waitForText(__('O valor informado para o campo e-mail já está em uso.'), 1);
     }
 
     public function assertSendCode(): void
