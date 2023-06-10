@@ -11,5 +11,9 @@
         @livewire('job-seeker.url')
 
         <x-job-seeker.salary-requirement/>
+
+        <x-primary-button>
+            {{ __('Criar Perfil') }}
+        </x-primary-button>
     </div>
 </x-guest-layout>
