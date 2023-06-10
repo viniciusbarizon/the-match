@@ -1,6 +1,6 @@
 <div>
     <div class="mb-2">
-        <x-input-label for="{{ $input }}" :value="__('Email')" />
+        <x-input-label for="{{ $input }}" id="{{ $input }}_label" :value="__('E-mail')" />
 
         <x-text-input autocomplete="email" class="mt-1 w-full" id="{{ $input }}" name="{{ $input }}" type="email"
             :value="old($input)" wire:model.defer="{{ $input }}" required/>

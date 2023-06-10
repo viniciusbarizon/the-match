@@ -10,7 +10,13 @@ class Create extends Page
 {
     private Browser $browser;
 
+    private string $inputId;
+
     private readonly JobSeeker $jobSeeker;
+
+    private string $label;
+
+    private string $labelDusk;
 
     private string $name;
 
@@ -69,6 +75,7 @@ class Create extends Page
             '@currency_id' => '#currency_id',
             '@currency_id_label' => '#currency_id_label',
             '@email' => '#email',
+            '@email_label' => '#email_label',
             '@logo' => '#logo',
             '@name' => '#name',
             '@send_code' => '#send_code',
@@ -102,8 +109,13 @@ class Create extends Page
 
     public function assertEmail(): void
     {
-        $this->browser->assertSee(__('Email'))
-            ->assertVisible('@email')
+        $this->inputId = 'email';
+        $this->labelDusk = '@email_label';
+        $this->label = 'E-mail';
+
+        $this->assertLabel();
+
+        $this->browser->assertVisible('@email')
             ->assertAttribute('@email', 'autocomplete', 'email')
             ->assertAttribute('@email', 'name', 'email')
             ->assertAttribute('@email', 'required', true)
@@ -251,11 +263,13 @@ class Create extends Page
 
     public function assertContract(): void
     {
-        $this->browser->assertVisible('@contract_id_label')
-            ->assertAttribute('@contract_id_label', 'for', 'contract_id')
-            ->assertSeeIn('@contract_id_label', __('Contrato'))
-            ->assertVisible('@contract_id')
-            ->assertAttribute('@contract_id', 'id', 'contract_id')
+        $this->inputId = 'contract_id';
+        $this->labelDusk = '@contract_id_label';
+        $this->label = 'Contrato';
+
+        $this->assertLabel();
+
+        $this->browser->assertVisible('@contract_id')
             ->assertAttribute('@contract_id', 'name', 'contract_id')
             ->assertAttribute('@contract_id', 'required', true)
             ->assertSelected('@contract_id', '01H0K7HJTN82AYK1FRADW0P283');
@@ -263,11 +277,13 @@ class Create extends Page
 
     public function assertCurrency(): void
     {
-        $this->browser->assertVisible('@currency_id_label')
-            ->assertAttribute('@currency_id_label', 'for', 'currency_id')
-            ->assertSeeIn('@currency_id_label', __('Moeda'))
-            ->assertVisible('@currency_id')
-            ->assertAttribute('@currency_id', 'id', 'currency_id')
+        $this->inputId = 'currency_id';
+        $this->labelDusk = '@currency_id_label';
+        $this->label = 'Moeda';
+
+        $this->assertLabel();
+
+        $this->browser->assertVisible('@currency_id')
             ->assertAttribute('@currency_id', 'name', 'currency_id')
             ->assertAttribute('@currency_id', 'required', true)
             ->assertSelected('@currency_id', '01H0K88685BR21KWWR72ARQDJK');
@@ -275,14 +291,23 @@ class Create extends Page
 
     public function assertAmount(): void
     {
-        $this->browser->assertAttribute('@amount_label', 'for', 'amount')
-            ->assertSeeIn('@amount_label', __('Pretensão salarial'))
-            ->assertVisible('@amount')
-            ->assertAttribute('@amount', 'id', 'amount')
-            ->assertAttribute('@amount', 'min', 1)
+        $this->inputId = 'amount';
+        $this->labelDusk = '@amount_label';
+        $this->label = 'Pretensão salarial';
+
+        $this->assertLabel();
+
+        $this->browser->assertAttribute('@amount', 'min', 1)
             ->assertAttribute('@amount', 'max', 16777215)
             ->assertAttribute('@amount', 'name', 'amount')
             ->assertAttribute('@amount', 'required', true)
             ->assertAttribute('@amount', 'type', 'number');
+    }
+
+    private function assertLabel(): void
+    {
+        $this->browser->assertVisible($this->labelDusk)
+            ->assertAttribute($this->labelDusk, 'for', $this->inputId)
+            ->assertSeeIn($this->labelDusk, __($this->label));
     }
 }
