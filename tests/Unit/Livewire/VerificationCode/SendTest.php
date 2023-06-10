@@ -5,13 +5,19 @@ use App\Models\JobSeeker;
 use NextApps\VerificationCode\Models\VerificationCode;
 use function Pest\Livewire\livewire;
 
-it('validates an email as required', function () {
+it('validates email as required', function () {
     livewire(Send::class)
         ->call('send')
         ->assertHasErrors(['email' => 'required']);
 });
 
-it('validates an invalid email', function () {
+it('validates email with maximum characters reached', function () {
+    livewire(Send::class, ['email' => str()->random(256)])
+        ->call('send')
+        ->assertHasErrors(['email' => 'max']);
+});
+
+it('validates email as invalid', function () {
     livewire(Send::class, ['email' => str()->random(25)])
         ->call('send')
         ->assertHasErrors(['email' => 'email']);
