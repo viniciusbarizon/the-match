@@ -152,8 +152,13 @@ class Create extends Page
 
     public function assertVerificationCode(): void
     {
-        $this->browser->assertSee(__('Código'))
-            ->assertVisible('@verification_code')
+        $this->inputId = 'verification_code';
+        $this->labelDusk = '@verification_code_label';
+        $this->label = 'Código';
+
+        $this->assertLabel();
+
+        $this->browser->assertVisible('@verification_code')
             ->assertAttribute('@verification_code', 'autocomplete', 'off')
             ->assertAttribute('@verification_code', 'maxlength', 6)
             ->assertAttribute('@verification_code', 'name', 'verification_code')
