@@ -26,6 +26,10 @@
             <div class="bg-white overflow-hidden px-4 py-4 shadow-md sm:max-w-md sm:rounded-lg w-full">
                 {{ $slot }}
             </div>
+
+            <div class="my-4 underline">
+                <a href="mailto:thematch@thematch.dev">thematch@thematch.dev</a>
+            </div>
         </div>
 
         @livewireScripts
