@@ -110,17 +110,17 @@ class Create extends Page
     public function assertEmail(): void
     {
         $this->inputId = 'email';
-        $this->labelDusk = '@email_label';
         $this->label = 'E-mail';
 
+        $this->setLabelDusk();
         $this->assertLabel();
 
         $this->browser->assertVisible('@email')
             ->assertAttribute('@email', 'autocomplete', 'email')
-            ->assertAttribute('@email', 'name', 'email')
+            ->assertAttribute('@email', 'name', $this->inputId)
             ->assertAttribute('@email', 'required', true)
             ->assertAttribute('@email', 'type', 'email')
-            ->assertAttribute('@email', 'wire:model.defer', 'email');
+            ->assertAttribute('@email', 'wire:model.defer', $this->inputId);
     }
 
     public function assertButtonSendCode(): void
@@ -153,17 +153,17 @@ class Create extends Page
     public function assertVerificationCode(): void
     {
         $this->inputId = 'verification_code';
-        $this->labelDusk = '@verification_code_label';
         $this->label = 'Código';
 
+        $this->setLabelDusk();
         $this->assertLabel();
 
         $this->browser->assertVisible('@verification_code')
             ->assertAttribute('@verification_code', 'autocomplete', 'off')
             ->assertAttribute('@verification_code', 'maxlength', 6)
-            ->assertAttribute('@verification_code', 'name', 'verification_code')
+            ->assertAttribute('@verification_code', 'name', $this->inputId)
             ->assertAttribute('@verification_code', 'type', 'text')
-            ->assertAttribute('@verification_code', 'wire:model.defer', 'verification_code');
+            ->assertAttribute('@verification_code', 'wire:model.defer', $this->inputId);
     }
 
     public function assertButtonVerifyCode(): void
@@ -205,38 +205,48 @@ class Create extends Page
     public function assertName(): void
     {
         $this->inputId = 'name';
-        $this->labelDusk = '@name_label';
         $this->label = 'Nome';
 
+        $this->setLabelDusk();
         $this->assertLabel();
 
         $this->browser->assertVisible('@name')
             ->assertAttribute('@name', 'autocomplete', 'name')
             ->assertAttribute('@name', 'maxlength', 255)
-            ->assertAttribute('@name', 'name', 'name')
+            ->assertAttribute('@name', 'name', $this->inputId)
             ->assertAttribute('@name', 'required', true)
             ->assertAttribute('@name', 'type', 'text')
-            ->assertAttribute('@name', 'wire:model.delay', 'name');
+            ->assertAttribute('@name', 'wire:model.delay', $this->inputId);
     }
 
     public function assertSlug(): void
     {
-        $this->browser->assertSee(__('Slug'))
-            ->assertVisible('@slug')
+        $this->inputId = 'slug';
+        $this->label = 'Slug';
+
+        $this->setLabelDusk();
+        $this->assertLabel();
+
+        $this->browser->assertVisible('@slug')
             ->assertAttribute('@slug', 'maxlength', 255)
-            ->assertAttribute('@slug', 'name', 'slug')
+            ->assertAttribute('@slug', 'name', $this->inputId)
             ->assertAttribute('@slug', 'required', true)
             ->assertAttribute('@slug', 'type', 'text')
-            ->assertAttribute('@slug', 'wire:model.delay', 'slug');
+            ->assertAttribute('@slug', 'wire:model.delay', $this->inputId);
     }
 
     public function assertUrl(): void
     {
-        $this->browser->assertSee(__('URL'))
-            ->assertVisible('@url')
+        $this->inputId = 'url';
+        $this->label = 'URL';
+
+        $this->setLabelDusk();
+        $this->assertLabel();
+
+        $this->browser->assertVisible('@url')
             ->assertAttribute('@url', 'readonly', true)
             ->assertAttribute('@url', 'type', 'text')
-            ->assertAttribute('@url', 'wire:model.defer', 'url');
+            ->assertAttribute('@url', 'wire:model.defer', $this->inputId);
     }
 
     public function assertSlugAndUrlAfterTypeName(): void
@@ -319,5 +329,10 @@ class Create extends Page
         $this->browser->assertVisible($this->labelDusk)
             ->assertAttribute($this->labelDusk, 'for', $this->inputId)
             ->assertSeeIn($this->labelDusk, __($this->label));
+    }
+
+    private function setLabelDusk(): void
+    {
+        $this->labelDusk = '@'.$this->inputId.'_label';
     }
 }

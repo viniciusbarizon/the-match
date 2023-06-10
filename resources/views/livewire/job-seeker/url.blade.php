@@ -10,7 +10,7 @@
     </div>
 
     <div>
-        <x-input-label for="{{ $inputSlug }}" :value="__('Slug')" />
+        <x-input-label for="{{ $inputSlug }}" id="{{ $inputSlug }}_label" :value="__('Slug')" />
 
         <x-text-input class="mt-1 w-full" id="{{ $inputSlug }}" maxlength="{{ $maxlength }}" name="{{ $inputSlug }}"
             type="text" :value="old($inputSlug)" wire:model.delay="{{ $inputSlug }}" required />
@@ -19,7 +19,7 @@
     </div>
 
     <div>
-        <x-input-label for="{{ $inputUrl }}" :value="__('URL')" />
+        <x-input-label for="{{ $inputUrl }}" id="{{ $inputSlug }}_label" :value="__('URL')" />
 
         <x-text-input class="mt-1 w-full" id="{{ $inputUrl }}" name="{{ $inputUrl }}" type="text"
             wire:model.defer="{{ $inputUrl }}" readonly />
