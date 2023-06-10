@@ -42,6 +42,7 @@ class Create extends Page
             ->assertButtonSendCode()
             ->assertEmailRequired()
             ->assertEmailInvalid()
+            ->assertEmailMaximumCharactersReached()
             ->assertEmailAlreadyInUse()
             ->assertSendCode()
             ->assertVerificationCode()
@@ -142,6 +143,13 @@ class Create extends Page
         $this->browser->type('@email', str()->random(25))
             ->click('@send_code')
             ->waitForText(__('O campo e-mail não contém um endereço de email válido.'), 1);
+    }
+
+    public function assertEmailMaximumCharactersReached(): void
+    {
+        $this->browser->type('@email', str()->random(256))
+            ->click('@send_code')
+            ->waitForText(__('O campo e-mail não pode conter mais de 255 caracteres.'), 1);
     }
 
     public function assertEmailAlreadyInUse(): void
