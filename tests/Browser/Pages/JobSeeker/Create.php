@@ -204,8 +204,13 @@ class Create extends Page
 
     public function assertName(): void
     {
-        $this->browser->assertSee(__('Nome'))
-            ->assertVisible('@name')
+        $this->inputId = 'name';
+        $this->labelDusk = '@name_label';
+        $this->label = 'Nome';
+
+        $this->assertLabel();
+
+        $this->browser->assertVisible('@name')
             ->assertAttribute('@name', 'autocomplete', 'name')
             ->assertAttribute('@name', 'maxlength', 255)
             ->assertAttribute('@name', 'name', 'name')

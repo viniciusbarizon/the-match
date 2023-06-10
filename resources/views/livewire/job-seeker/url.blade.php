@@ -1,6 +1,6 @@
 <div class="mb-4 space-y-4">
     <div>
-        <x-input-label for="{{ $inputName }}" :value="__('Nome')" />
+        <x-input-label for="{{ $inputName }}" id="{{ $inputName }}_label" :value="__('Nome')" />
 
         <x-text-input autocomplete="name" class="mt-1 w-full" id="{{ $inputName }}" maxlength="{{ $maxlength }}"
             name="{{ $inputName }}" type="text" :value="old($inputName)" wire:model.delay="{{ $inputName }}"
