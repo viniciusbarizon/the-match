@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\JobSeeker\Create;
 use App\Http\Controllers\JobSeeker\JobSeekerController;
-use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
