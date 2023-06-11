@@ -5,7 +5,9 @@
                 processo seletivo se o salário ofertado é compatível com a sua pretensão salarial.') }}
         </div>
 
-        <form class="space-y-4" method="submit">
+        <form action="{{ route('job-seekers.store') }}" class="space-y-4" method="POST">
+            @csrf
+
             @livewire('verification-code.send')
             @livewire('verification-code.verify')
 

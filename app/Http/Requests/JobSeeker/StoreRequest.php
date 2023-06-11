@@ -22,7 +22,7 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'amount' => 'bail|required|integer|max:16777215|min:1'
+            'amount' => 'bail|required|integer|max:16777215|min:1',
             'contract_id' => 'bail|required|ulid',
             'currency_id' => 'bail|required|ulid',
             'email' => 'bail|required|max:255|email|unique:job_seekers',
