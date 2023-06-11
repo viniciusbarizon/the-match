@@ -18,7 +18,7 @@ class JobSeekerController extends Controller
 
     public function store(StoreRequest $request)
     {
-        //
+        return view('job-seeker.store');
     }
 
     /**
