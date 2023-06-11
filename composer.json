@@ -11,7 +11,7 @@
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^2.12",
-        "mkocansey/bladewind": "*",
+        "mkocansey/bladewind": "^2.2",
         "nextapps/laravel-verification-code": "^1.3"
     },
     "require-dev": {
