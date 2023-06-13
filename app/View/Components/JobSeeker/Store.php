@@ -8,12 +8,14 @@ use Illuminate\View\Component;
 
 class Store extends Component
 {
+    public readonly string $url;
+
     /**
      * Create a new component instance.
      */
     public function __construct(public readonly string $slug)
     {
-        //
+        $this->url = route('job-seekers.match', ['slug' => $slug]);
     }
 
     /**

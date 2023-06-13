@@ -6,8 +6,8 @@
     <p>
         {{ __('Guarde o link para compartilhar com as empresas:') }}
 
-        <a href="{{ route('job-seekers.match', ['slug' => $slug]) }}" target="_blank">
-            {{ route('job-seekers.match', ['slug' => $slug]) }}
+        <a href="{{ $url }}" target="_blank">
+            {{ $url }}
         </a>
     </p>
 
