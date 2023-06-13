@@ -7,8 +7,8 @@
         <p>
             {{ __('Guarde o link para compartilhar com as empresas:') }}
 
-            <a href="https://thematch.dev/with/vinicius" target="_blank">
-                https://thematch.dev/with/vinicius
+            <a href="{{ route('job-seekers.match', ['slug' => $slug]) }}" target="_blank">
+                {{ route('job-seekers.match', ['slug' => $slug]) }}
             </a>
         </p>
 
