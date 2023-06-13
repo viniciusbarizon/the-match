@@ -1,4 +1,4 @@
-<div class="my-4 underline">
+<div class="my-4">
     <a href="mailto:{{ $email }}">
         {{ $email }}
     </a>

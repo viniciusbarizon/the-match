@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+a {
+    @apply underline;
+}
 .alert-danger {
     @apply bg-red-100 border-red-200 text-red-900;
 }
