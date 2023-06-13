@@ -4,7 +4,6 @@ namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JobSeeker\StoreRequest;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -20,13 +19,13 @@ class JobSeekerController extends Controller
 
     public function store(StoreRequest $request): View
     {
-/*         if (session('email_verified') != $request->email) {
-            session()->flash();
-            return back();
-        } */
+        /*         if (session('email_verified') != $request->email) {
+                    session()->flash();
+                    return back();
+                } */
 
         return view('job-seeker.store', [
-            'slug' => $request->slug
+            'slug' => $request->slug,
         ]);
     }
 

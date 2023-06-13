@@ -32,7 +32,7 @@ class Url extends Component
     public function mount(): void
     {
         if (old('name')) {
-	        $this->name = old('name');
+            $this->name = old('name');
         }
     }
 
