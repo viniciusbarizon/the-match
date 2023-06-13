@@ -15,7 +15,7 @@ class SalaryRequirement extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'amount',
+        'salary',
         'contract_id',
         'currency_id',
         'job_seeker_id',

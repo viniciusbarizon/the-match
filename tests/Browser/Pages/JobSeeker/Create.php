@@ -59,7 +59,7 @@ class Create extends Page
             ->assertSlugWithTimeIfExists()
             ->assertContract()
             ->assertCurrency()
-            ->assertAmount();
+            ->assertSalary();
     }
 
     /**
@@ -70,8 +70,6 @@ class Create extends Page
     public function elements(): array
     {
         return [
-            '@amount' => '#amount',
-            '@amount_label' => '#amount_label',
             '@contract_id' => '#contract_id',
             '@contract_id_label' => '#contract_id_label',
             '@currency_id' => '#currency_id',
@@ -80,6 +78,8 @@ class Create extends Page
             '@email_label' => '#email_label',
             '@logo' => '#logo',
             '@name' => '#name',
+            '@salary' => '#salary',
+            '@salary_label' => '#salary_label',
             '@send_code' => '#send_code',
             '@slug' => '#slug',
             '@url' => '#url',
@@ -325,19 +325,19 @@ class Create extends Page
             ->assertSelected('@currency_id', '01H0K88685BR21KWWR72ARQDJK');
     }
 
-    public function assertAmount(): void
+    public function assertSalary(): void
     {
-        $this->inputId = 'amount';
+        $this->inputId = 'salary';
         $this->label = 'Pretensão salarial';
 
         $this->setLabelDusk();
         $this->assertLabel();
 
-        $this->browser->assertAttribute('@amount', 'min', 1)
-            ->assertAttribute('@amount', 'max', 16777215)
-            ->assertAttribute('@amount', 'name', 'amount')
-            ->assertAttribute('@amount', 'required', true)
-            ->assertAttribute('@amount', 'type', 'number');
+        $this->browser->assertAttribute('@salary', 'min', 1)
+            ->assertAttribute('@salary', 'max', 16777215)
+            ->assertAttribute('@salary', 'name', 'salary')
+            ->assertAttribute('@salary', 'required', true)
+            ->assertAttribute('@salary', 'type', 'number');
     }
 
     private function assertLabel(): void
