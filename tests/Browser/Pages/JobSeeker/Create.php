@@ -178,7 +178,7 @@ class Create extends Page
             ->assertAttribute('@verification_code', 'autocomplete', 'off')
             ->assertAttribute('@verification_code', 'maxlength', 6)
             ->assertAttribute('@verification_code', 'name', $this->inputId)
-            ->assertAttribute('@verification_code', 'type', 'password')
+            ->assertAttribute('@verification_code', 'type', 'text')
             ->assertAttribute('@verification_code', 'wire:model.defer', $this->inputId);
     }
 
