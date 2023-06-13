@@ -14,12 +14,12 @@
     </div>
 
     <div>
-        <x-input-label for="{{ $inputAmount }}" id="{{ $inputAmount }}_label" :value="__('Pretensão salarial').
+        <x-input-label for="{{ $inputSalary }}" id="{{ $inputSalary }}_label" :value="__('Pretensão salarial').
             ' (<strong><u>'.__('bruto').' '.__(($isPerYear ? 'anual' : 'mensal')).'</u></strong>)'" />
 
-        <input class="mt-1 text-input-select w-full" id="{{ $inputAmount }}" max="16777215" min="1"
-            name="{{ $inputAmount }}" type="number" required>
+        <input class="mt-1 text-input-select w-full" id="{{ $inputSalary }}" max="16777215" min="1"
+            name="{{ $inputSalary }}" type="number" required>
 
-        <x-input-error class="mt-2" :messages="$errors->get($inputAmount)" />
+        <x-input-error class="mt-2" :messages="$errors->get($inputSalary)" />
     </div>
 </div>
