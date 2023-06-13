@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\JobSeeker;
 
 use App\Models\JobSeeker;
+use Illuminate\View\View;
 use Livewire\Component;
 
 class Url extends Component
@@ -23,9 +24,16 @@ class Url extends Component
 
     public string $url;
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.job-seeker.url');
+    }
+
+    public function mount(): void
+    {
+        if (old('name')) {
+	        $this->name = old('name');
+        }
     }
 
     public function updatedName(): void

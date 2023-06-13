@@ -18,7 +18,7 @@
             ' (<strong><u>'.__('bruto').' '.__(($isPerYear ? 'anual' : 'mensal')).'</u></strong>)'" />
 
         <input class="mt-1 text-input-select w-full" id="{{ $inputSalary }}" max="16777215" min="1"
-            name="{{ $inputSalary }}" type="number" required>
+            :value="old($inputSalary)" name="{{ $inputSalary }}" type="number">
 
         <x-input-error class="mt-2" :messages="$errors->get($inputSalary)" />
     </div>

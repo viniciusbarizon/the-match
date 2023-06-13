@@ -4,7 +4,9 @@ namespace App\Http\Controllers\JobSeeker;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\JobSeeker\StoreRequest;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\View\View;
 
 class JobSeekerController extends Controller
 {
@@ -16,7 +18,7 @@ class JobSeekerController extends Controller
         //
     }
 
-    public function store(StoreRequest $request)
+    public function store(StoreRequest $request): View
     {
 /*         if (session('email_verified') != $request->email) {
             session()->flash();
