@@ -31,8 +31,15 @@ class Url extends Component
 
     public function mount(): void
     {
-        if (old('name')) {
-            $this->name = old('name');
+        $this->setOldValues('name');
+        $this->setOldValues('slug');
+        $this->setOldValues('url');
+    }
+
+    private function setOldValues($input): void
+    {
+        if (old($input)) {
+            $this->$input = old($input);
         }
     }
 
