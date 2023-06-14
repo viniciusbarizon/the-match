@@ -68,6 +68,7 @@ class Verify extends Component
             return;
         }
 
+        $this->verification_code = '******';
         session()->put('email_verified', $this->email);
     }
 
