@@ -36,6 +36,13 @@ class Send extends Component
         $this->flashMessage();
     }
 
+    public function mount(): void
+    {
+        if (old('email')) {
+            $this->email = old('email');
+        }
+    }
+
     private function sendEmail(): void
     {
         VerificationCode::send($this->email);
