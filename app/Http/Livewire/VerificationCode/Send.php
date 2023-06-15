@@ -57,9 +57,9 @@ class Send extends Component
 
     private function flashAlreadyVerified(): void
     {
-        session()->flash( 'alert_message',
-            __('O e-mail :email já está verificado.', ['email' => session('email_verified')])
-        );
+        session()->flash( 'alert_message', __('O e-mail :email já está verificado.', [
+            'email' => session('email_verified')
+        ]));
         session()->flash('alert_type', 'info');
     }
 
