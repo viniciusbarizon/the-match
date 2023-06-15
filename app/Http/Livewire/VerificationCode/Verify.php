@@ -40,12 +40,14 @@ class Verify extends Component
         if (session()->has('email_verified')) {
             $this->setAlert(message: 'O e-mail já está verificado.', type: 'info');
             $this->flashAlert();
+
             return;
         }
 
         if (is_null($this->email)) {
             $this->setAlert(message: 'Preencha o seu email e clique em enviar código antes da verificação.', type: 'info');
             $this->flashAlert();
+
             return;
         }
 
@@ -56,6 +58,7 @@ class Verify extends Component
         if ($this->isCodeValid === false) {
             $this->setAlert(message: 'Código inválido, por favor tente novamente.', type: 'danger');
             $this->flashAlert();
+
             return;
         }
 
