@@ -9,9 +9,11 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    private string $alert_message;
+    private string $alertMessage;
 
-    private string $alert_type;
+    private string $alertType;
+
+    public readonly bool $disabled;
 
     public ?string $email;
 
@@ -21,8 +23,8 @@ class Send extends Component
 
     public function mount(): void
     {
+        $this->setDisabled();
         $this->setEmail();
-        $this->setReadOnly();
     }
 
     public function render(): View
@@ -50,23 +52,19 @@ class Send extends Component
 
         $this->emit('emailSent', $this->email);
 
-        $this->alert_message = __('Enviamos um código de verificação para o seu e-mail.');
-        $this->alert_type = 'success';
+        $this->alertMessage = __('Enviamos um código de verificação para o seu e-mail.');
+        $this->alertType = 'success';
         $this->flashAlert();
+    }
+
+    private function setDisabled(): void
+    {
+        $this->disabled = session()->has('email_verified');
     }
 
     private function setEmail(): void
     {
         $this->email = session('email_verified', old('email'));
-    }
-
-    private function setReadOnly(): void
-    {
-        if (session()->missing('email_verified')) {
-            return;
-        }
-
-        $this->readonly = "readonly=readonly";
     }
 
     private function sendEmail(): void
@@ -76,7 +74,7 @@ class Send extends Component
 
     private function flashAlert(): void
     {
-        session()->flash('alert_message', $this->alert_message);
-        session()->flash('alert_type', $this->alert_type);
+        session()->flash('alert_message', $this->alertMessage);
+        session()->flash('alert_type', $this->alertType);
     }
 }
