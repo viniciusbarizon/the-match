@@ -9,7 +9,11 @@
     </div>
 
     <div>
-        @if (session()->has($session_email_has_been_sent))
+        @if (session()->has('info'))
+            <x-alert type="info" :message="__('Este e-mail já está verificado.')" />
+        @endif
+
+        @if (session()->has('success'))
             <x-alert type="success" :message="__('Enviamos um código de verificação para o seu e-mail.')" />
         @endif
 

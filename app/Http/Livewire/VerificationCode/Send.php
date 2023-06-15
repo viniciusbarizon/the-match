@@ -13,8 +13,6 @@ class Send extends Component
 
     public string $input = 'email';
 
-    public string $session_email_has_been_sent = 'verification_code_email_has_been_sent';
-
     public function render(): View
     {
         return view('livewire.verification-code.send');
@@ -29,11 +27,16 @@ class Send extends Component
     {
         $this->validate();
 
+        if ($this->isEmailAlreadyVerified()) {
+            session()->flash('info', true);
+            return;
+        }
+
         $this->sendEmail();
 
         $this->emit('emailSent', $this->email);
 
-        $this->flashMessage();
+        session()->flash('success', true);
     }
 
     public function mount(): void
@@ -43,13 +46,18 @@ class Send extends Component
         }
     }
 
+    private function isEmailAlreadyVerified(): bool
+    {
+        return session('email_verified') == $this->email;
+    }
+
     private function sendEmail(): void
     {
         VerificationCode::send($this->email);
     }
 
-    private function flashMessage(): void
+    private function flashMessage(string $type, string $message): void
     {
-        session()->flash($this->session_email_has_been_sent, true);
+        session()->flash('success', true);
     }
 }
