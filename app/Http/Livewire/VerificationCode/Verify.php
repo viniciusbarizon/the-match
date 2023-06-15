@@ -38,8 +38,7 @@ class Verify extends Component
     public function verify(): void
     {
         if ($this->isEmailAlreadyVerified()) {
-            $this->alertMessage = 'O e-mail já está verificado.';
-            $this->alertType = 'info';
+            $this->setAlert(message: 'O e-mail já está verificado.', type: 'info');
             $this->flashAlert();
             return;
         }
@@ -49,15 +48,13 @@ class Verify extends Component
         $this->verifyCode();
 
         if ($this->isCodeValid === false) {
-            $this->alertMessage = 'Código inválido, por favor tente novamente.';
-            $this->alertType = 'danger';
+            $this->setAlert(message: 'Código inválido, por favor tente novamente.', type: 'danger');
             $this->flashAlert();
         }
 
         $this->setSessionEmailVerified();
 
-        $this->alertMessage = 'O Código foi verificado com sucesso!';
-        $this->alertType = 'success';
+        $this->setAlert(message: 'O Código foi verificado com sucesso!', type: 'success');
         $this->flashAlert();
     }
 
@@ -69,6 +66,12 @@ class Verify extends Component
     private function isEmailAlreadyVerified(): bool
     {
         return isset($this->email) && session('email_verified') == $this->email;
+    }
+
+    private function setAlert(string $message, string $type): void
+    {
+        $this->alertMessage = $message;
+        $this->alertType = $type;
     }
 
     private function verifyCode(): void
