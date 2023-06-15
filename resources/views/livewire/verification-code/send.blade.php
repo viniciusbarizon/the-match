@@ -1,9 +1,9 @@
 <div>
     <div class="mb-2">
-        <x-input-label for="{{ $input }}" id="{{ $input }}_label" :value="__('E-mail')" />
+        <x-input-label for="email" id="email_label" :value="__('E-mail')" />
 
-        <x-text-input autocomplete="email" class="mt-1 w-full" disabled="{{ $disabled }}" id="{{ $input }}"
-            name="{{ $input }}" type="email" wire:model.defer="{{ $input }}" />
+        <x-text-input autocomplete="email" class="mt-1 w-full" disabled="{{ $disabled }}" id="email"
+            name="email" type="email" wire:model.defer="email" />
 
         <x-input-error :messages="$errors->get($input)" class="mt-2" />
     </div>

@@ -17,10 +17,6 @@ class Send extends Component
 
     public ?string $email;
 
-    public string $input = 'email';
-
-    public ?string $readonly;
-
     public function mount(): void
     {
         $this->setDisabled();
