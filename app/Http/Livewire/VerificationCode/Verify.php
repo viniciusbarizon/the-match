@@ -37,7 +37,7 @@ class Verify extends Component
 
     public function verify(): void
     {
-        if ($this->isEmailAlreadyVerified()) {
+        if (session()->has('email_verified')) {
             $this->setAlert(message: 'O e-mail já está verificado.', type: 'info');
             $this->flashAlert();
             return;
@@ -68,11 +68,6 @@ class Verify extends Component
     public function setEmail(string $email): void
     {
         $this->email = $email;
-    }
-
-    private function isEmailAlreadyVerified(): bool
-    {
-        return is_null($this->email) === false && session('email_verified') == $this->email;
     }
 
     private function setAlert(string $message, string $type): void

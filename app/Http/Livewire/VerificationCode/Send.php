@@ -13,9 +13,17 @@ class Send extends Component
 
     private string $alert_type;
 
-    public string $email;
+    public ?string $email;
 
     public string $input = 'email';
+
+    public ?string $readonly;
+
+    public function mount(): void
+    {
+        $this->setEmail();
+        $this->setReadOnly();
+    }
 
     public function render(): View
     {
@@ -29,34 +37,36 @@ class Send extends Component
 
     public function send(): void
     {
-        $this->validate();
-
-        if ($this->isEmailAlreadyVerified()) {
-            $this->alert_message = 'Este e-mail já está verificado.';
+        if (session()->has('email_verified')) {
+            $this->alert_message = __('O e-mail :email já está verificado.', ['email' => session('email_verified')]);
             $this->alert_type = 'info';
             $this->flashAlert();
             return;
         }
 
+        $this->validate();
+
         $this->sendEmail();
 
         $this->emit('emailSent', $this->email);
 
-        $this->alert_message = 'Enviamos um código de verificação para o seu e-mail.';
+        $this->alert_message = __('Enviamos um código de verificação para o seu e-mail.');
         $this->alert_type = 'success';
         $this->flashAlert();
     }
 
-    public function mount(): void
+    private function setEmail(): void
     {
-        if (old('email')) {
-            $this->email = old('email');
-        }
+        $this->email = session('email_verified', old('email'));
     }
 
-    private function isEmailAlreadyVerified(): bool
+    private function setReadOnly(): void
     {
-        return session('email_verified') == $this->email;
+        if (session()->missing('email_verified')) {
+            return;
+        }
+
+        $this->readonly = "readonly=readonly";
     }
 
     private function sendEmail(): void

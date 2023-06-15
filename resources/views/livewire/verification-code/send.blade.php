@@ -2,8 +2,8 @@
     <div class="mb-2">
         <x-input-label for="{{ $input }}" id="{{ $input }}_label" :value="__('E-mail')" />
 
-        <x-text-input autocomplete="email" class="mt-1 w-full" id="{{ $input }}" name="{{ $input }}" type="email"
-            :value="old($input, session('email_verified'))" wire:model.defer="{{ $input }}" required/>
+        <x-text-input autocomplete="email" class="mt-1 w-full" disabled="{{ session()->has('email_verified') }}"
+            id="{{ $input }}" name="{{ $input }}" type="email" wire:model.defer="{{ $input }}" required />
 
         <x-input-error :messages="$errors->get($input)" class="mt-2" />
     </div>
@@ -13,7 +13,7 @@
             <x-alert type="{{ session('alert_type') }}" :message="__(session('alert_message'))" />
         @endif
 
-        <x-white-button id="send_code" wire:click="send">
+        <x-white-button disabled="{{ session()->has('email_verified') }}" id="send_code" wire:click="send">
             {{ __('Enviar código de verificação') }}
         </x-white-button>
     </div>
