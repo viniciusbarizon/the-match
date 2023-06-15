@@ -17,11 +17,11 @@ class Verify extends Component
 
     public string $input = 'verification_code';
 
-    public int $max_length = 6;
-
     private bool $isCodeValid;
 
-    public string $verification_code;
+    public int $maxLength = 6;
+
+    public string $verificationCode;
 
     public function render(): View
     {
@@ -66,9 +66,14 @@ class Verify extends Component
         $this->email = $email;
     }
 
+    private function isEmailAlreadyVerified(): bool
+    {
+        return isset($this->email) && session('email_verified') == $this->email;
+    }
+
     private function verifyCode(): void
     {
-        $this->isCodeValid = VerificationCode::verify($this->verification_code, $this->email);
+        $this->isCodeValid = VerificationCode::verify($this->verificationCode, $this->email);
     }
 
     private function setSessionEmailVerified(): void
@@ -77,7 +82,7 @@ class Verify extends Component
             return;
         }
 
-        $this->verification_code = '******';
+        $this->verificationCode = '******';
         session()->put('email_verified', $this->email);
     }
 
