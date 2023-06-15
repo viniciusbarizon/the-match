@@ -9,7 +9,7 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    public readonly bool $disabled;
+    public bool $disabled;
 
     public ?string $email;
 
