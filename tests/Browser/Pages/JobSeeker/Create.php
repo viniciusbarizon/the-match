@@ -119,8 +119,8 @@ class Create extends Page
 
         $this->browser->assertVisible('@email')
             ->assertAttribute('@email', 'autocomplete', 'email')
+            ->assertAttribute('@email', 'disabled', false)
             ->assertAttribute('@email', 'name', $this->inputId)
-            ->assertAttribute('@email', 'required', true)
             ->assertAttribute('@email', 'type', 'email')
             ->assertAttribute('@email', 'wire:model.defer', $this->inputId);
     }
