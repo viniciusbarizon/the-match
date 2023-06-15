@@ -9,12 +9,8 @@
     </div>
 
     <div>
-        @if (session()->has('info'))
-            <x-alert type="info" :message="__('Este e-mail já está verificado.')" />
-        @endif
-
-        @if (session()->has('success'))
-            <x-alert type="success" :message="__('Enviamos um código de verificação para o seu e-mail.')" />
+        @if (session()->has('alert_type'))
+            <x-alert type="{{ session('alert_type') }}" :message="__(session('alert_message'))" />
         @endif
 
         <x-white-button id="send_code" wire:click="send">

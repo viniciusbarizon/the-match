@@ -35,6 +35,11 @@ class Verify extends Component
 
     public function verify(): void
     {
+        if ($this->isEmailAlreadyVerified()) {
+            session()->flash('message', true);
+            return;
+        }
+
         $this->validate();
 
         $this->verifyCode();

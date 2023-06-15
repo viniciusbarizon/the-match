@@ -9,6 +9,10 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
+    private string $alert_message;
+
+    private string $alert_type;
+
     public string $email;
 
     public string $input = 'email';
@@ -28,7 +32,9 @@ class Send extends Component
         $this->validate();
 
         if ($this->isEmailAlreadyVerified()) {
-            session()->flash('info', true);
+            $this->alert_message = 'Este e-mail já está verificado.';
+            $this->alert_type = 'info';
+            $this->flashAlert();
             return;
         }
 
@@ -36,7 +42,9 @@ class Send extends Component
 
         $this->emit('emailSent', $this->email);
 
-        session()->flash('success', true);
+        $this->alert_message = 'Enviamos um código de verificação para o seu e-mail.';
+        $this->alert_type = 'success';
+        $this->flashAlert();
     }
 
     public function mount(): void
@@ -56,8 +64,9 @@ class Send extends Component
         VerificationCode::send($this->email);
     }
 
-    private function flashMessage(string $type, string $message): void
+    private function flashAlert(): void
     {
-        session()->flash('success', true);
+        session()->flash('alert_message', $this->alert_message);
+        session()->flash('alert_type', $this->alert_type);
     }
 }
