@@ -5,7 +5,7 @@
         <x-text-input autocomplete="email" class="mt-1 w-full" disabled="{{ $disabled }}" id="email" name="email"
             type="email" wire:model.defer="email" />
 
-        <x-input-error :messages="$errors->get($input)" class="mt-2" />
+        <x-input-error :messages="$errors->get('email')" class="mt-2" />
     </div>
 
     <div>

@@ -9,10 +9,6 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    private string $alertMessage;
-
-    private string $alertType;
-
     public readonly bool $disabled;
 
     public ?string $email;
@@ -21,6 +17,16 @@ class Send extends Component
     {
         $this->setDisabled();
         $this->setEmail();
+    }
+
+    private function setDisabled(): void
+    {
+        $this->disabled = session()->has('email_verified');
+    }
+
+    private function setEmail(): void
+    {
+        $this->email = session('email_verified', old('email'));
     }
 
     public function render(): View
@@ -36,9 +42,7 @@ class Send extends Component
     public function send(): void
     {
         if (session()->has('email_verified')) {
-            $this->alert_message = __('O e-mail :email já está verificado.', ['email' => session('email_verified')]);
-            $this->alert_type = 'info';
-            $this->flashAlert();
+            $this->flashAlreadyVerified();
             return;
         }
 
@@ -48,19 +52,15 @@ class Send extends Component
 
         $this->emit('emailSent', $this->email);
 
-        $this->alertMessage = __('Enviamos um código de verificação para o seu e-mail.');
-        $this->alertType = 'success';
-        $this->flashAlert();
+        $this->flashSuccess();
     }
 
-    private function setDisabled(): void
+    private function flashAlreadyVerified(): void
     {
-        $this->disabled = session()->has('email_verified');
-    }
-
-    private function setEmail(): void
-    {
-        $this->email = session('email_verified', old('email'));
+        session()->flash( 'alert_message',
+            __('O e-mail :email já está verificado.', ['email' => session('email_verified')])
+        );
+        session()->flash('alert_type', 'info');
     }
 
     private function sendEmail(): void
@@ -72,5 +72,11 @@ class Send extends Component
     {
         session()->flash('alert_message', $this->alertMessage);
         session()->flash('alert_type', $this->alertType);
+    }
+
+    private function flashSuccess(): void
+    {
+        session()->flash('alert_message', __('Enviamos um código de verificação para o seu e-mail.'));
+        session()->flash('alert_type', 'success');
     }
 }
