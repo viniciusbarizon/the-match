@@ -3,7 +3,7 @@
         <x-input-label for="{{ $input }}" id="{{ $input }}_label" :value="__('E-mail')" />
 
         <x-text-input autocomplete="email" class="mt-1 w-full" id="{{ $input }}" name="{{ $input }}" type="email"
-            :value="old($input)" wire:model.defer="{{ $input }}" required/>
+            :value="old($input, session('email_verified'))" wire:model.defer="{{ $input }}" required/>
 
         <x-input-error :messages="$errors->get($input)" class="mt-2" />
     </div>
