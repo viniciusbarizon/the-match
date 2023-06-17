@@ -92,7 +92,6 @@ class Verify extends Component
 
     private function setSessionEmailVerified(): void
     {
-        $this->code = '******';
         session()->put('email_verified', $this->email);
     }
 
