@@ -5,7 +5,7 @@ namespace App\Http\Livewire\VerificationCode;
 use App\Http\Requests\JobSeeker\VerificationCode\VerifyRequest;
 use Illuminate\View\View;
 use Livewire\Component;
-use NextApps\VerificationCode\Models\VerificationCode As VerificationCodeModel;
+use NextApps\VerificationCode\Models\VerificationCode as VerificationCodeModel;
 use NextApps\VerificationCode\VerificationCode;
 
 class Verify extends Component
