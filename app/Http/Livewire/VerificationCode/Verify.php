@@ -5,6 +5,7 @@ namespace App\Http\Livewire\VerificationCode;
 use App\Http\Requests\JobSeeker\VerificationCode\VerifyRequest;
 use Illuminate\View\View;
 use Livewire\Component;
+use NextApps\VerificationCode\Models\VerificationCode As VerificationCodeModel;
 use NextApps\VerificationCode\VerificationCode;
 
 class Verify extends Component
@@ -15,7 +16,7 @@ class Verify extends Component
 
     public ?string $email = null;
 
-    protected $listeners = ['emailSent' => 'setEmail'];
+    protected $listeners = ['emailSent' => 'enable'];
 
     public function mount(): void
     {
@@ -30,7 +31,18 @@ class Verify extends Component
 
     private function setDisabled(): void
     {
-        $this->disabled = session()->has('email_verified');
+        $this->disabled = session()->has('email_verified', true);
+    }
+
+    private function wasEmailSent(): bool
+    {
+        if (is_null($this->email)) {
+            return false;
+        }
+
+        return VerificationCodeModel::where('verifiable', $this->email)
+            ->where('expires_at', '>=', now())
+            ->doesntExist();
     }
 
     public function render(): View
@@ -45,15 +57,6 @@ class Verify extends Component
 
     public function verify(): void
     {
-        if (is_null($this->email)) {
-            $this->flashAlert(
-                message: 'Preencha o seu email e clique em enviar código antes da verificação.',
-                type: 'info'
-            );
-
-            return;
-        }
-
         $this->validate();
 
         if ($this->verifyCode() === false) {
@@ -77,8 +80,9 @@ class Verify extends Component
         );
     }
 
-    public function setEmail(string $email): void
+    public function enable(string $email): void
     {
+        $this->disabled = false;
         $this->email = $email;
     }
 

@@ -9,7 +9,7 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    protected $listeners = ['emailVerified' => 'disable'];
+    protected $listeners = ['emailVerified' => 'disable',];
 
     public bool $disabled;
 
