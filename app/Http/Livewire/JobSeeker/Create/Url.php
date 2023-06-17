@@ -26,7 +26,7 @@ class Url extends Component
 
     public function render(): View
     {
-        return view('livewire.job-seeker.url');
+        return view('livewire.job-seeker.create.url');
     }
 
     public function mount(): void

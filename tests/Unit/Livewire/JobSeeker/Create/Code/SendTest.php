@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\VerificationCode\Send;
+use App\Http\Livewire\JobSeeker\Create\Code\Send;
 use App\Models\JobSeeker;
 use NextApps\VerificationCode\Models\VerificationCode;
 use function Pest\Livewire\livewire;

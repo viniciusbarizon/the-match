@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\VerificationCode;
+namespace App\Http\Livewire\JobSeeker\Create\Code;
 
 use App\Http\Requests\JobSeeker\VerificationCode\VerifyRequest;
 use Illuminate\View\View;

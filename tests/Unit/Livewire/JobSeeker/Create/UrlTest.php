@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Livewire\JobSeeker\Url;
+use App\Http\Livewire\JobSeeker\Create\Url;
 use App\Models\JobSeeker;
 use function Pest\Livewire\livewire;
 
