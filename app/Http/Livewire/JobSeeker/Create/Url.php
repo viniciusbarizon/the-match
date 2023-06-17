@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\JobSeeker;
+namespace App\Http\Livewire\JobSeeker\Create;
 
 use App\Models\JobSeeker;
 use Illuminate\View\View;

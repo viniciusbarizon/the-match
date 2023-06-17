@@ -8,10 +8,10 @@
         <form action="{{ route('job-seekers.store') }}" class="space-y-4" method="POST">
             @csrf
 
-            @livewire('verification-code.send')
-            @livewire('verification-code.verify')
+            @livewire('job-seeker.create.code.send')
+            @livewire('job-seeker.create.code.verify')
 
-            @livewire('job-seeker.url')
+            @livewire('job-seeker.create.url')
 
             <x-job-seeker.salary-requirement/>
 

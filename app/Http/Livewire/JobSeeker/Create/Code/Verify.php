@@ -47,7 +47,7 @@ class Verify extends Component
 
     public function render(): View
     {
-        return view('livewire.verification-code.verify');
+        return view('livewire.job-seeker.create.code.verify');
     }
 
     protected function rules(): array
