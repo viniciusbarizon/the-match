@@ -189,14 +189,14 @@ class Create extends Page
     public function assertVerificationCodeRequired(): void
     {
         $this->browser->click('@verify_code')
-            ->waitForText(__('O campo Código é obrigatório.'), 1);
+            ->waitForText(__('O campo código é obrigatório.'), 1);
     }
 
     public function assertVerificationCodeMinimumLength(): void
     {
         $this->browser->type('@verification_code', str()->random(5))
             ->click('@verify_code')
-            ->waitForText(__('O campo Código deve conter 6 caracteres.'), 1);
+            ->waitForText(__('O campo código deve conter 6 caracteres.'), 1);
     }
 
     public function assertVerificationCodeInvalid(): void
