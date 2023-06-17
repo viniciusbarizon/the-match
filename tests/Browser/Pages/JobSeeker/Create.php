@@ -45,12 +45,12 @@ class Create extends Page
             ->assertEmailMaximumCharactersReached()
             ->assertEmailAlreadyInUse()
             ->assertSendCode()
-            ->assertVerificationCode()
+            ->assertCode()
             ->assertButtonVerifyCode()
-            ->assertVerificationCodeRequired()
-            ->assertVerificationCodeMinimumLength()
-            ->assertVerificationCodeInvalid()
-            ->assertVerificationCodeInvalidAfterSendCode()
+            ->assertCodeRequired()
+            ->assertCodeMinimumLength()
+            ->assertCodeInvalid()
+            ->assertCodeInvalidAfterSendCode()
             ->assertName()
             ->assertSlug()
             ->assertUrl()
@@ -164,7 +164,7 @@ class Create extends Page
             ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1);
     }
 
-    public function assertVerificationCode(): void
+    public function assertCode(): void
     {
         $this->inputId = 'code';
         $this->label = 'Código';
@@ -186,27 +186,27 @@ class Create extends Page
             ->assertSeeIn('@verify_code', __('Verificar código'));
     }
 
-    public function assertVerificationCodeRequired(): void
+    public function assertCodeRequired(): void
     {
         $this->browser->click('@verify_code')
             ->waitForText(__('O campo código é obrigatório.'), 1);
     }
 
-    public function assertVerificationCodeMinimumLength(): void
+    public function assertCodeMinimumLength(): void
     {
         $this->browser->type('@code', str()->random(5))
             ->click('@verify_code')
             ->waitForText(__('O campo código deve conter 6 caracteres.'), 1);
     }
 
-    public function assertVerificationCodeInvalid(): void
+    public function assertCodeInvalid(): void
     {
         $this->browser->type('@code', str()->random(6))
             ->click('@verify_code')
             ->waitForText(__('Código inválido, por favor tente novamente.'), 1);
     }
 
-    public function assertVerificationCodeInvalidAfterSendCode(): void
+    public function assertCodeInvalidAfterSendCode(): void
     {
         $this->browser->type('@email', fake()->email())
             ->click('@send_code')
