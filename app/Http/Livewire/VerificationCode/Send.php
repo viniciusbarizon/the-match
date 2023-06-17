@@ -42,7 +42,10 @@ class Send extends Component
     public function send(): void
     {
         if (session()->has('email_verified')) {
-            $this->flashAlreadyVerified();
+            $this->flashAlert(
+                message: __('O e-mail :email já está verificado.', ['email' => session('email_verified'),]),
+                type: 'info'
+            );
 
             return;
         }
@@ -53,31 +56,20 @@ class Send extends Component
 
         $this->emit('emailSent', $this->email);
 
-        $this->flashSuccess();
+        $this->flashAlert(
+            message: __('Enviamos um código de verificação para o seu e-mail.'),
+            type: 'success'
+        );
     }
 
-    private function flashAlreadyVerified(): void
+    private function flashAlert(string $message, string $type): void
     {
-        session()->flash('alert_message', __('O e-mail :email já está verificado.', [
-            'email' => session('email_verified'),
-        ]));
-        session()->flash('alert_type', 'info');
+        session()->flash('alert_message', $message);
+        session()->flash('alert_type', $type);
     }
 
     private function sendEmail(): void
     {
         VerificationCode::send($this->email);
-    }
-
-    private function flashAlert(): void
-    {
-        session()->flash('alert_message', $this->alertMessage);
-        session()->flash('alert_type', $this->alertType);
-    }
-
-    private function flashSuccess(): void
-    {
-        session()->flash('alert_message', __('Enviamos um código de verificação para o seu e-mail.'));
-        session()->flash('alert_type', 'success');
     }
 }
