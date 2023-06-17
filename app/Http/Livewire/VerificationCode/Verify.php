@@ -87,12 +87,12 @@ class Verify extends Component
 
     private function verifyCode(): bool
     {
-        return VerificationCode::verify($this->verificationCode, $this->email);
+        return VerificationCode::verify($this->code, $this->email);
     }
 
     private function setSessionEmailVerified(): void
     {
-        $this->verificationCode = '******';
+        $this->code = '******';
         session()->put('email_verified', $this->email);
     }
 
