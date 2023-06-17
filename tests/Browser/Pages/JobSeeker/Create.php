@@ -148,7 +148,9 @@ class Create extends Page
     {
         $this->browser->type('@email', fake()->email())
             ->click('@send_code')
-            ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1);
+            ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1)
+            ->assertEnabled('@code')
+            ->assertEnabled('@verify_code');
     }
 
     public function assertCode(): void
