@@ -211,7 +211,7 @@ return [
         'title' => 'título',
         'updated_at' => 'atualizado em',
         'username' => 'usuário',
-        'verification_code' => 'Código',
+        'verificationCode' => 'Código',
         'year' => 'ano',
     ],
 ];

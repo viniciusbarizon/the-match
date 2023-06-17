@@ -1,10 +1,11 @@
 
     <div>
         <div class="mb-2">
-            <x-input-label for="{{ $input }}" id="{{ $input }}_label" :value="__('Código')" />
+            <x-input-label for="verification_code" id="verification_code_label" :value="__('Código')" />
 
-            <x-text-input autocomplete="off" class="mt-1 w-full" id="{{ $input }}" maxlength="{{ $maxLength }}"
-                name="{{ $input }}" type="text" :value="old($input)" wire:model.defer="verificationCode" />
+            <x-text-input autocomplete="off" class="mt-1 w-full" id="verification_code" maxlength="6"
+                name="verification_code" type="text" :value="old('verification_code')"
+                wire:model.defer="verificationCode" />
 
             <x-input-error class="mt-2" :messages="$errors->get('verificationCode')" />
         </div>

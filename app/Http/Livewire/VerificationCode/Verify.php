@@ -15,11 +15,7 @@ class Verify extends Component
 
     public ?string $email = null;
 
-    public string $input = 'verification_code';
-
     private bool $isCodeValid;
-
-    public int $maxLength = 6;
 
     public string $verificationCode;
 
@@ -53,9 +49,7 @@ class Verify extends Component
 
         $this->validate();
 
-        $this->verifyCode();
-
-        if ($this->isCodeValid === false) {
+        if ($this->verifyCode() === false) {
             $this->setAlert(message: 'Código inválido, por favor tente novamente.', type: 'danger');
             $this->flashAlert();
 
@@ -79,17 +73,13 @@ class Verify extends Component
         $this->alertType = $type;
     }
 
-    private function verifyCode(): void
+    private function verifyCode(): bool
     {
-        $this->isCodeValid = VerificationCode::verify($this->verificationCode, $this->email);
+        return VerificationCode::verify($this->verificationCode, $this->email);
     }
 
     private function setSessionEmailVerified(): void
     {
-        if ($this->isCodeValid === false) {
-            return;
-        }
-
         $this->verificationCode = '******';
         session()->put('email_verified', $this->email);
     }
