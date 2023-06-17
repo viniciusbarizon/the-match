@@ -43,31 +43,18 @@ class Send extends Component
 
     public function send(): void
     {
-        if (session()->has('email_verified')) {
-            $this->flashAlert(
-                message: __('O e-mail :email já está verificado.', ['email' => session('email_verified')]),
-                type: 'info'
-            );
-
-            return;
-        }
-
         $this->validate();
 
         $this->sendEmail();
 
         $this->emit('emailSent', $this->email);
 
-        $this->flashAlert(
-            message: __('Enviamos um código de verificação para o seu e-mail.'),
-            type: 'success'
-        );
+        $this->flashAlert();
     }
 
-    private function flashAlert(string $message, string $type): void
+    private function flashAlert(): void
     {
-        session()->flash('alert_message', $message);
-        session()->flash('alert_type', $type);
+        session()->flash('alert_message', 'Enviamos um código de verificação para o seu e-mail.');
     }
 
     private function sendEmail(): void

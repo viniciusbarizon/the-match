@@ -9,8 +9,8 @@
     </div>
 
     <div>
-        @if (session()->has('alert_type'))
-            <x-alert type="{{ session('alert_type') }}" :message="session('alert_message')" />
+        @if (session()->has('alert_message'))
+            <x-alert type="success" :message="__(session('alert_message'))" />
         @endif
 
         <x-white-button disabled="{{ $disabled }}" id="send_code" wire:click="send">
