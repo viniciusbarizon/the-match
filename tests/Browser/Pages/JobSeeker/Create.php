@@ -70,6 +70,7 @@ class Create extends Page
     public function elements(): array
     {
         return [
+            '@code' => '#code',
             '@contract_id' => '#contract_id',
             '@contract_id_label' => '#contract_id_label',
             '@currency_id' => '#currency_id',
@@ -83,7 +84,6 @@ class Create extends Page
             '@send_code' => '#send_code',
             '@slug' => '#slug',
             '@url' => '#url',
-            '@verification_code' => '#verification_code',
             '@verify_code' => '#verify_code',
         ];
     }
@@ -166,17 +166,17 @@ class Create extends Page
 
     public function assertVerificationCode(): void
     {
-        $this->inputId = 'verification_code';
+        $this->inputId = 'code';
         $this->label = 'Código';
 
         $this->setLabelDusk();
         $this->assertLabel();
 
-        $this->browser->assertVisible('@verification_code')
-            ->assertAttribute('@verification_code', 'autocomplete', 'off')
-            ->assertAttribute('@verification_code', 'maxlength', 6)
-            ->assertAttribute('@verification_code', 'type', 'text')
-            ->assertAttribute('@verification_code', 'wire:model.defer', 'code');
+        $this->browser->assertVisible('@code')
+            ->assertAttribute('@code', 'autocomplete', 'off')
+            ->assertAttribute('@code', 'maxlength', 6)
+            ->assertAttribute('@code', 'type', 'text')
+            ->assertAttribute('@code', 'wire:model.defer', 'code');
     }
 
     public function assertButtonVerifyCode(): void
@@ -194,14 +194,14 @@ class Create extends Page
 
     public function assertVerificationCodeMinimumLength(): void
     {
-        $this->browser->type('@verification_code', str()->random(5))
+        $this->browser->type('@code', str()->random(5))
             ->click('@verify_code')
             ->waitForText(__('O campo código deve conter 6 caracteres.'), 1);
     }
 
     public function assertVerificationCodeInvalid(): void
     {
-        $this->browser->type('@verification_code', str()->random(6))
+        $this->browser->type('@code', str()->random(6))
             ->click('@verify_code')
             ->waitForText(__('Código inválido, por favor tente novamente.'), 1);
     }
@@ -210,7 +210,7 @@ class Create extends Page
     {
         $this->browser->type('@email', fake()->email())
             ->click('@send_code')
-            ->type('@verification_code', str()->random(6))
+            ->type('@code', str()->random(6))
             ->click('@verify_code')
             ->waitForText(__('Código inválido, por favor tente novamente.'), 1);
     }
