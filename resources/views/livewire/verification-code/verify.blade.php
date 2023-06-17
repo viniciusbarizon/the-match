@@ -1,12 +1,12 @@
 
     <div>
         <div class="mb-2">
-            <x-input-label for="verification_code" id="verification_code_label" :value="__('Código')" />
+            <x-input-label for="code" id="code_label" :value="__('Código')" />
 
-            <x-text-input autocomplete="off" class="mt-1 w-full" id="verification_code" maxlength="6"
-                type="text" :value="old('verificationCode')" wire:model.defer="verificationCode" />
+            <x-text-input autocomplete="off" class="mt-1 w-full" id="code" maxlength="6" type="text"
+                :value="old('code')" wire:model.defer="code" />
 
-            <x-input-error class="mt-2" :messages="$errors->get('verificationCode')" />
+            <x-input-error class="mt-2" :messages="$errors->get('code')" />
         </div>
 
         <div>

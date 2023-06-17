@@ -149,6 +149,7 @@ return [
         'birthday' => 'aniversário',
         'body' => 'conteúdo',
         'city' => 'cidade',
+        'code' => 'código',
         'content' => 'conteúdo',
         'country' => 'país',
         'created_at' => 'criado em',
@@ -211,7 +212,6 @@ return [
         'title' => 'título',
         'updated_at' => 'atualizado em',
         'username' => 'usuário',
-        'verificationCode' => 'Código',
         'year' => 'ano',
     ],
 ];

@@ -22,7 +22,7 @@ class VerifyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'verificationCode' => 'bail|required|size:6',
+            'code' => 'bail|required|size:6',
         ];
     }
 }

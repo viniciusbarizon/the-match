@@ -11,14 +11,30 @@ class Verify extends Component
 {
     public ?string $email = null;
 
-    public string $verificationCode;
+    public ?string $code;
+
+    protected $listeners = ['emailSent' => 'setEmail'];
+
+    public function mount(): void
+    {
+        $this->setCode();
+        $this->setDisabled();
+    }
+
+    private function setCode(): void
+    {
+        $this->code = old('code', null);
+    }
+
+    private function setDisabled(): void
+    {
+        $this->disabled = session()->has('email_verified');
+    }
 
     public function render(): View
     {
         return view('livewire.verification-code.verify');
     }
-
-    protected $listeners = ['emailSent' => 'setEmail'];
 
     protected function rules(): array
     {
