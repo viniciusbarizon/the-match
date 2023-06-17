@@ -31,16 +31,16 @@ class Verify extends Component
 
     private function setDisabled(): void
     {
-        $this->disabled = session()->has('email_verified', true);
+        $this->disabled = session()->has('email_verified', $this->wasEmailSent());
     }
 
     private function wasEmailSent(): bool
     {
-        if (is_null($this->email)) {
+        if (session()->missing('email')) {
             return false;
         }
 
-        return VerificationCodeModel::where('verifiable', $this->email)
+        return VerificationCodeModel::where('verifiable', session('email'))
             ->where('expires_at', '>=', now())
             ->doesntExist();
     }
@@ -93,7 +93,7 @@ class Verify extends Component
 
     private function setSessionEmailVerified(): void
     {
-        session()->put('email_verified', $this->email);
+        session()->put('email_verified', true);
     }
 
     private function flashAlert(string $message, string $type): void

@@ -28,7 +28,7 @@ class Send extends Component
 
     private function setEmail(): void
     {
-        $this->email = session('email_verified', old('email'));
+        $this->email = session('email', old('email'));
     }
 
     public function render(): View
@@ -47,6 +47,8 @@ class Send extends Component
 
         $this->sendEmail();
 
+        $this->setSessionEmail();
+
         $this->emit('emailSent', $this->email);
 
         $this->flashAlert();
@@ -60,6 +62,11 @@ class Send extends Component
     private function sendEmail(): void
     {
         VerificationCode::send($this->email);
+    }
+
+    private function setSessionEmail(): void
+    {
+        session()->put('email', $this->email);
     }
 
     public function disable(): void
