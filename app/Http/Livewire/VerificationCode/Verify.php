@@ -28,13 +28,19 @@ class Verify extends Component
     public function verify(): void
     {
         if (session()->has('email_verified')) {
-            $this->flashAlert(message: 'O e-mail já está verificado.', type: 'info');
+            $this->flashAlert(
+                message: 'O e-mail já está verificado.',
+                type: 'info'
+            );
 
             return;
         }
 
         if (is_null($this->email)) {
-            $this->flashAlert(message: 'Preencha o seu email e clique em enviar código antes da verificação.', type: 'info');
+            $this->flashAlert(
+                message: 'Preencha o seu email e clique em enviar código antes da verificação.',
+                type: 'info'
+            );
 
             return;
         }
@@ -42,14 +48,20 @@ class Verify extends Component
         $this->validate();
 
         if ($this->verifyCode() === false) {
-            $this->flashAlert(message: 'Código inválido, por favor tente novamente.', type: 'danger');
+            $this->flashAlert(
+                message: 'Código inválido, por favor tente novamente.',
+                type: 'danger'
+            );
 
             return;
         }
 
         $this->setSessionEmailVerified();
 
-        $this->flashAlert(message: 'O Código foi verificado com sucesso!', type: 'success');
+        $this->flashAlert(
+            message: 'O Código foi verificado com sucesso!',
+            type: 'success'
+        );
     }
 
     public function setEmail(string $email): void
