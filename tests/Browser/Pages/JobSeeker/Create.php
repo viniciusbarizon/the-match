@@ -10,13 +10,7 @@ class Create extends Page
 {
     private Browser $browser;
 
-    private string $inputId;
-
     private readonly JobSeeker $jobSeeker;
-
-    private string $label;
-
-    private string $labelDusk;
 
     private string $name;
 
@@ -72,15 +66,11 @@ class Create extends Page
         return [
             '@code' => '#code',
             '@contract_id' => '#contract_id',
-            '@contract_id_label' => '#contract_id_label',
             '@currency_id' => '#currency_id',
-            '@currency_id_label' => '#currency_id_label',
             '@email' => '#email',
-            '@email_label' => '#email_label',
             '@logo' => '#logo',
             '@name' => '#name',
             '@salary' => '#salary',
-            '@salary_label' => '#salary_label',
             '@send_code' => '#send_code',
             '@slug' => '#slug',
             '@url' => '#url',
@@ -111,16 +101,13 @@ class Create extends Page
 
     public function assertEmail(): void
     {
-        $this->inputId = 'email';
-        $this->label = 'E-mail';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertVisible('@email')
+        $this->browser->assertVisible('@email_label')
+            ->assertAttribute('@email_label', 'for', 'email')
+            ->assertSeeIn('@email_label', __('E-mail'))
+            ->assertVisible('@email')
             ->assertAttribute('@email', 'autocomplete', 'email')
             ->assertAttribute('@email', 'type', 'email')
-            ->assertAttribute('@email', 'wire:model.defer', $this->inputId);
+            ->assertAttribute('@email', 'wire:model.defer', 'email');
     }
 
     public function assertButtonSendCode(): void
@@ -166,13 +153,10 @@ class Create extends Page
 
     public function assertCode(): void
     {
-        $this->inputId = 'code';
-        $this->label = 'Código';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertVisible('@code')
+        $this->browser->assertVisible('@code_label')
+            ->assertAttribute('@code_label', 'for', 'code')
+            ->assertSeeIn('@code_label', __('Código'))
+            ->assertVisible('@code')
             ->assertAttribute('@code', 'autocomplete', 'off')
             ->assertAttribute('@code', 'maxlength', 6)
             ->assertAttribute('@code', 'type', 'text')
@@ -217,49 +201,40 @@ class Create extends Page
 
     public function assertName(): void
     {
-        $this->inputId = 'name';
-        $this->label = 'Nome';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertVisible('@name')
+        $this->browser->assertVisible('@name_label')
+            ->assertAttribute('@name_label', 'for', 'name')
+            ->assertSeeIn('@name_label', __('Nome'))
+            ->assertVisible('@name')
             ->assertAttribute('@name', 'autocomplete', 'name')
             ->assertAttribute('@name', 'maxlength', 255)
-            ->assertAttribute('@name', 'name', $this->inputId)
+            ->assertAttribute('@name', 'name', 'name')
             ->assertAttribute('@name', 'required', true)
             ->assertAttribute('@name', 'type', 'text')
-            ->assertAttribute('@name', 'wire:model.delay', $this->inputId);
+            ->assertAttribute('@name', 'wire:model.delay', 'name');
     }
 
     public function assertSlug(): void
     {
-        $this->inputId = 'slug';
-        $this->label = 'Slug';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertVisible('@slug')
+        $this->browser->assertVisible('@slug_label')
+            ->assertAttribute('@slug_label', 'for', 'slug')
+            ->assertSeeIn('@slug_label', __('Slug'))
+            ->assertVisible('@slug')
             ->assertAttribute('@slug', 'maxlength', 255)
-            ->assertAttribute('@slug', 'name', $this->inputId)
+            ->assertAttribute('@slug', 'name', 'slug')
             ->assertAttribute('@slug', 'required', true)
             ->assertAttribute('@slug', 'type', 'text')
-            ->assertAttribute('@slug', 'wire:model.delay', $this->inputId);
+            ->assertAttribute('@slug', 'wire:model.delay', 'slug');
     }
 
     public function assertUrl(): void
     {
-        $this->inputId = 'url';
-        $this->label = 'URL';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertVisible('@url')
+        $this->browser->assertVisible('@url_label')
+            ->assertAttribute('@url_label', 'for', 'url')
+            ->assertSeeIn('@url_label', __('URL'))
+            ->assertVisible('@url')
             ->assertAttribute('@url', 'readonly', true)
             ->assertAttribute('@url', 'type', 'text')
-            ->assertAttribute('@url', 'wire:model.defer', $this->inputId);
+            ->assertAttribute('@url', 'wire:model.defer', 'url');
     }
 
     public function assertSlugAndUrlAfterTypeName(): void
@@ -296,13 +271,10 @@ class Create extends Page
 
     public function assertContract(): void
     {
-        $this->inputId = 'contract_id';
-        $this->label = 'Contrato';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertVisible('@contract_id')
+        $this->browser->assertVisible('@contract_id_label')
+            ->assertAttribute('@contract_id_label', 'for', 'contract_id')
+            ->assertSeeIn('@contract_id_label', __('Contrato'))
+            ->assertVisible('@contract_id')
             ->assertAttribute('@contract_id', 'name', 'contract_id')
             ->assertAttribute('@contract_id', 'required', true)
             ->assertSelected('@contract_id', '01H0K7HJTN82AYK1FRADW0P283');
@@ -310,13 +282,10 @@ class Create extends Page
 
     public function assertCurrency(): void
     {
-        $this->inputId = 'currency_id';
-        $this->label = 'Moeda';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertVisible('@currency_id')
+        $this->browser->assertVisible('@currency_id_label')
+            ->assertAttribute('@currency_id_label', 'for', 'currency_id')
+            ->assertSeeIn('@currency_id_label', __('Moeda'))
+            ->assertVisible('@currency_id')
             ->assertAttribute('@currency_id', 'name', 'currency_id')
             ->assertAttribute('@currency_id', 'required', true)
             ->assertSelected('@currency_id', '01H0K88685BR21KWWR72ARQDJK');
@@ -324,28 +293,13 @@ class Create extends Page
 
     public function assertSalary(): void
     {
-        $this->inputId = 'salary';
-        $this->label = 'Pretensão salarial';
-
-        $this->setLabelDusk();
-        $this->assertLabel();
-
-        $this->browser->assertAttribute('@salary', 'min', 1)
+        $this->browser->assertVisible('@salary_label')
+            ->assertAttribute('@salary_label', 'for', 'salary')
+            ->assertSeeIn('@salary_label', __('Pretensão salarial'))
+            ->assertAttribute('@salary', 'min', 1)
             ->assertAttribute('@salary', 'max', 16777215)
             ->assertAttribute('@salary', 'name', 'salary')
             ->assertAttribute('@salary', 'required', true)
             ->assertAttribute('@salary', 'type', 'number');
-    }
-
-    private function assertLabel(): void
-    {
-        $this->browser->assertVisible($this->labelDusk)
-            ->assertAttribute($this->labelDusk, 'for', $this->inputId)
-            ->assertSeeIn($this->labelDusk, __($this->label));
-    }
-
-    private function setLabelDusk(): void
-    {
-        $this->labelDusk = '@'.$this->inputId.'_label';
     }
 }
