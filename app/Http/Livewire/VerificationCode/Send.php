@@ -9,7 +9,7 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
-    protected $listeners = ['emailVerified' => 'updateDisabledToTrue'];
+    protected $listeners = ['emailVerified' => 'disable'];
 
     public bool $disabled;
 
@@ -62,7 +62,7 @@ class Send extends Component
         VerificationCode::send($this->email);
     }
 
-    public function updateDisabledToTrue(): void
+    public function disable(): void
     {
         $this->disabled = true;
     }
