@@ -43,7 +43,7 @@ class Send extends Component
     {
         if (session()->has('email_verified')) {
             $this->flashAlert(
-                message: __('O e-mail :email já está verificado.', ['email' => session('email_verified'),]),
+                message: __('O e-mail :email já está verificado.', ['email' => session('email_verified')]),
                 type: 'info'
             );
 
