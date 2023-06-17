@@ -23,7 +23,7 @@ class Send extends Component
 
     private function setDisabled(): void
     {
-        $this->disabled = session()->has('email_verified');
+        $this->disabled = session()->has('is_email_verified');
     }
 
     private function setEmail(): void
