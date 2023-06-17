@@ -9,6 +9,8 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Send extends Component
 {
+    protected $listeners = ['emailVerified' => 'updateDisabledToTrue'];
+
     public bool $disabled;
 
     public ?string $email;
@@ -71,5 +73,10 @@ class Send extends Component
     private function sendEmail(): void
     {
         VerificationCode::send($this->email);
+    }
+
+    public function updateDisabledToTrue(): void
+    {
+        $this->disabled = true;
     }
 }

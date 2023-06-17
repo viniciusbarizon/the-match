@@ -74,6 +74,8 @@ class Verify extends Component
 
         $this->setSessionEmailVerified();
 
+        $this->emit('emailVerified');
+
         $this->flashAlert(
             message: 'O Código foi verificado com sucesso!',
             type: 'success'
