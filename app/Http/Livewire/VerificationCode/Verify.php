@@ -9,9 +9,11 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Verify extends Component
 {
-    public ?string $email = null;
-
     public ?string $code;
+
+    public bool $disabled;
+
+    public ?string $email = null;
 
     protected $listeners = ['emailSent' => 'setEmail'];
 
@@ -43,15 +45,6 @@ class Verify extends Component
 
     public function verify(): void
     {
-        if (session()->has('email_verified')) {
-            $this->flashAlert(
-                message: 'O e-mail já está verificado.',
-                type: 'info'
-            );
-
-            return;
-        }
-
         if (is_null($this->email)) {
             $this->flashAlert(
                 message: 'Preencha o seu email e clique em enviar código antes da verificação.',
@@ -72,8 +65,10 @@ class Verify extends Component
             return;
         }
 
-        $this->setSessionEmailVerified();
+        $this->code = null;
+        $this->disabled = true;
 
+        $this->setSessionEmailVerified();
         $this->emit('emailVerified');
 
         $this->flashAlert(
