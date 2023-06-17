@@ -5,25 +5,25 @@ use App\Http\Livewire\JobSeeker\Create\Code\Verify;
 use NextApps\VerificationCode\Models\VerificationCode;
 use function Pest\Livewire\livewire;
 
-it('can be validated with required code', function () {
+it('validates code as required', function () {
     livewire(Verify::class)
         ->call('verify')
-        ->assertHasErrors(['verification_code' => 'required']);
+        ->assertHasErrors(['code' => 'required']);
 });
 
-it('can be validated with code without the right size', function () {
-    livewire(Verify::class, ['verification_code' => str()->random(5)])
+it('validates size of the code', function () {
+    livewire(Verify::class, ['code' => str()->random(5)])
         ->call('verify')
-        ->assertHasErrors(['verification_code' => 'size']);
+        ->assertHasErrors(['code' => 'size']);
 });
 
-it('can be validated with invalid code without send', function () {
-    livewire(Verify::class, ['verification_code' => str()->random(6)])
+it('validates code as invalid', function () {
+    livewire(Verify::class, ['code' => str()->random(6)])
         ->call('verify')
         ->assertSet('successfully_verified', false);
 });
 
-it('can be validated with invalid code after send', function () {
+it('validates code as invalid after send e-mail', function () {
     $email = fake()->email();
 
     livewire(Send::class, ['email' => $email])
@@ -31,7 +31,7 @@ it('can be validated with invalid code after send', function () {
 
     $verificationCode = VerificationCode::where('verifiable', $email)->latest()->first();
 
-    livewire(Verify::class, ['email' => $email, 'verification_code' => str()->random(6)])
+    livewire(Verify::class, ['email' => $email, 'code' => str()->random(6)])
         ->call('verify')
         ->assertSet('successfully_verified', false);
 

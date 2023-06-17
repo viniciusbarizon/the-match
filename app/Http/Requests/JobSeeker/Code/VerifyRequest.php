@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\JobSeeker\VerificationCode;
+namespace App\Http\Requests\JobSeeker\Code;
 
 use Illuminate\Foundation\Http\FormRequest;
 
