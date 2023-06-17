@@ -32,6 +32,7 @@ class Create extends Page
             ->assertTitleCreate()
             ->assertLogo()
             ->assertDescription()
+            ->assertVerifyCodeIsDisabled()
             ->assertEmail()
             ->assertButtonSendCode()
             ->assertEmailRequired()
@@ -97,6 +98,12 @@ class Create extends Page
         $this->browser->assertSee(
             __('Preencha os dados abaixo, receba um link para compartilhar com as empresas, e saiba antes de iniciar o processo seletivo se o salário ofertado é compatível com a sua pretensão salarial.')
         );
+    }
+
+    public function assertVerifyCodeIsDisabled(): void
+    {
+        $this->browser->assertDisabled('@code')
+            ->assertDisabled('@verify_code');
     }
 
     public function assertEmail(): void
