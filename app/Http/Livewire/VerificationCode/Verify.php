@@ -9,13 +9,7 @@ use NextApps\VerificationCode\VerificationCode;
 
 class Verify extends Component
 {
-    private string $alertMessage;
-
-    private string $alertType;
-
     public ?string $email = null;
-
-    private bool $isCodeValid;
 
     public string $verificationCode;
 
@@ -34,15 +28,13 @@ class Verify extends Component
     public function verify(): void
     {
         if (session()->has('email_verified')) {
-            $this->setAlert(message: 'O e-mail já está verificado.', type: 'info');
-            $this->flashAlert();
+            $this->flashAlert(message: 'O e-mail já está verificado.', type: 'info');
 
             return;
         }
 
         if (is_null($this->email)) {
-            $this->setAlert(message: 'Preencha o seu email e clique em enviar código antes da verificação.', type: 'info');
-            $this->flashAlert();
+            $this->flashAlert(message: 'Preencha o seu email e clique em enviar código antes da verificação.', type: 'info');
 
             return;
         }
@@ -50,27 +42,19 @@ class Verify extends Component
         $this->validate();
 
         if ($this->verifyCode() === false) {
-            $this->setAlert(message: 'Código inválido, por favor tente novamente.', type: 'danger');
-            $this->flashAlert();
+            $this->flashAlert(message: 'Código inválido, por favor tente novamente.', type: 'danger');
 
             return;
         }
 
         $this->setSessionEmailVerified();
 
-        $this->setAlert(message: 'O Código foi verificado com sucesso!', type: 'success');
-        $this->flashAlert();
+        $this->flashAlert(message: 'O Código foi verificado com sucesso!', type: 'success');
     }
 
     public function setEmail(string $email): void
     {
         $this->email = $email;
-    }
-
-    private function setAlert(string $message, string $type): void
-    {
-        $this->alertMessage = $message;
-        $this->alertType = $type;
     }
 
     private function verifyCode(): bool
@@ -84,9 +68,9 @@ class Verify extends Component
         session()->put('email_verified', $this->email);
     }
 
-    private function flashAlert(): void
+    private function flashAlert(string $message, string $type): void
     {
-        session()->flash('alert_message', $this->alertMessage);
-        session()->flash('alert_type', $this->alertType);
+        session()->flash('alert_message', $message);
+        session()->flash('alert_type', $type);
     }
 }
