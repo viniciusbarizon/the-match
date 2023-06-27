@@ -56,4 +56,14 @@ class StoreRequest extends FormRequest
             __('O e-mail precisa ser verificado.')
         );
     }
+
+    private function validateSessionEmail(string $email, Validator $validator): void
+    {
+        if ($email != session('email')) {
+            $validator->errors()->add(
+                'email',
+                __('O e-mail verificado deve ser o mesmo que o e-mail preenchido no formulário.')
+            );
+        }
+    }
 }
