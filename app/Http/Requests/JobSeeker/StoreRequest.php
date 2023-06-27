@@ -3,10 +3,13 @@
 namespace App\Http\Requests\JobSeeker;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Fluent;
 use Illuminate\Validation\Validator;
 
 class StoreRequest extends FormRequest
 {
+    protected $stopOnFirstFailure = true;
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -23,13 +26,13 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'contract_id' => 'bail|required|ulid',
-            'currency_id' => 'bail|required|ulid',
-            'email' => 'bail|required|max:255|email|unique:job_seekers',
-            'name' => 'bail|required|string|max:255',
-            'salary' => 'bail|required|integer|max:16777215|min:1',
-            'slug' => 'bail|required|string|max:255',
-            'url' => 'bail|required|string|max:255|url',
+            'contract_id' => 'required|ulid',
+            'currency_id' => 'required|ulid',
+            'email' => 'required|max:255|email|unique:job_seekers',
+            'name' => 'required|string|max:255',
+            'salary' => 'required|integer|max:16777215|min:1',
+            'slug' => 'required|string|max:255',
+            'url' => 'required|string|max:255|url',
         ];
     }
 

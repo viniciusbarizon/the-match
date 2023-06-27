@@ -28,7 +28,7 @@ class Send extends Component
 
     private function setEmail(): void
     {
-        $this->email = session('email', old('email'));
+        $this->email = old('email', session('email'));
     }
 
     public function render(): View
