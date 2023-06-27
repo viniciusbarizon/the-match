@@ -3,6 +3,7 @@
 namespace App\Http\Requests\JobSeeker;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Validator;
 
 class StoreRequest extends FormRequest
 {
@@ -30,5 +31,26 @@ class StoreRequest extends FormRequest
             'slug' => 'bail|required|string|max:255',
             'url' => 'bail|required|string|max:255|url',
         ];
+    }
+
+    public function after(): array
+    {
+        return [
+            function (Validator $validator) {
+                $this->validateSessionMissingEmail($validator);
+            }
+        ];
+    }
+
+    private function validateSessionMissingEmail(Validator $validator): void
+    {
+        if (session()->has('email')) {
+            return;
+        }
+
+        $validator->errors()->add(
+            'email',
+            __('O e-mail precisa ser verificado.')
+        );
     }
 }
