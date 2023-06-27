@@ -44,7 +44,7 @@ class StoreRequest extends FormRequest
 
     private function validateSessionMissingEmail(Validator $validator): void
     {
-        if (session()->has('email')) {
+        if (session()->has('email') && session()->has('is_email_verified')) {
             return;
         }
 

@@ -19,18 +19,6 @@ class JobSeekerController extends Controller
 
     public function store(StoreRequest $request): View
     {
-        if (session()->missing('email')) {
-            session()->flash();
-
-            return back();
-        }
-
-        if (session()->missing('is_email_verified')) {
-            session()->flash();
-
-            return back();
-        }
-
         return view('job-seeker.store', [
             'slug' => $request->slug,
         ]);
