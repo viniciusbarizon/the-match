@@ -16,12 +16,6 @@ class SalaryRequirement extends Component
 
     public readonly array $currencies;
 
-    public readonly string $inputContract;
-
-    public readonly string $inputCurrency;
-
-    public readonly string $inputSalary;
-
     public bool $isPerYear;
 
     /**
@@ -31,9 +25,6 @@ class SalaryRequirement extends Component
     {
         $this->contracts = Contract::pluck('name', 'id')->all();
         $this->currencies = Currency::pluck('name', 'id')->all();
-        $this->inputContract = 'contract_id';
-        $this->inputCurrency = 'currency_id';
-        $this->inputSalary = 'salary';
         $this->isPerYear = Currency::find(self::CURRENCY_REAL_ID)->is_salary_per_year;
     }
 
