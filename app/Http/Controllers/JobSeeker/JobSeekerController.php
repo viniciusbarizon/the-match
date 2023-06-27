@@ -21,11 +21,13 @@ class JobSeekerController extends Controller
     {
         if (session()->missing('email')) {
             session()->flash();
+
             return back();
         }
 
         if (session()->missing('is_email_verified')) {
             session()->flash();
+
             return back();
         }
 
