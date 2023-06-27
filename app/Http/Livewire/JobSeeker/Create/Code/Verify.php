@@ -2,7 +2,7 @@
 
 namespace App\Http\Livewire\JobSeeker\Create\Code;
 
-use App\Http\Requests\JobSeeker\VerificationCode\VerifyRequest;
+use App\Http\Requests\JobSeeker\Code\VerifyRequest;
 use Illuminate\View\View;
 use Livewire\Component;
 use NextApps\VerificationCode\Models\VerificationCode as VerificationCodeModel;
