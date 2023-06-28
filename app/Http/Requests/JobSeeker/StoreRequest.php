@@ -3,7 +3,6 @@
 namespace App\Http\Requests\JobSeeker;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Fluent;
 use Illuminate\Validation\Validator;
 
 class StoreRequest extends FormRequest
@@ -42,7 +41,7 @@ class StoreRequest extends FormRequest
             function (Validator $validator) {
                 $this->validateSessionMissingEmail($validator);
                 $this->validateSessionEmail($validator);
-            }
+            },
         ];
     }
 
