@@ -41,6 +41,7 @@ class StoreRequest extends FormRequest
         return [
             function (Validator $validator) {
                 $this->validateSessionMissingEmail($validator);
+                $this->validateSessionEmail($validator);
             }
         ];
     }
@@ -51,19 +52,21 @@ class StoreRequest extends FormRequest
             return;
         }
 
-        $validator->errors()->add(
+        $this->validator->errors()->add(
             'email',
             __('O e-mail precisa ser verificado.')
         );
     }
 
-    private function validateSessionEmail(string $email, Validator $validator): void
+    private function validateSessionEmail(Validator $validator): void
     {
-        if ($email != session('email')) {
-            $validator->errors()->add(
-                'email',
-                __('O e-mail verificado deve ser o mesmo que o e-mail preenchido no formulário.')
-            );
+        if (session()->missing('email') || $this->email == session('email')) {
+            return;
         }
+
+        $validator->errors()->add(
+            'email',
+            __('O e-mail verificado deve ser o mesmo que o e-mail preenchido no formulário.')
+        );
     }
 }
