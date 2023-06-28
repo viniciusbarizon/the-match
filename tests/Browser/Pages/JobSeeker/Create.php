@@ -39,8 +39,8 @@ class Create extends Page
             ->assertEmailInvalid()
             ->assertEmailMaximumCharactersReached()
             ->assertEmailAlreadyInUse()
-            ->assertSendCode()
             ->assertCode()
+            ->assertSendCode()
             ->assertButtonVerifyCode()
             ->assertCodeRequired()
             ->assertCodeMinimumLength()
@@ -153,15 +153,6 @@ class Create extends Page
             ->waitForText(__('O valor informado para o campo e-mail já está em uso.'), 1);
     }
 
-    public function assertSendCode(): void
-    {
-        $this->browser->type('@email', fake()->email())
-            ->click('@send_code')
-            ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1)
-            ->assertEnabled('@code')
-            ->assertEnabled('@verify_code');
-    }
-
     public function assertCode(): void
     {
         $this->browser->assertVisible('@code_label')
@@ -171,7 +162,17 @@ class Create extends Page
             ->assertAttribute('@code', 'autocomplete', 'off')
             ->assertAttribute('@code', 'maxlength', 6)
             ->assertAttribute('@code', 'type', 'text')
-            ->assertAttribute('@code', 'wire:model.defer', 'code');
+            ->assertAttribute('@code', 'wire:model.defer', 'code')
+            ->assertDisabled('@code');
+    }
+
+    public function assertSendCode(): void
+    {
+        $this->browser->type('@email', fake()->email())
+            ->click('@send_code')
+            ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1)
+            ->assertEnabled('@code')
+            ->assertEnabled('@verify_code');
     }
 
     public function assertButtonVerifyCode(): void
