@@ -113,6 +113,8 @@ class Create extends Page
             ->assertSeeIn('@email_label', __('E-mail'))
             ->assertVisible('@email')
             ->assertAttribute('@email', 'autocomplete', 'email')
+            ->assertAttribute('@email', 'name', 'email')
+            ->assertAttribute('@email', 'required', true)
             ->assertAttribute('@email', 'type', 'email')
             ->assertAttribute('@email', 'wire:model.defer', 'email');
     }
