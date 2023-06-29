@@ -14,10 +14,6 @@ class EmailEqualsSession implements ValidationRule
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (session()->missing('email')) {
-            return;
-        }
-
         if ($value == session('email')) {
             return;
         }
