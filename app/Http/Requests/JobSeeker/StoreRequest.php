@@ -3,6 +3,7 @@
 namespace App\Http\Requests\JobSeeker;
 
 use App\Rules\EmailEqualsSession;
+use App\Rules\EmailVerify;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -28,7 +29,7 @@ class StoreRequest extends FormRequest
         return [
             'contract_id' => ['required', 'ulid'],
             'currency_id' => ['required', 'ulid'],
-            'email' => ['required', 'max:255', 'email', 'unique:job_seekers', new EmailEqualsSession],
+            'email' => ['required', 'max:255', 'email', 'unique:job_seekers', new EmailVerify, new EmailEqualsSession],
             'name' => ['required', 'string', 'max:255'],
             'salary' => ['required', 'integer', 'max:16777215' , 'min:1'],
             'slug' => ['required', 'string', 'max:255'],
