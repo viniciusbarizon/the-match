@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\JobSeeker;
 
+use App\Rules\EmailEqualsSession;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Validator;
 
@@ -27,7 +28,7 @@ class StoreRequest extends FormRequest
         return [
             'contract_id' => 'required|ulid',
             'currency_id' => 'required|ulid',
-            'email' => 'required|max:255|email|unique:job_seekers',
+            'email' => ['required', 'max:255', 'email', 'unique:job_seekers', new EmailEqualsSession],
             'name' => 'required|string|max:255',
             'salary' => 'required|integer|max:16777215|min:1',
             'slug' => 'required|string|max:255',
@@ -40,7 +41,6 @@ class StoreRequest extends FormRequest
         return [
             function (Validator $validator) {
                 $this->validateSessionMissingEmail($validator);
-                $this->validateSessionEmail($validator);
             },
         ];
     }
@@ -54,18 +54,6 @@ class StoreRequest extends FormRequest
         $this->validator->errors()->add(
             'email',
             __('O e-mail precisa ser verificado.')
-        );
-    }
-
-    private function validateSessionEmail(Validator $validator): void
-    {
-        if (session()->missing('email') || $this->email == session('email')) {
-            return;
-        }
-
-        $validator->errors()->add(
-            'email',
-            __('O e-mail verificado deve ser o mesmo que o e-mail preenchido no formulário.')
         );
     }
 }
