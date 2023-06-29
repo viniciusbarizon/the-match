@@ -36,25 +36,4 @@ class StoreRequest extends FormRequest
             'url' => ['bail', 'required', 'string', 'max:255', 'url'],
         ];
     }
-
-    public function after(): array
-    {
-        return [
-            function (Validator $validator) {
-                $this->validateSessionMissingEmail($validator);
-            },
-        ];
-    }
-
-    private function validateSessionMissingEmail(Validator $validator): void
-    {
-        if (session()->has('email') && session()->has('is_email_verified')) {
-            return;
-        }
-
-        $this->validator->errors()->add(
-            'email',
-            __('O e-mail precisa ser verificado.')
-        );
-    }
 }
