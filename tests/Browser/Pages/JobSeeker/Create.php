@@ -40,6 +40,7 @@ class Create extends Page
             ->assertEmailMaximumCharactersReached()
             ->assertEmailAlreadyInUse()
             ->assertCode()
+            ->assertEmailMustBeVerified()
             ->assertSendCode()
             ->assertButtonVerifyCode()
             ->assertCodeRequired()
@@ -68,6 +69,7 @@ class Create extends Page
             '@code' => '#code',
             '@contract_id' => '#contract_id',
             '@currency_id' => '#currency_id',
+            '@create_profile' => '#create_profile',
             '@email' => '#email',
             '@logo' => '#logo',
             '@name' => '#name',
@@ -164,6 +166,20 @@ class Create extends Page
             ->assertAttribute('@code', 'type', 'text')
             ->assertAttribute('@code', 'wire:model.defer', 'code')
             ->assertDisabled('@code');
+    }
+
+    public function assertEmailMustBeVerified(): void
+    {
+        $this->browser->type('@email', fake()->email())
+            ->type('@name', fake()->name())
+            ->pause(1000)
+            ->type('@salary', rand(1,10000))
+            ->clickAndWaitForReload('@create_profile')
+            ->assertSee(__('O e-mail precisa ser verificado.'))
+            ->click('@send_code')
+            ->waitForText(__('Enviamos um código de verificação para o seu e-mail.'), 1)
+            ->clickAndWaitForReload('@create_profile')
+            ->assertSee(__('O e-mail precisa ser verificado.'));
     }
 
     public function assertSendCode(): void

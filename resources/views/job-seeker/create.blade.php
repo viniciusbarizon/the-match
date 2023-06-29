@@ -15,7 +15,7 @@
 
             <x-job-seeker.salary-requirement/>
 
-            <x-primary-button>
+            <x-primary-button id="create_profile">
                 {{ __('Criar Perfil') }}
             </x-primary-button>
         </form>
