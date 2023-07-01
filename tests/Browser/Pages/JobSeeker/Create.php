@@ -263,7 +263,7 @@ class Create extends Page
             ->assertVisible('@url')
             ->assertAttribute('@url', 'readonly', true)
             ->assertAttribute('@url', 'type', 'text')
-            ->assertAttribute('@url', 'wire:model.defer', 'url');
+            ->assertAttribute('@url', 'wire:model.delay', 'url');
     }
 
     public function assertSlugAndUrlAfterTypeName(): void
