@@ -173,7 +173,7 @@ class Create extends Page
         $this->browser->type('@email', fake()->email())
             ->type('@name', fake()->name())
             ->pause(1000)
-            ->type('@salary', rand(1,10000))
+            ->type('@salary', rand(1, 10000))
             ->clickAndWaitForReload('@create_profile')
             ->assertSee(__('O e-mail precisa ser verificado.'))
             ->click('@send_code')
