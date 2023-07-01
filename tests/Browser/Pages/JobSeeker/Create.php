@@ -172,7 +172,7 @@ class Create extends Page
     {
         $this->browser->type('@email', fake()->email())
             ->type('@name', fake()->name())
-            ->pause(1000)
+            ->pause(500)
             ->type('@salary', rand(1, 10000))
             ->clickAndWaitForReload('@create_profile')
             ->assertSee(__('O e-mail precisa ser verificado.'))
@@ -252,7 +252,8 @@ class Create extends Page
             ->assertAttribute('@slug', 'pattern', "[a-zA-Z0-9_\-]+")
             ->assertAttribute('@slug', 'required', true)
             ->assertAttribute('@slug', 'type', 'text')
-            ->assertAttribute('@slug', 'wire:model.delay', 'slug');
+            ->assertAttribute('@slug', 'wire:model.delay', 'slug')
+            ->assertAttributeContains('@slug', 'class', 'lowercase');
     }
 
     public function assertUrl(): void
@@ -263,7 +264,8 @@ class Create extends Page
             ->assertVisible('@url')
             ->assertAttribute('@url', 'readonly', true)
             ->assertAttribute('@url', 'type', 'text')
-            ->assertAttribute('@url', 'wire:model.delay', 'url');
+            ->assertAttribute('@url', 'wire:model.delay', 'url')
+            ->assertAttributeContains('@slug', 'class', 'lowercase');
     }
 
     public function assertSlugAndUrlAfterTypeName(): void
@@ -272,7 +274,7 @@ class Create extends Page
         $this->slug = str()->of($this->name)->slug();
 
         $this->browser->type('@name', $this->name)
-            ->pause(1000)
+            ->pause(500)
             ->assertValue('@slug', $this->slug)
             ->assertValue('@url', route('job-seekers.match', ['slug' => $this->slug]));
     }
@@ -282,7 +284,7 @@ class Create extends Page
         $this->slug = fake()->slug();
 
         $this->browser->type('@slug', $this->slug)
-            ->pause(1000)
+            ->pause(500)
             ->assertValue('@url', route('job-seekers.match', ['slug' => $this->slug]));
     }
 
@@ -291,7 +293,7 @@ class Create extends Page
         $this->jobSeeker = JobSeeker::factory()->create();
 
         $this->browser->type('@name', $this->jobSeeker->name)
-            ->pause(1000)
+            ->pause(500)
             ->assertValueIsNot(
                 '@slug',
                 str()->of($this->jobSeeker->name)->slug()
