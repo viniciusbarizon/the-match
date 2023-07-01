@@ -8,14 +8,6 @@ use Livewire\Component;
 
 class Url extends Component
 {
-    public string $inputName = 'name';
-
-    public string $inputSlug = 'slug';
-
-    public string $inputUrl = 'url';
-
-    public int $maxlength = 255;
-
     public string $name;
 
     public string $slug;
