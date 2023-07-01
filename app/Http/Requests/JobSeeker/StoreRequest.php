@@ -32,8 +32,8 @@ class StoreRequest extends FormRequest
             'email' => ['bail', 'required', 'max:255', 'email', 'unique:job_seekers', new EmailVerify, new EmailEqualsSession],
             'name' => ['bail', 'required', 'string', 'max:255'],
             'salary' => ['bail', 'required', 'integer', 'max:16777215' , 'min:1'],
-            'slug' => ['bail', 'required', 'string', 'max:255'],
-            'url' => ['bail', 'required', 'string', 'max:255', 'url'],
+            'slug' => ['bail', 'required', 'string', 'max:255', 'lowercase'],
+            'url' => ['bail', 'required', 'string', 'max:255', 'lowercase', 'url'],
         ];
     }
 }
