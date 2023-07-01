@@ -11,7 +11,7 @@
     <div>
         <x-input-label for="slug" id="slug_label" :value="__('Slug')" />
 
-        <x-text-input class="lowercase mt-1 w-full" id="slug" maxlength="255" name="slug" pattern="[a-zA-Z0-9]+"
+        <x-text-input class="lowercase mt-1 w-full" id="slug" maxlength="255" name="slug" pattern="[a-zA-Z0-9_\-]+"
             type="text" wire:model.delay="slug" required />
 
         <x-input-error :messages="$errors->get('slug')" class="mt-2" />
