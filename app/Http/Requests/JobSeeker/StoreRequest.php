@@ -31,7 +31,7 @@ class StoreRequest extends FormRequest
             'currency_id' => ['bail', 'required', 'ulid'],
             'email' => ['bail', 'required', 'max:255', 'email', 'unique:job_seekers', new EmailVerify, new EmailEqualsSession],
             'name' => ['bail', 'required', 'string', 'max:255'],
-            'salary' => ['bail', 'required', 'integer', 'max:16777215' , 'min:1'],
+            'salary' => ['bail', 'required', 'integer', 'between:1,16777215'],
             'slug' => ['bail', 'required', 'string', 'max:255', 'lowercase'],
             'url' => ['bail', 'required', 'string', 'max:255', 'lowercase', 'url'],
         ];
