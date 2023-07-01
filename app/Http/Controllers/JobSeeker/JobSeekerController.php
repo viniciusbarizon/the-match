@@ -19,6 +19,8 @@ class JobSeekerController extends Controller
 
     public function store(StoreRequest $request): View
     {
+        session()->flush();
+
         return view('job-seeker.store', [
             'slug' => $request->slug,
         ]);
