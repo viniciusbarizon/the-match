@@ -194,6 +194,7 @@ return [
         'restored_at' => 'restaurado em',
         'result_text_under_image' => 'texto do resultado sob a imagem',
         'role' => 'função',
+        'salary' => 'pretensão salarial',
         'second' => 'segundo',
         'sex' => 'sexo',
         'short_text' => 'texto pequeno',
