@@ -249,6 +249,7 @@ class Create extends Page
             ->assertVisible('@slug')
             ->assertAttribute('@slug', 'maxlength', 255)
             ->assertAttribute('@slug', 'name', 'slug')
+            ->assertAttribute('@slug', 'pattern', "[a-zA-Z0-9_\-]+")
             ->assertAttribute('@slug', 'required', true)
             ->assertAttribute('@slug', 'type', 'text')
             ->assertAttribute('@slug', 'wire:model.delay', 'slug');
