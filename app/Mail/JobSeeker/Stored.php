@@ -2,6 +2,7 @@
 
 namespace App\Mail\JobSeeker;
 
+use App\Models\JobSeeker;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -13,12 +14,14 @@ class Stored extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public string $url;
+
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public string $name, public string $slug)
     {
-        //
+        $this->url = route('job-seekers.match', ['slug' => $slug]);
     }
 
     /**

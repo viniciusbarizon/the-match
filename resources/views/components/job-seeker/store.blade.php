@@ -4,7 +4,7 @@
     </p>
 
     <p>
-        {{ __('Guarde o link para compartilhar com as empresas:') }}
+        {{ __('Segue o link para compartilhar com as empresas:') }}
 
         <a href="{{ $url }}" target="_blank">
             {{ $url }}

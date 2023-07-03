@@ -21,9 +21,11 @@ class JobSeekerController extends Controller
 
     public function store(StoreRequest $request): View
     {
-        session()->flush();
+        session()->invalidate();
 
-        Mail::to($request->email)->send(new Stored);
+        Mail::to($request->email)->send(
+            new Stored($request->name, $request->slug)
+        );
 
         return view('job-seeker.store', [
             'slug' => $request->slug,

@@ -20,8 +20,7 @@
     <div>
         <x-input-label for="url" id="url_label" :value="__('URL')" />
 
-        <x-text-input class="lowercase mt-1 w-full" id="url" name="url" type="text" wire:model.delay="url" readonly
-            required />
+        <x-text-input class="lowercase mt-1 w-full" id="url" type="text" wire:model.delay="url" disabled />
 
         <x-input-error :messages="$errors->get('url')" class="mt-2" />
     </div>
