@@ -9,7 +9,7 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class JobSeekerStored extends Mailable
+class Stored extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -37,7 +37,7 @@ class JobSeekerStored extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.job-seekers.stored',
         );
     }
 
