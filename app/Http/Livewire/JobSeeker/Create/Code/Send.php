@@ -13,7 +13,7 @@ class Send extends Component
 
     public bool $disabled;
 
-    public ?string $email;
+    public ?string $email = null;
 
     public function mount(): void
     {
@@ -28,6 +28,10 @@ class Send extends Component
 
     private function setEmail(): void
     {
+        if (is_null($this->email) === false) {
+            return;
+        }
+
         $this->email = old('email', session('email'));
     }
 
