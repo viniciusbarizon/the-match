@@ -18,7 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', Create::class)
     ->name('job-seekers.create');
 
-Route::get('job-seekers/create', Store::class);
+Route::post('job-seekers', Store::class)
+    ->name('job-seekers.store');
 
 Route::get('with/{slug}', Create::class)
     ->name('job-seekers.match');
