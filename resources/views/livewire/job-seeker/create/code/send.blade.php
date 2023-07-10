@@ -2,7 +2,7 @@
     <div class="mb-2">
         <x-input-label for="email" id="email_label" :value="__('E-mail')" />
 
-        <x-text-input autocomplete="email" class="mt-1 w-full" readonly="{{ $disabled }}" id="email" max="255"
+        <x-text-input autocomplete="email" class="mt-1 w-full" readonly="{{ $disabled }}" id="email" maxlength="255"
             name="email" type="email" wire:model.defer="email" required />
 
         <x-input-error :messages="$errors->get('email')" class="mt-2" />
