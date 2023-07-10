@@ -262,7 +262,7 @@ class Create extends Page
             ->assertAttribute('@url_label', 'for', 'url')
             ->assertSeeIn('@url_label', __('URL'))
             ->assertVisible('@url')
-            ->assertAttribute('@url', 'readonly', true)
+            ->assertAttribute('@url', 'disabled', true)
             ->assertAttribute('@url', 'type', 'text')
             ->assertAttribute('@url', 'wire:model.delay', 'url')
             ->assertAttributeContains('@slug', 'class', 'lowercase');
