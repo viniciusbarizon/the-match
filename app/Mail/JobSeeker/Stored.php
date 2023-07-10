@@ -2,9 +2,7 @@
 
 namespace App\Mail\JobSeeker;
 
-use App\Models\JobSeeker;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
