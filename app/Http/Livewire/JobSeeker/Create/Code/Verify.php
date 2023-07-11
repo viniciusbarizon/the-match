@@ -20,13 +20,7 @@ class Verify extends Component
 
     public function mount(): void
     {
-        $this->setCode();
         $this->setDisabled();
-    }
-
-    private function setCode(): void
-    {
-        $this->code = old('code', null);
     }
 
     private function setDisabled(): void

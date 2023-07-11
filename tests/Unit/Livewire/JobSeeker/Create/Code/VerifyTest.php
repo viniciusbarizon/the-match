@@ -18,9 +18,11 @@ it('validates size of the code', function () {
 });
 
 it('validates code as invalid', function () {
+    session()->put('email', fake()->email());
+
     livewire(Verify::class, ['code' => str()->random(6)])
         ->call('verify')
-        ->assertSet('successfully_verified', false);
+        ->assertSee(__('Código inválido, por favor tente novamente.'));
 });
 
 it('validates code as invalid after send e-mail', function () {
