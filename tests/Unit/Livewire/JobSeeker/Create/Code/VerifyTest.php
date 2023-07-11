@@ -25,6 +25,24 @@ it('validates code as invalid', function () {
         ->assertSee(__('Código inválido, por favor tente novamente.'));
 });
 
+it('is not disabled if session is_email_verified is false', function () {
+    session()->put('email', fake()->email());
+    session()->put('is_email_verified', false);
+
+    livewire(Verify::class, ['code' => str()->random(6)])
+        ->call('verify')
+        ->assertSet('disabled', false);
+});
+
+it('is disabled if session is_email_verified is true', function () {
+    session()->put('email', fake()->email());
+    session()->put('is_email_verified', true);
+
+    livewire(Verify::class, ['code' => str()->random(6)])
+        ->call('verify')
+        ->assertSet('disabled', true);
+});
+
 it('validates code as invalid after send e-mail', function () {
     $email = fake()->email();
 
