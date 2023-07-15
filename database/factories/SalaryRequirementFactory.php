@@ -22,8 +22,7 @@ class SalaryRequirementFactory extends Factory
         return [
             'salary' => random_int(1, 16777215),
             'contract_id' => Contract::inRandomOrder()->first()->id,
-            'currency_id' => Currency::inRandomOrder()->first()->id,
-            'job_seeker_id' => Currency::inRandomOrder()->first()->id,
+            'currency_id' => Currency::inRandomOrder()->first()->id
         ];
     }
 }

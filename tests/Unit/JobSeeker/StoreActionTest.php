@@ -11,7 +11,7 @@ use Database\Seeders\CurrencySeeder;
 it('stores an job seeker', function() {
     $jobSeekerFactory = JobSeeker::factory()->make();
     $salaryRequirementFactory = SalaryRequirement::factory()->make();
-
+    logger($salaryRequirementFactory);
     $id = (new StoreAction(
         contractId: $salaryRequirementFactory->contract_id,
         currencyId: $salaryRequirementFactory->currency_id,
