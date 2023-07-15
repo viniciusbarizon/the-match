@@ -81,6 +81,10 @@ class Verify extends Component
 
     private function verifyCode(): bool
     {
+        if (session()->missing('email')) {
+            return false;
+        }
+
         return VerificationCode::verify($this->code, session('email'));
     }
 
