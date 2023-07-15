@@ -23,8 +23,8 @@ final class StoreAction
     {
         JobSeeker::create([
             'email' => $this->email,
-            'name' => $this->email,
-            'slug' => $this->email,
+            'name' => $this->name,
+            'slug' => $this->slug,
         ])
     }
 }
