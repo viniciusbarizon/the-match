@@ -22,6 +22,8 @@ final class StoreAction
 
     public function store(): string
     {
+        session()->invalidate();
+
         $this->createJobSeeker();
         $this->createSalaryRequirements();
         $this->sendEmail();
