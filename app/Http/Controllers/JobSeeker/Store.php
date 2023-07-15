@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\JobSeeker\StoreRequest;
 use App\Mail\JobSeeker\Stored;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
-class Store extends Controller
+class Store
 {
     /**
      * Handle the incoming request.
