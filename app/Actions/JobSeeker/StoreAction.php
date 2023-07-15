@@ -2,8 +2,10 @@
 
 namespace App\Actions\JobSeeker;
 
+use App\Mail\JobSeeker\Stored;
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
+use Illuminate\Support\Facades\Mail;
 
 final class StoreAction
 {
@@ -22,6 +24,7 @@ final class StoreAction
     {
         $this->createJobSeeker();
         $this->createSalaryRequirements();
+        $this->sendEmail();
 
         return $this->jobSeeker->id;
     }
@@ -48,5 +51,12 @@ final class StoreAction
             'currency_id' => $this->currencyId,
             'salary' => $this->salary,
         ]);
+    }
+
+    private function sendEmail(): void
+    {
+        Mail::to($this->email)->send(
+            new Stored($this->name, $this->slug)
+        );
     }
 }
