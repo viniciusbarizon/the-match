@@ -23,7 +23,7 @@ final class StoreAction
         $this->createJobSeeker();
         $this->createSalaryRequirements();
 
-        return $jobSeeker->id;
+        return $this->jobSeeker->id;
     }
 
     private function createJobSeeker(): void

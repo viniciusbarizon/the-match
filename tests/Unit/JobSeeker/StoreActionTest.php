@@ -8,9 +8,6 @@ use Database\Seeders\ContractSeeder;
 use Database\Seeders\CurrencySeeder;
 
 it('stores an job seeker', function() {
-    $this->seed(ContractSeeder::class);
-    $this->seed(CurrencySeeder::class);
-
     $contractId = Contract::inRandomOrder()->first()->id;
     $currencyId = Currency::inRandomOrder()->first()->id;
     $salary = fake()->randomFloat();
