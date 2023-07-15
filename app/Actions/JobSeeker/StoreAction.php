@@ -21,6 +21,7 @@ final class StoreAction
     public function store(): void
     {
         $this->createJobSeeker();
+        $this->createSalaryRequirements();
     }
 
     private function createJobSeeker(): void
