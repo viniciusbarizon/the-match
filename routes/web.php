@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\JobSeeker\Create;
-use App\Http\Controllers\JobSeeker\Store;
+use App\Http\Controllers\JobSeeker\CreateController;
+use App\Http\Controllers\JobSeeker\StoreController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,11 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', Create::class)
+Route::get('/', CreateController::class)
     ->name('job-seekers.create');
 
-Route::post('job-seekers', Store::class)
+Route::post('job-seekers', StoreController::class)
     ->name('job-seekers.store');
 
-Route::get('with/{slug}', Create::class)
+Route::get('with/{slug}', CreateController::class)
     ->name('job-seekers.match');

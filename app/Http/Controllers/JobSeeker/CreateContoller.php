@@ -5,7 +5,7 @@ namespace App\Http\Controllers\JobSeeker;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
-class Create
+class CreateController
 {
     /**
      * Handle the incoming request.

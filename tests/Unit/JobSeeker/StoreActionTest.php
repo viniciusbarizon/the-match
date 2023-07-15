@@ -8,13 +8,13 @@ use App\Models\JobSeeker;
 it('stores an job seeker', function() {
     $email = fake()->email;
 
-    (new StoreAction)->store(
+    (new StoreAction(
         contractId: Contract::inRandomOrder()->first()->id,
         currencyId: Currency::inRandomOrder()->first()->id,
         email: fake()->email,
         name: fake()->name,
-        slug: fake()->slug,
-    );
+        slug: fake()->slug)
+    )->store();
 
     expect(JobSeeker::where('email', $email)->exists())->toBeTrue();
 });
