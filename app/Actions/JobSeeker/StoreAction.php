@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\JobSeeker;
 
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
@@ -18,10 +18,12 @@ final class StoreAction
         public readonly string $slug,
     ) { }
 
-    public function store(): void
+    public function store(): string
     {
         $this->createJobSeeker();
         $this->createSalaryRequirements();
+
+        return $jobSeeker->id;
     }
 
     private function createJobSeeker(): void
@@ -42,9 +44,9 @@ final class StoreAction
     private function getSalaryRequirement(): SalaryRequirement
     {
         return new SalaryRequirement([
-            'contract_id' => $this->contract_id,
-            'currency_id' => $this->contract_id,
-            'salary' => $this->salary
+            'contract_id' => $this->contractId,
+            'currency_id' => $this->currencyId,
+            'salary' => $this->salary,
         ]);
     }
 }

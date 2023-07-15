@@ -15,8 +15,9 @@ class JobSeeker extends Model
     use SoftDeletes;
 
     protected $fillable = [
+        'email',
+        'name',
         'slug',
-        'user_id',
     ];
 
     public function salaryMatches(): HasMany
