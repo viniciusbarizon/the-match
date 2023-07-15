@@ -14,7 +14,7 @@ final class StoreAction
         public readonly string $currencyId,
         public readonly string $email,
         public readonly string $name,
-        public readonly string $salary,
+        public readonly int $salary,
         public readonly string $slug,
     ) { }
 

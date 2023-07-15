@@ -10,7 +10,7 @@ use Database\Seeders\CurrencySeeder;
 it('stores an job seeker', function() {
     $contractId = Contract::inRandomOrder()->first()->id;
     $currencyId = Currency::inRandomOrder()->first()->id;
-    $salary = fake()->randomFloat();
+    $salary = random_int(1, 16777215);
 
     $jobSeekerFactory = JobSeeker::factory()->make();
 
@@ -25,10 +25,10 @@ it('stores an job seeker', function() {
 
     $jobSeeker = JobSeeker::find($id);
 
-    //expect($jobSeeker->contract_id)->toBe($contractId);
-    //expect($jobSeeker->currency_id)->toBe($currencyId);
-    expect($jobSeeker->email)->toBe($jobSeekerFactory->email);
-    expect($jobSeeker->name)->toBe($jobSeekerFactory->name);
-    //expect($jobSeeker->salary)->toBe($salary);
-    expect($jobSeeker->slug)->toBe($jobSeekerFactory->slug);
+    expect($jobSeeker->salaryRequirements()->first()->contract_id)->toEqual($contractId);
+    expect($jobSeeker->salaryRequirements()->first()->currency_id)->toEqual($currencyId);
+    expect($jobSeeker->email)->toEqual($jobSeekerFactory->email);
+    expect($jobSeeker->name)->toEqual($jobSeekerFactory->name);
+    expect($jobSeeker->salaryRequirements()->first()->salary)->toEqual($salary);
+    expect($jobSeeker->slug)->toEqual($jobSeekerFactory->slug);
 });
