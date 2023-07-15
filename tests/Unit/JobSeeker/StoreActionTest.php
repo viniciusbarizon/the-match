@@ -21,14 +21,14 @@ it('stores an job seeker', function() {
         slug: $jobSeekerFactory->slug,
     ))->store();
 
-    $jobSeeker = JobSeeker::with('salaryRequirements')
-        ->find($id);
+    $jobSeeker = JobSeeker::find($id);
+    $salaryRequirement = $jobSeeker->salaryRequirements()->first();
 
     expect($jobSeeker->email)->toEqual($jobSeekerFactory->email);
     expect($jobSeeker->name)->toEqual($jobSeekerFactory->name);
     expect($jobSeeker->slug)->toEqual($jobSeekerFactory->slug);
 
-    expect($jobSeeker->salaryRequirements()->first()->salary)->toEqual($salaryRequirementFactory->salary);
-    expect($jobSeeker->salaryRequirements()->first()->contract_id)->toEqual($salaryRequirementFactory->contract_id);
-    expect($jobSeeker->salaryRequirements()->first()->currency_id)->toEqual($salaryRequirementFactory->currency_id);
+    expect($salaryRequirement->salary)->toEqual($salaryRequirementFactory->salary);
+    expect($salaryRequirement->contract_id)->toEqual($salaryRequirementFactory->contract_id);
+    expect($salaryRequirement->currency_id)->toEqual($salaryRequirementFactory->currency_id);
 });
