@@ -1,16 +1,16 @@
 <div class="space-y-4">
     <div>
-        <x-input-label for="contract_id" id="contract_id_label" :value="__('Contrato')" />
-        <x-select class="mt-1 w-full" name="contract_id" :options="$contracts" required />
-
-        <x-input-error class="mt-2" :messages="$errors->get('contract_id')" />
-    </div>
-
-    <div>
         <x-input-label for="currency_id" id="currency_id_label" :value="__('Moeda')" />
         <x-select class="mt-1 w-full" name="currency_id" :options="$currencies" required />
 
         <x-input-error class="mt-2" :messages="$errors->get('currency_id')" />
+    </div>
+
+    <div>
+        <x-input-label for="contract_id" id="contract_id_label" :value="__('Contrato')" />
+        <x-select class="mt-1 w-full" name="contract_id" :options="$contracts" required />
+
+        <x-input-error class="mt-2" :messages="$errors->get('contract_id')" />
     </div>
 
     <div>
