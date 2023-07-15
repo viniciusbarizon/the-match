@@ -4,31 +4,31 @@ use App\Actions\JobSeeker\StoreAction;
 use App\Models\Contract;
 use App\Models\Currency;
 use App\Models\JobSeeker;
+use App\Models\SalaryRequirement;
 use Database\Seeders\ContractSeeder;
 use Database\Seeders\CurrencySeeder;
 
 it('stores an job seeker', function() {
-    $contractId = Contract::inRandomOrder()->first()->id;
-    $currencyId = Currency::inRandomOrder()->first()->id;
-    $salary = random_int(1, 16777215);
-
     $jobSeekerFactory = JobSeeker::factory()->make();
+    $salaryRequirementFactory = SalaryRequirement::factory()->make();
 
     $id = (new StoreAction(
-        contractId: $contractId,
-        currencyId: $currencyId,
+        contractId: $salaryRequirementFactory->contract_id,
+        currencyId: $salaryRequirementFactory->currency_id,
         email: $jobSeekerFactory->email,
         name: $jobSeekerFactory->name,
-        salary: $salary,
+        salary: $salaryRequirementFactory->salary,
         slug: $jobSeekerFactory->slug,
     ))->store();
 
-    $jobSeeker = JobSeeker::find($id);
+    $jobSeeker = JobSeeker::with('salaryRequirements')
+        ->find($id);
 
-    expect($jobSeeker->salaryRequirements()->first()->contract_id)->toEqual($contractId);
-    expect($jobSeeker->salaryRequirements()->first()->currency_id)->toEqual($currencyId);
     expect($jobSeeker->email)->toEqual($jobSeekerFactory->email);
     expect($jobSeeker->name)->toEqual($jobSeekerFactory->name);
-    expect($jobSeeker->salaryRequirements()->first()->salary)->toEqual($salary);
     expect($jobSeeker->slug)->toEqual($jobSeekerFactory->slug);
+
+    expect($jobSeeker->salaryRequirements()->first()->salary)->toEqual($salaryRequirementFactory->salary);
+    expect($jobSeeker->salaryRequirements()->first()->contract_id)->toEqual($salaryRequirementFactory->contract_id);
+    expect($jobSeeker->salaryRequirements()->first()->currency_id)->toEqual($salaryRequirementFactory->currency_id);
 });
