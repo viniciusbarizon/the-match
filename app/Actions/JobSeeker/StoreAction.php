@@ -22,7 +22,6 @@ final class StoreAction
 
         $this->createJobSeeker();
         $this->createSalaryRequirements();
-        $this->refreshJobSeeker();
 
         $this->sendEmail();
 
@@ -51,11 +50,6 @@ final class StoreAction
             'currency_id' => $this->attributes->get('currency_id'),
             'salary' => $this->attributes->get('salary'),
         ]);
-    }
-
-    private function refreshJobSeeker(): void
-    {
-        $this->jobSeeker->refresh();
     }
 
     private function sendEmail(): void
