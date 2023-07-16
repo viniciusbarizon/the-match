@@ -20,7 +20,7 @@ final class StoreAction
         public readonly string $slug,
     ) { }
 
-    public function store(): string
+    public function store(): JobSeeker
     {
         session()->invalidate();
 

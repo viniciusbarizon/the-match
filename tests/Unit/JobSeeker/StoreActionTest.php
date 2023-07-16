@@ -1,38 +1,33 @@
 <?php
 
 use App\Actions\JobSeeker\StoreAction;
-use App\Models\Contract;
-use App\Models\Currency;
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
 
-private JobSeeker $jobSeeker;
-private JobSeeker $jobSeekerFactory;
-private SalaryRequirement $salaryRequirementFactory;
-
-beforeAll(function () {
+beforeEach(function () {
     $this->jobSeekerFactory = JobSeeker::factory()->make();
     $this->salaryRequirementFactory = SalaryRequirement::factory()->make();
 
     $this->jobSeeker = (new StoreAction(
-        contractId: $salaryRequirementFactory->contract_id,
-        currencyId: $salaryRequirementFactory->currency_id,
-        email: $jobSeekerFactory->email,
-        name: $jobSeekerFactory->name,
-        salary: $salaryRequirementFactory->salary,
-        slug: $jobSeekerFactory->slug,
+        contractId: $this->salaryRequirementFactory->contract_id,
+        currencyId: $this->salaryRequirementFactory->currency_id,
+        email: $this->jobSeekerFactory->email,
+        name: $this->jobSeekerFactory->name,
+        salary: $this->salaryRequirementFactory->salary,
+        slug: $this->jobSeekerFactory->slug,
     ))->store();
 });
 
 it('creates an job seeker', function() {
-    $jobSeeker = JobSeeker::find($id);
-    $salaryRequirement = $jobSeeker->salaryRequirements()->first();
+    expect($this->jobSeeker->email)->toEqual($this->jobSeekerFactory->email);
+    expect($this->jobSeeker->name)->toEqual($this->jobSeekerFactory->name);
+    expect($this->jobSeeker->slug)->toEqual($this->jobSeekerFactory->slug);
+});
 
-    expect($jobSeeker->email)->toEqual($jobSeekerFactory->email);
-    expect($jobSeeker->name)->toEqual($jobSeekerFactory->name);
-    expect($jobSeeker->slug)->toEqual($jobSeekerFactory->slug);
+it('creates a salary requirement', function() {
+    $salaryRequirement = $this->jobSeeker->salaryRequirements()->first();
 
-    expect($salaryRequirement->salary)->toEqual($salaryRequirementFactory->salary);
-    expect($salaryRequirement->contract_id)->toEqual($salaryRequirementFactory->contract_id);
-    expect($salaryRequirement->currency_id)->toEqual($salaryRequirementFactory->currency_id);
+    expect($salaryRequirement->salary)->toEqual($this->salaryRequirementFactory->salary);
+    expect($salaryRequirement->contract_id)->toEqual($this->salaryRequirementFactory->contract_id);
+    expect($salaryRequirement->currency_id)->toEqual($this->salaryRequirementFactory->currency_id);
 });
