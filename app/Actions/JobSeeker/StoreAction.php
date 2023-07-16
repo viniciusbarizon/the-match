@@ -12,7 +12,9 @@ final class StoreAction
 {
     private JobSeeker $jobSeeker;
 
-    public function __construct(public readonly Collection $attributes) { }
+    public function __construct(public readonly Collection $attributes)
+    {
+    }
 
     public function store(): JobSeeker
     {

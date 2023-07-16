@@ -4,9 +4,7 @@ namespace App\Http\Controllers\JobSeeker;
 
 use App\Actions\JobSeeker\StoreAction;
 use App\Http\Requests\JobSeeker\StoreRequest;
-use App\Mail\JobSeeker\Stored;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class StoreController
