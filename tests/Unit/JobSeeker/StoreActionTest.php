@@ -5,14 +5,16 @@ use App\Models\Contract;
 use App\Models\Currency;
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
-use Database\Seeders\ContractSeeder;
-use Database\Seeders\CurrencySeeder;
 
-it('stores an job seeker', function() {
-    $jobSeekerFactory = JobSeeker::factory()->make();
-    $salaryRequirementFactory = SalaryRequirement::factory()->make();
+private JobSeeker $jobSeeker;
+private JobSeeker $jobSeekerFactory;
+private SalaryRequirement $salaryRequirementFactory;
 
-    $id = (new StoreAction(
+beforeAll(function () {
+    $this->jobSeekerFactory = JobSeeker::factory()->make();
+    $this->salaryRequirementFactory = SalaryRequirement::factory()->make();
+
+    $this->jobSeeker = (new StoreAction(
         contractId: $salaryRequirementFactory->contract_id,
         currencyId: $salaryRequirementFactory->currency_id,
         email: $jobSeekerFactory->email,
@@ -20,7 +22,9 @@ it('stores an job seeker', function() {
         salary: $salaryRequirementFactory->salary,
         slug: $jobSeekerFactory->slug,
     ))->store();
+});
 
+it('creates an job seeker', function() {
     $jobSeeker = JobSeeker::find($id);
     $salaryRequirement = $jobSeeker->salaryRequirements()->first();
 
