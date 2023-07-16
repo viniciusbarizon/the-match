@@ -14,14 +14,7 @@ class StoreController
      */
     public function __invoke(StoreRequest $request): View
     {
-        (new StoreAction(
-            contractId: $request->contract_id,
-            currencyId: $request->currency_id,
-            email: $request->email,
-            name: $request->name,
-            salary: $request->salary,
-            slug: $request->slug,
-        ))->store();
+        (new StoreAction(attributes: $request->collect()))->store();
 
         return view('job-seeker.store', [
             'slug' => $request->slug,
