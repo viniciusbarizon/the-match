@@ -4,7 +4,6 @@ namespace Database\Factories;
 
 use App\Models\Contract;
 use App\Models\Currency;
-use App\Models\JobSeeker;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -22,7 +21,7 @@ class SalaryRequirementFactory extends Factory
         return [
             'salary' => random_int(1, 16777215),
             'contract_id' => Contract::inRandomOrder()->first()->id,
-            'currency_id' => Currency::inRandomOrder()->first()->id
+            'currency_id' => Currency::inRandomOrder()->first()->id,
         ];
     }
 }

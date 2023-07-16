@@ -18,13 +18,13 @@ beforeEach(function () {
     ))->store();
 });
 
-it('creates an job seeker', function() {
+it('creates an job seeker', function () {
     expect($this->jobSeeker->email)->toEqual($this->jobSeekerFactory->email);
     expect($this->jobSeeker->name)->toEqual($this->jobSeekerFactory->name);
     expect($this->jobSeeker->slug)->toEqual($this->jobSeekerFactory->slug);
 });
 
-it('creates a salary requirement', function() {
+it('creates a salary requirement', function () {
     $salaryRequirement = $this->jobSeeker->salaryRequirements()->first();
 
     expect($salaryRequirement->salary)->toEqual($this->salaryRequirementFactory->salary);

@@ -18,7 +18,8 @@ final class StoreAction
         public readonly string $name,
         public readonly int $salary,
         public readonly string $slug,
-    ) { }
+    ) {
+    }
 
     public function store(): JobSeeker
     {
