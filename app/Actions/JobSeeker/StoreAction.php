@@ -5,21 +5,14 @@ namespace App\Actions\JobSeeker;
 use App\Mail\JobSeeker\Stored;
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
 final class StoreAction
 {
     private JobSeeker $jobSeeker;
 
-    public function __construct(
-        public readonly string $contractId,
-        public readonly string $currencyId,
-        public readonly string $email,
-        public readonly string $name,
-        public readonly int $salary,
-        public readonly string $slug,
-    ) {
-    }
+    public function __construct(public readonly Collection $attributes) { }
 
     public function store(): JobSeeker
     {
@@ -37,9 +30,9 @@ final class StoreAction
     private function createJobSeeker(): void
     {
         $this->jobSeeker = JobSeeker::create([
-            'email' => $this->email,
-            'name' => $this->name,
-            'slug' => $this->slug,
+            'email' => $this->attributes->get('email'),
+            'name' => $this->attributes->get('name'),
+            'slug' => $this->attributes->get('slug'),
         ]);
     }
 
@@ -52,9 +45,9 @@ final class StoreAction
     private function getSalaryRequirement(): SalaryRequirement
     {
         return new SalaryRequirement([
-            'contract_id' => $this->contractId,
-            'currency_id' => $this->currencyId,
-            'salary' => $this->salary,
+            'contract_id' => $this->attributes->get('contract_id'),
+            'currency_id' => $this->attributes->get('currency_id'),
+            'salary' => $this->attributes->get('salary'),
         ]);
     }
 
@@ -65,8 +58,8 @@ final class StoreAction
 
     private function sendEmail(): void
     {
-        Mail::to($this->email)->send(
-            new Stored($this->name, $this->slug)
+        Mail::to($this->attributes->get('email'))->send(
+            new Stored($this->attributes->get('name'), $this->attributes->get('slug'))
         );
     }
 }

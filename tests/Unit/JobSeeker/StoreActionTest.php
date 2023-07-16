@@ -9,12 +9,14 @@ beforeEach(function () {
     $this->salaryRequirementFactory = SalaryRequirement::factory()->make();
 
     $this->jobSeeker = (new StoreAction(
-        contractId: $this->salaryRequirementFactory->contract_id,
-        currencyId: $this->salaryRequirementFactory->currency_id,
-        email: $this->jobSeekerFactory->email,
-        name: $this->jobSeekerFactory->name,
-        salary: $this->salaryRequirementFactory->salary,
-        slug: $this->jobSeekerFactory->slug,
+        attributes: collect([
+            'contract_id' => $this->salaryRequirementFactory->contract_id,
+            'currency_id' => $this->salaryRequirementFactory->currency_id,
+            'email' => $this->jobSeekerFactory->email,
+            'name' => $this->jobSeekerFactory->name,
+            'salary' => $this->salaryRequirementFactory->salary,
+            'slug' => $this->jobSeekerFactory->slug,
+        ])
     ))->store();
 });
 
