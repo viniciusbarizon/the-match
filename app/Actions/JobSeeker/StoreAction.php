@@ -61,7 +61,10 @@ final class StoreAction
     private function sendEmail(): void
     {
         Mail::to($this->attributes->get('email'))->send(
-            new Stored($this->attributes->get('name'), $this->attributes->get('slug'))
+            new Stored(
+                name: $this->attributes->get('name'),
+                slug: $this->attributes->get('slug')
+            )
         );
     }
 }
