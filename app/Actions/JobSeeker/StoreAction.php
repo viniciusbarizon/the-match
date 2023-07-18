@@ -18,8 +18,6 @@ final class StoreAction
 
     public function store(): JobSeeker
     {
-        session()->invalidate();
-
         $this->createJobSeeker();
         $this->createSalaryRequirements();
 

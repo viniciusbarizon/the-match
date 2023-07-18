@@ -19,6 +19,8 @@ class StoreController
             attributes: $request->collect()
         );
 
+        session()->invalidate();
+
         return view('job-seeker.store', [
             'slug' => $request->slug,
         ]);
