@@ -5,7 +5,6 @@ namespace App\Http\Controllers\JobSeeker;
 use App\Actions\JobSeeker\StoreAction;
 use App\Http\Requests\JobSeeker\StoreRequest;
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\View\View;
 
 class StoreController

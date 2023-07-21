@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Mail;
 final class StoreAction
 {
     private readonly Collection $attributes;
+
     private readonly JobSeeker $jobSeeker;
 
     public function store(Collection $attributes): JobSeeker
