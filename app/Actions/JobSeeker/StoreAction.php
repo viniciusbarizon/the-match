@@ -10,14 +10,13 @@ use Illuminate\Support\Facades\Mail;
 
 final class StoreAction
 {
-    private JobSeeker $jobSeeker;
+    private readonly Collection $attributes;
+    private readonly JobSeeker $jobSeeker;
 
-    public function __construct(public readonly Collection $attributes)
+    public function store(Collection $attributes): JobSeeker
     {
-    }
+        $this->attributes = $attributes;
 
-    public function store(): JobSeeker
-    {
         $this->createJobSeeker();
         $this->createSalaryRequirements();
 

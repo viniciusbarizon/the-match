@@ -13,22 +13,14 @@ class StoreController
     /**
      * Handle the incoming request.
      */
-    public function __invoke(StoreRequest $request): View
+    public function __invoke(StoreRequest $request, StoreAction $storeAction): View
     {
-        $this->store(
-            attributes: $request->collect()
-        );
+        $storeAction->store($request->collect());
 
         session()->invalidate();
 
         return view('job-seeker.store', [
             'slug' => $request->slug,
         ]);
-    }
-
-    private function store(Collection $attributes): void
-    {
-        (new StoreAction(attributes: $attributes))
-            ->store();
     }
 }
