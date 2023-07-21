@@ -14,7 +14,9 @@ class StoreController
      */
     public function __invoke(StoreRequest $request, StoreAction $storeAction): View
     {
-        $storeAction->store($request->collect());
+        $storeAction->store(
+            attributes: $request->collect()
+        );
 
         session()->invalidate();
 
