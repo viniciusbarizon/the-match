@@ -9,8 +9,7 @@ use App\Models\SalaryRequirement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
-#final class StoreAction implements StoreInterface
-final class StoreAction
+final class StoreAction implements StoreInterface
 {
     private readonly Collection $attributes;
 
