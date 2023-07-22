@@ -17,7 +17,7 @@ beforeEach(function () {
             'salary' => $this->salaryRequirementFactory->salary,
             'slug' => $this->jobSeekerFactory->slug,
         ]
-    ));
+        ));
 
     $this->jobSeeker = JobSeeker::find($id);
 });

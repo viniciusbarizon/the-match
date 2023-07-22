@@ -9,7 +9,9 @@ use Illuminate\View\View;
 
 class StoreController
 {
-    public function __construct(private readonly StoreInterface $interface, private readonly StoreRequest $request) { }
+    public function __construct(private readonly StoreInterface $interface, private readonly StoreRequest $request)
+    {
+    }
 
     /**
      * Handle the incoming request.

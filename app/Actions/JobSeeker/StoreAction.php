@@ -2,8 +2,8 @@
 
 namespace App\Actions\JobSeeker;
 
-use App\Mail\JobSeeker\Stored;
 use App\Interfaces\StoreInterface;
+use App\Mail\JobSeeker\Stored;
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
 use Illuminate\Support\Collection;
