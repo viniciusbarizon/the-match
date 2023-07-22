@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\JobSeeker;
 
-use App\Actions\JobSeeker\StoreAction;
 use App\Http\Requests\JobSeeker\StoreRequest;
 use App\Interfaces\StoreInterface;
 use Illuminate\Http\Request;
@@ -10,20 +9,21 @@ use Illuminate\View\View;
 
 class StoreController
 {
+    public function __construct(private readonly StoreInterface $interface, private readonly StoreRequest $request) { }
+
     /**
      * Handle the incoming request.
      */
-    public function __invoke(StoreAction $storeAction, StoreInterface $storeInterface, StoreRequest $request): View
+    public function __invoke(): View
     {
-        //$storeInterface->store($storeAction);
-        $storeAction->store(
-            attributes: $request->collect()
+        $this->interface->store(
+            attributes: $this->request->collect()
         );
 
         session()->invalidate();
 
         return view('job-seeker.store', [
-            'slug' => $request->slug,
+            'slug' => $this->request->slug,
         ]);
     }
 }
