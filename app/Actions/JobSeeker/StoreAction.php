@@ -3,18 +3,20 @@
 namespace App\Actions\JobSeeker;
 
 use App\Mail\JobSeeker\Stored;
+use App\Interfaces\StoreInterface;
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
+#final class StoreAction implements StoreInterface
 final class StoreAction
 {
     private readonly Collection $attributes;
 
     private readonly JobSeeker $jobSeeker;
 
-    public function store(Collection $attributes): JobSeeker
+    public function store(Collection $attributes): string
     {
         $this->attributes = $attributes;
 
@@ -23,7 +25,7 @@ final class StoreAction
 
         $this->sendEmail();
 
-        return $this->jobSeeker;
+        return $this->jobSeeker->id;
     }
 
     private function createJobSeeker(): void
