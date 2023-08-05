@@ -2,14 +2,14 @@
 
 namespace App\Actions\JobSeeker;
 
-use App\Interfaces\StoreInterface;
+use App\Interfaces\JobSeekerInterface;
 use App\Mail\JobSeeker\Stored;
 use App\Models\JobSeeker;
 use App\Models\SalaryRequirement;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Mail;
 
-final class StoreAction implements StoreInterface
+final class StoreAction implements JobSeekerInterface
 {
     private readonly Collection $attributes;
 
