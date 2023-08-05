@@ -8,7 +8,7 @@ beforeEach(function () {
     $this->jobSeekerFactory = JobSeeker::factory()->make();
     $this->salaryRequirementFactory = SalaryRequirement::factory()->make();
 
-    $id = (new StoreAction)->store(
+    $this->jobSeeker = (new StoreAction)->store(
         attributes: collect([
             'contract_id' => $this->salaryRequirementFactory->contract_id,
             'currency_id' => $this->salaryRequirementFactory->currency_id,
@@ -16,10 +16,8 @@ beforeEach(function () {
             'name' => $this->jobSeekerFactory->name,
             'salary' => $this->salaryRequirementFactory->salary,
             'slug' => $this->jobSeekerFactory->slug,
-        ]
-        ));
-
-    $this->jobSeeker = JobSeeker::find($id);
+        ])
+    );
 });
 
 it('creates an job seeker', function () {

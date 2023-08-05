@@ -15,7 +15,7 @@ final class StoreAction implements JobSeekerInterface
 
     private readonly JobSeeker $jobSeeker;
 
-    public function store(Collection $attributes): string
+    public function store(Collection $attributes): JobSeeker
     {
         $this->attributes = $attributes;
 
@@ -24,7 +24,7 @@ final class StoreAction implements JobSeekerInterface
 
         $this->sendEmail();
 
-        return $this->jobSeeker->id;
+        return $this->jobSeeker;
     }
 
     private function createJobSeeker(): void

@@ -2,9 +2,10 @@
 
 namespace App\Interfaces;
 
+use App\Models\JobSeeker;
 use Illuminate\Support\Collection;
 
 interface JobSeekerInterface
 {
-    public function store(Collection $attributes): string;
+    public function store(Collection $attributes): JobSeeker;
 }
