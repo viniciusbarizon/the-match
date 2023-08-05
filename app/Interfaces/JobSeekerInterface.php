@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 use Illuminate\Support\Collection;
 
-interface StoreInterface
+interface JobSeekerInterface
 {
     public function store(Collection $attributes): string;
 }
